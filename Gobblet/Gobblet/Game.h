@@ -5,6 +5,8 @@
 /// same as #pragma once
 /// Don't forget the endif at the bottom
 /// </summary>
+
+// Gobblet - made by Eoin Galavan & Caroline Percy
 #include <SFML/Graphics.hpp>
 #include "Grid.h"
 

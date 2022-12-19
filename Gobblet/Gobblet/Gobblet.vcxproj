@@ -21,11 +21,19 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Gameplay.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="HelpScreen.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="HelpScreen.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
