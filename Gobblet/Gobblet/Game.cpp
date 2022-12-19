@@ -10,8 +10,7 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 1280U, 720U, 32U }, "SFML Game" },
-	m_exitGame{false} //when true game will exit
+	m_window{ sf::VideoMode{ G_VIEW_WIDTH, G_VIEW_HEIGHT, 32U }, "SFML Game" }
 {}
 
 /// <summary>
@@ -61,7 +60,7 @@ void Game::processEvents()
 	{
 		if ( sf::Event::Closed == newEvent.type) // window message
 		{
-			m_exitGame = true;
+			g_exitGame = true;
 		}
 
 		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
@@ -95,7 +94,7 @@ void Game::processKeys(sf::Event t_event)
 {
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
-		m_exitGame = true;
+		g_exitGame = true;
 	}
 }
 
@@ -120,7 +119,7 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 	}
 
-	if (m_exitGame)
+	if (g_exitGame)
 	{
 		m_window.close();
 	}

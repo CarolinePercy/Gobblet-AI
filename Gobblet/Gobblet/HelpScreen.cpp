@@ -3,7 +3,7 @@
 HelpScreen::HelpScreen()
 {
 	sf::Vector2f buttonSize = sf::Vector2f(250, 100);
-	m_backButton = new Button(sf::Vector2f(900 - (buttonSize.x + 20), 500 - (buttonSize.y + 20)),
+	m_backButton = new Button(sf::Vector2f(G_VIEW_WIDTH - (buttonSize.x + 20), G_VIEW_HEIGHT - (buttonSize.y + 20)),
 		buttonSize, "BACK", sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
 
 	const int line_no = 3;
@@ -16,7 +16,7 @@ HelpScreen::HelpScreen()
 	for (int i = 0; i < line_no; i++)
 	{
 		sf::Text newLine;
-		//newLine.setFont(g_font);
+		newLine.setFont(g_font);
 		newLine.setString(help[i]);
 		newLine.setCharacterSize(40);
 		newLine.setFillColor(sf::Color::White);

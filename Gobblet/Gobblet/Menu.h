@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.h"
+#include "Button.h"
 
 class Menu
 {
@@ -11,5 +12,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 
 private:
+
+	std::vector<Button*> m_buttons;
 };
 

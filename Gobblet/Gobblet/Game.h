@@ -11,6 +11,7 @@
 #include "Menu.h"
 #include "Globals.h"
 #include "HelpScreen.h"
+#include <iostream>
 
 class Game
 {
@@ -30,7 +31,6 @@ private:
 	void render();
 
 	sf::RenderWindow m_window; // main SFML window
-	bool m_exitGame; // control exiting game
 
 
 	// Screens

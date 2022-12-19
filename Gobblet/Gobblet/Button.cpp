@@ -17,7 +17,7 @@ Button::Button(sf::Vector2f t_pos, sf::Vector2f t_size, std::string t_buttonText
 	button.setFillColor(idleColor);
 	button.setOutlineThickness(5);
 
-	//buttonText.setFont(g_font);
+	buttonText.setFont(g_font);
 	buttonText.setString(t_buttonText);
 	buttonText.setCharacterSize(40);
 	buttonText.setFillColor(sf::Color::Black);
