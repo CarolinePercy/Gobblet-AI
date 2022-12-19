@@ -7,8 +7,10 @@
 /// </summary>
 
 // Gobblet - made by Eoin Galavan & Caroline Percy
-#include <SFML/Graphics.hpp>
-#include "Grid.h"
+#include "Gameplay.h"
+#include "Menu.h"
+#include "Globals.h"
+#include "HelpScreen.h"
 
 class Game
 {
@@ -26,18 +28,15 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
-	
-	void setupFontAndText();
-	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 
-	Grid m_grid;
+
+	// Screens
+	HelpScreen helpScreen;
+	Gameplay gameScreen;
+	Menu menuScreen;
 
 };
 

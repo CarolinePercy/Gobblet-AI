@@ -2,6 +2,8 @@
 #define GLOBALS_H
 #include <SFML/Graphics.hpp>
 
+#include <SFML/Graphics.hpp>
+
 enum class Gamestate
 {
 	MainMenu,

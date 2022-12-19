@@ -12,10 +12,7 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 1280U, 720U, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
-{
-	setupFontAndText(); // load font 
-	setupSprite(); // load texture
-}
+{}
 
 /// <summary>
 /// default destructor we didn't dynamically allocate anything
@@ -66,9 +63,25 @@ void Game::processEvents()
 		{
 			m_exitGame = true;
 		}
+
 		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
 		{
 			processKeys(newEvent);
+		}
+
+		switch (g_gamestate)
+		{
+		case Gamestate::MainMenu:
+			menuScreen.processEvents(newEvent);
+			break;
+		case Gamestate::Gameplay:
+			gameScreen.processEvents(newEvent);
+			break;
+		case Gamestate::Help:
+			helpScreen.processEvents(newEvent);
+			break;
+		default:
+			break;
 		}
 	}
 }
@@ -92,6 +105,21 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+	switch (g_gamestate)
+	{
+	case Gamestate::MainMenu:
+		menuScreen.update(sf::Mouse::getPosition(m_window));
+		break;
+	case Gamestate::Gameplay:
+		gameScreen.update(sf::Mouse::getPosition(m_window));
+		break;
+	case Gamestate::Help:
+		helpScreen.update(sf::Mouse::getPosition(m_window));
+		break;
+	default:
+		break;
+	}
+
 	if (m_exitGame)
 	{
 		m_window.close();
@@ -104,42 +132,22 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	//m_window.draw(m_welcomeMessage);
-	//m_window.draw(m_logoSprite);
-	m_grid.render(m_window);
+
+	switch (g_gamestate)
+	{
+	case Gamestate::MainMenu:
+		menuScreen.render(m_window);
+		break;
+	case Gamestate::Gameplay:
+		gameScreen.render(m_window);
+		break;
+	case Gamestate::Help:
+		helpScreen.render(m_window);
+		break;
+	default:
+		break;
+	}
+
 	m_window.display();
 }
 
-/// <summary>
-/// load the font and setup the text message for screen
-/// </summary>
-void Game::setupFontAndText()
-{
-	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
-	{
-		std::cout << "problem loading arial black font" << std::endl;
-	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80U);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
-
-}
-
-/// <summary>
-/// load the texture and setup the sprite for the logo
-/// </summary>
-void Game::setupSprite()
-{
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
-	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
-}

@@ -1,3 +1,3 @@
 #include "Globals.h"
 
-Gamestate g_gamestate = Gamestate::MainMenu;
+Gamestate g_gamestate = Gamestate::Gameplay;
