@@ -8,7 +8,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 
 	Gobblet* getChild() { return m_child; }
-	void setChild(Gobblet* t_child) { m_child = t_child; };
+	void setChild(Gobblet* t_child) { m_child = t_child;  };
 	void setPosition(sf::Vector2f t_position) { m_gobblet.setPosition(t_position); }
 private:
 	sf::CircleShape m_gobblet;

@@ -9,9 +9,10 @@ public:
 	void render(sf::RenderWindow& t_window);
 	bool isInside(sf::Vector2i t_click);
 
-	void removeCurrentGobblet() { m_currentGobblet = m_currentGobblet->getChild(); }
+	void removeCurrentGobblet() { if (m_currentGobblet != nullptr) { m_currentGobblet = m_currentGobblet->getChild(); } }
 	void setCurrentGobblet(Gobblet* t_currentGobblet);
 	Gobblet* getCurrentGobblet() { return m_currentGobblet; }
+	void moveGobbletTo(Tile* t_destination);
 private:
 	Gobblet* m_currentGobblet;
 	sf::RectangleShape m_tile;

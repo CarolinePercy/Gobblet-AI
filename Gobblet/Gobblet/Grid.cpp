@@ -26,16 +26,13 @@ Grid::Grid()
 	position.y = 10;
 	for (int i = 0; i < 3; i++)
 	{
-		Gobblet* gobble1 = new Gobblet(1, true);
-		Gobblet* gobble2 = new Gobblet(2, true);
-		gobble2->setChild(gobble1);
-		Gobblet* gobble3 = new Gobblet(3, true);
-		gobble2->setChild(gobble2);
-		Gobblet* gobble4 = new Gobblet(4, true);
-		gobble2->setChild(gobble3);
-
 		Tile* tile = new Tile(position, size, false);
-		tile->setCurrentGobblet(gobble4);
+		for (int i = 1; i <= 4; i++)
+		{
+			Gobblet* gobble = new Gobblet(i, true);
+			tile->setCurrentGobblet(gobble);
+		}
+
 		m_inventoryTiles.push_back(tile);
 		position.y += size.y;
 	}
@@ -46,16 +43,13 @@ Grid::Grid()
 	position -= size;
 	for (int i = 0; i < 3; i++)
 	{
-		Gobblet* gobble1 = new Gobblet(1, false);
-		Gobblet* gobble2 = new Gobblet(2, false);
-		gobble2->setChild(gobble1);
-		Gobblet* gobble3 = new Gobblet(3, false);
-		gobble2->setChild(gobble2);
-		Gobblet* gobble4 = new Gobblet(4, false);
-		gobble2->setChild(gobble3);
-
 		Tile* tile = new Tile(position, size, false);
-		tile->setCurrentGobblet(gobble4);
+		for (int i = 1; i <= 4; i++)
+		{
+			Gobblet* gobble = new Gobblet(i, false);
+			tile->setCurrentGobblet(gobble);
+		}
+
 		m_inventoryTiles.push_back(tile);
 		position.y -= size.y;
 	}
@@ -70,5 +64,42 @@ void Grid::render(sf::RenderWindow& t_window)
 	for (Tile* tile : m_inventoryTiles)
 	{
 		tile->render(t_window);
+	}
+}
+
+void Grid::onMouseDown(sf::Vector2i t_click)
+{
+	m_selectedTile = nullptr;
+	for (Tile* tile : m_boardTiles)
+	{
+		if (tile->isInside(t_click))
+		{
+			m_selectedTile = tile;
+		}
+	}
+	for (Tile* tile : m_inventoryTiles)
+	{
+		if(tile->isInside(t_click))
+		{
+			m_selectedTile = tile;
+		}
+	}
+}
+
+void Grid::onMouseUp(sf::Vector2i t_click)
+{
+	for (Tile* tile : m_boardTiles)
+	{
+		if (tile->isInside(t_click))
+		{
+			m_selectedTile->moveGobbletTo(tile);
+		}
+	}
+	for (Tile* tile : m_inventoryTiles)
+	{
+		if (tile->isInside(t_click))
+		{
+
+		}
 	}
 }
