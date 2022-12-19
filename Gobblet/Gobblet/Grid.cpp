@@ -6,9 +6,9 @@ Grid::Grid()
 	sf::Vector2f size;
 
 	//main grid
-	size.x = (720 - 20) / 4.0f;
+	size.x = (G_VIEW_HEIGHT - 20) / 4.0f;
 	size.y = size.x;
-	position.x = (1280 - 720) / 2;
+	position.x = (G_VIEW_WIDTH - G_VIEW_HEIGHT) / 2;
 	position.y = 10;
 	for (int i = 0; i < 4; i++)
 	{
@@ -31,8 +31,8 @@ Grid::Grid()
 	}
 
 	//right player
-	position.x = 1280 - 10;
-	position.y = 720 - 10;
+	position.x = G_VIEW_WIDTH - 10;
+	position.y = G_VIEW_HEIGHT - 10;
 	position -= size;
 	for (int i = 0; i < 3; i++)
 	{

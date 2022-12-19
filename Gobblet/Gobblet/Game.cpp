@@ -63,11 +63,6 @@ void Game::processEvents()
 			g_exitGame = true;
 		}
 
-		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
-		{
-			processKeys(newEvent);
-		}
-
 		switch (g_gamestate)
 		{
 		case Gamestate::MainMenu:
@@ -82,19 +77,6 @@ void Game::processEvents()
 		default:
 			break;
 		}
-	}
-}
-
-
-/// <summary>
-/// deal with key presses from the user
-/// </summary>
-/// <param name="t_event">key press event</param>
-void Game::processKeys(sf::Event t_event)
-{
-	if (sf::Keyboard::Escape == t_event.key.code)
-	{
-		g_exitGame = true;
 	}
 }
 
@@ -130,7 +112,7 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
+	m_window.clear();
 
 	switch (g_gamestate)
 	{

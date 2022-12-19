@@ -17,7 +17,7 @@ extern sf::Font g_font;
 
 extern bool g_exitGame;
 
-unsigned const int G_VIEW_WIDTH = 1280U;
-unsigned const int G_VIEW_HEIGHT = 720U;
+unsigned const int G_VIEW_WIDTH = 1920U;
+unsigned const int G_VIEW_HEIGHT = 1080U;
 
 #endif // !GLOBALS_H

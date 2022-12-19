@@ -49,6 +49,11 @@ void Menu::processEvents(sf::Event t_event)
 			}
 		}
 	}
+
+	if (sf::Keyboard::Escape == t_event.key.code && sf::Event::KeyReleased == t_event.type)
+	{
+		g_exitGame = true;
+	}
 }
 
 void Menu::update(sf::Vector2i t_mousePos)
