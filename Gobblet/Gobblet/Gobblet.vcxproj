@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gobblet.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Gameplay.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gameplay.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Gobblet.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Grid.h" />
