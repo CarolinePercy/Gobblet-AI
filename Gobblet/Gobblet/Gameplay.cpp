@@ -6,6 +6,14 @@ Gameplay::Gameplay()
 
 void Gameplay::processEvents(sf::Event t_event)
 {
+	if (t_event.type == sf::Event::MouseButtonPressed)
+	{
+		m_grid.onMouseDown(mousePos);
+	}
+	if (t_event.type == sf::Event::MouseButtonReleased)
+	{
+		m_grid.onMouseUp(mousePos);
+	}
 	if (sf::Keyboard::Escape == t_event.key.code && sf::Event::KeyReleased == t_event.type)
 	{
 		g_gamestate = Gamestate::MainMenu;
@@ -14,6 +22,7 @@ void Gameplay::processEvents(sf::Event t_event)
 
 void Gameplay::update(sf::Vector2i t_mousePos)
 {
+	mousePos = t_mousePos;
 }
 
 void Gameplay::render(sf::RenderWindow& t_window)

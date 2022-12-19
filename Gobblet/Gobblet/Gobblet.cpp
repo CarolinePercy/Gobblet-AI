@@ -2,7 +2,7 @@
 
 Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size)
 {
-	float bigRadius = (720 - 20) / 8.0f;
+	float bigRadius = (G_VIEW_HEIGHT - 20) / 8.0f;
 	switch (t_size)
 	{
 	case 1:

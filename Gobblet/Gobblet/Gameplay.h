@@ -14,5 +14,7 @@ public:
 private:
 
 	Grid m_grid;
+
+	sf::Vector2i mousePos;
 };
 
