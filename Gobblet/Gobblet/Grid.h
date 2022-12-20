@@ -13,8 +13,10 @@ public:
 private:
 	void processOpponentTurn();
 	bool compareGobbletSizes(Tile* t_from, Tile* t_to);
+	int minimax(int board, int depth, bool AITurn);
 	std::vector<Tile*> m_boardTiles;
-	std::vector<Tile*> m_inventoryTiles;
+	std::vector<Tile*> m_player1Tiles;
+	std::vector<Tile*> m_player2Tiles;
 
 	Tile* m_selectedTile;
 	Gobblet* m_selectedGobblet;
