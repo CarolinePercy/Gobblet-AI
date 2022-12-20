@@ -11,8 +11,12 @@ public:
 	void setChild(Gobblet* t_child) { m_child = t_child;  };
 	void setPosition(sf::Vector2f t_position) { m_gobblet.setPosition(t_position); }
 	int getSize() { return size; }
+
+
+	bool isControlledByPlayer() { return controlledByPlayer; };
 private:
 	sf::CircleShape m_gobblet;
 	Gobblet* m_child;
 	int size = -1;
+	bool controlledByPlayer;
 };

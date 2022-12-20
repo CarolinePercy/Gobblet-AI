@@ -27,6 +27,8 @@ Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size)
 		m_gobblet.setFillColor(sf::Color::Blue);
 	else
 		m_gobblet.setFillColor(sf::Color::Red);
+
+	controlledByPlayer = t_isPlayer;
 }
 
 void Gobblet::render(sf::RenderWindow& t_window)

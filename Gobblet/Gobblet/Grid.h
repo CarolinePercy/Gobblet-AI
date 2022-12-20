@@ -17,4 +17,16 @@ private:
 
 	Tile* m_selectedTile;
 	Gobblet* m_selectedGobblet;
+
+
+	sf::Vector2i mousePos;
+
+	std::vector<std::vector<int>> threeInRow;
+
+	void checkIfFourIsInARow();
+	void checkIfThreeIsInARow();
+	void DiagonalCheck();
+	void HorizontalCheck();
+	void VerticalCheck();
+
 };
