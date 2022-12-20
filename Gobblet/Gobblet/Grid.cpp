@@ -111,7 +111,27 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (compareGobbletSizes(m_selectedTile, tile))
+			if (MovingFromInventory(m_selectedTile))
+			{
+				if (tile->getCurrentGobblet() != nullptr)
+				{
+					if (CheckIfThreeInARow(m_selectedTile, tile))
+					{
+						if (compareGobbletSizes(m_selectedTile, tile))
+						{
+							m_selectedTile->moveGobbletTo(tile);
+						}
+					}
+				}
+
+				else
+				{
+					m_selectedTile->moveGobbletTo(tile);
+				}
+
+			}
+
+			else if (compareGobbletSizes(m_selectedTile, tile))
 			{
 				m_selectedTile->moveGobbletTo(tile);
 			}
@@ -323,4 +343,37 @@ bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
 	}
 
 	return false;
+}
+
+bool Grid::MovingFromInventory(Tile* t_from)
+{
+	return std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from) == m_boardTiles.end();
+}
+
+bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
+{
+	bool t_Valid = false;
+	bool inARow = false;
+
+	std::vector<Tile*>::iterator itr = std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from);
+
+	int index = std::distance(m_boardTiles.begin(), itr);
+
+	for (std::vector<int> t : threeInRow)
+	{
+		inARow = std::find(t.begin(), t.end(), index) == t.end();
+
+		if (inARow)
+		{
+			break;
+		}
+	}
+
+	if (inARow)
+	{
+		t_Valid = t_from->getCurrentGobblet()->isControlledByPlayer() !=
+			t_to->getCurrentGobblet()->isControlledByPlayer();
+	}
+
+	return t_Valid;
 }
