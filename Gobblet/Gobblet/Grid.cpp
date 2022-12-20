@@ -83,13 +83,14 @@ void Grid::update(sf::Vector2i t_mousePos)
 	}
 }
 
+
 void Grid::onMouseDown(sf::Vector2i t_click)
 {
 	for (Tile* tile : m_boardTiles)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->getIsPlayer())
+			if (tile->getCurrentGobblet()->isControlledByPlayer())
 			{
 				m_selectedTile = tile;
 			}
@@ -99,7 +100,7 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if(tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->getIsPlayer())
+			if (tile->getCurrentGobblet()->isControlledByPlayer())
 			{
 				m_selectedTile = tile;
 			}
@@ -109,7 +110,7 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->getIsPlayer())
+			if (tile->getCurrentGobblet()->isControlledByPlayer())
 			{
 				m_selectedTile = tile;
 			}
@@ -133,13 +134,37 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (compareGobbletSizes(m_selectedTile, tile))
+			if (MovingFromInventory(m_selectedTile))
+			{
+				if (tile->getCurrentGobblet() != nullptr)
+				{
+					if (CheckIfThreeInARow(m_selectedTile, tile))
+					{
+						if (compareGobbletSizes(m_selectedTile, tile))
+						{
+							m_selectedTile->moveGobbletTo(tile);
+							processOpponentTurn();
+						}
+					}
+				}
+
+				else
+				{
+					m_selectedTile->moveGobbletTo(tile);
+					processOpponentTurn();
+				}
+
+			}
+			else if (compareGobbletSizes(m_selectedTile, tile))
 			{
 				m_selectedTile->moveGobbletTo(tile);
 				processOpponentTurn();
 			}
 		}
 	}
+
+	checkRows();
+
 	m_selectedTile = nullptr;
 }
 
@@ -204,6 +229,221 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 	}
 
 	return fromSize > toSize;
+}
+
+void Grid::checkRows()
+{
+	threeInRow.clear();
+
+	VerticalCheck();
+	HorizontalCheck();
+	DiagonalCheck();
+}
+
+void Grid::DiagonalCheck()
+{
+	int numOfEnemy = 0;
+	int numOfPlayer = 0;
+	Gobblet* g;
+
+	// Diagonal Check
+
+	for (int j = 0; j < 4; j++)
+	{
+		g = m_boardTiles[(j * 5)]->getCurrentGobblet();
+
+		if (g != nullptr)
+		{
+			if (g->isControlledByPlayer())
+			{
+				numOfPlayer++;
+			}
+
+			else
+			{
+				numOfEnemy++;
+			}
+		}
+	}
+
+	if (numOfPlayer >= 3 || numOfEnemy >= 3)
+	{
+		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+		{
+			RowWasFound(0, 5, 10, 15);
+			// theres three in a row!
+		}
+	}
+
+	numOfEnemy = 0;
+	numOfPlayer = 0;
+
+	for (int j = 0; j < 4; j++)
+	{
+		g = m_boardTiles[((j + 1) * 3)]->getCurrentGobblet();
+
+		if (g != nullptr)
+		{
+			if (g->isControlledByPlayer())
+			{
+				numOfPlayer++;
+			}
+
+			else
+			{
+				numOfEnemy++;
+			}
+		}
+	}
+
+	if (numOfPlayer >= 3 || numOfEnemy >= 3)
+	{
+		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+		{
+			RowWasFound(3, 6, 9, 12);
+			// theres three in a row!
+		}
+	}
+}
+
+void Grid::HorizontalCheck()
+{
+	int numOfEnemy = 0;
+	int numOfPlayer = 0;
+	Gobblet* g;
+
+	// Horizontal Check
+	for (int i = 0; i < 4; i++)
+	{
+		numOfEnemy = 0;
+		numOfPlayer = 0;
+
+		for (int j = 0; j < 4; j++)
+		{
+			g = m_boardTiles[(j * 4) + i]->getCurrentGobblet();
+
+			if (g != nullptr)
+			{
+				if (g->isControlledByPlayer())
+				{
+					numOfPlayer++;
+				}
+
+				else
+				{
+					numOfEnemy++;
+				}
+			}
+		}
+
+		if (numOfPlayer >= 3 || numOfEnemy >= 3)
+		{
+			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+			{
+				RowWasFound(i, i + 4, i + 8, i + 12);
+				// theres three in a row!
+			}
+		}
+	}
+}
+
+void Grid::VerticalCheck()
+{
+	int numOfEnemy = 0;
+	int numOfPlayer = 0;
+	Gobblet* g;
+
+	// Vertical check
+	for (int i = 0; i < 4; i++)
+	{
+		numOfEnemy = 0;
+		numOfPlayer = 0;
+
+		for (int j = 0; j < 4; j++)
+		{
+			g = m_boardTiles[(i * 4) + j]->getCurrentGobblet();
+
+			if (g != nullptr)
+			{
+				if (g->isControlledByPlayer())
+				{
+					numOfPlayer++;
+				}
+
+				else
+				{
+					numOfEnemy++;
+				}
+			}
+		}
+
+		if (numOfPlayer >= 3 || numOfEnemy >= 3)
+		{
+			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+			{
+				int temp = i * 4;
+				RowWasFound(temp, temp + 1, temp + 2, temp + 3);
+			}
+
+			// theres three in a row!
+		}
+	}
+}
+
+void Grid::RowWasFound(int in1, int in2, int in3, int in4)
+{
+	threeInRow.push_back(std::vector<int>{in1, in2, in3, in4});
+	std::cout << "Three in a row!: " << in1 << ", " << in2 << ", " << in3 << ", " << in4 << std::endl;
+}
+
+bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
+{
+	if (t_playerNum >= 4)
+	{
+		g_status = Status::Player1Wins;
+		// Player1 wins!
+	}
+
+	else if (t_enemyNum >= 4)
+	{
+		g_status = Status::Player2Wins;
+		// Player2 wins!
+	}
+
+	return false;
+}
+
+bool Grid::MovingFromInventory(Tile* t_from)
+{
+	return std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from) == m_boardTiles.end();
+}
+
+bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
+{
+	bool t_Valid = false;
+	bool inARow = false;
+
+	std::vector<Tile*>::iterator itr = std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from);
+
+	int index = std::distance(m_boardTiles.begin(), itr);
+
+	for (std::vector<int> t : threeInRow)
+	{
+		inARow = std::find(t.begin(), t.end(), index) == t.end();
+
+		if (inARow)
+		{
+			break;
+		}
+	}
+
+	if (inARow)
+	{
+		t_Valid = t_from->getCurrentGobblet()->isControlledByPlayer() !=
+			t_to->getCurrentGobblet()->isControlledByPlayer();
+	}
+
+	return t_Valid;
 }
 
 /// <summary>

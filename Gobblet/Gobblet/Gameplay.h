@@ -14,7 +14,9 @@ public:
 private:
 
 	Grid m_grid;
-
 	sf::Vector2i mousePos;
+	sf::Text announcementText;
+
+	void DrawText(sf::RenderWindow& t_window);
 };
 

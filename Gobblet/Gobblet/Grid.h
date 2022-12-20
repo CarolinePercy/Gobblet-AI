@@ -20,4 +20,22 @@ private:
 
 	Tile* m_selectedTile;
 	Gobblet* m_selectedGobblet;
+
+
+	sf::Vector2i mousePos;
+
+	std::vector<std::vector<int>> threeInRow;
+
+	void checkRows();
+
+	void DiagonalCheck();
+	void HorizontalCheck();
+	void VerticalCheck();
+
+	void RowWasFound(int in1, int in2, int in3, int in4);
+	bool DidAPlayerWin(int t_playerNum, int t_enemyNum);
+
+	bool MovingFromInventory(Tile* t_from);
+	bool CheckIfThreeInARow(Tile* t_from, Tile* t_to);
+
 };
