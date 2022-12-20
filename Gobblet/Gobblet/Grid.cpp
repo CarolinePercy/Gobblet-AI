@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-Grid::Grid()
+Grid::Grid() : m_selectedTile(nullptr)
 {
 	sf::Vector2f position;
 	sf::Vector2f size;
@@ -69,7 +69,6 @@ void Grid::render(sf::RenderWindow& t_window)
 
 void Grid::onMouseDown(sf::Vector2i t_click)
 {
-	m_selectedTile = nullptr;
 	for (Tile* tile : m_boardTiles)
 	{
 		if (tile->isInside(t_click))
@@ -102,4 +101,5 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 
 		}
 	}
+	m_selectedTile = nullptr;
 }

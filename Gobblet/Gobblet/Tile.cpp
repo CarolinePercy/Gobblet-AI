@@ -46,11 +46,14 @@ void Tile::setCurrentGobblet(Gobblet* t_currentGobblet)
 
 void Tile::moveGobbletTo(Tile* t_destination) 
 {
-	Gobblet* child = m_currentGobblet->getChild();
-	t_destination->setCurrentGobblet(m_currentGobblet);
-	m_currentGobblet = child;
-	if (m_currentGobblet != nullptr)
-	{
-		m_currentGobblet->setPosition(m_tile.getPosition() + (m_tile.getSize() / 2.0f));
+	if(m_currentGobblet != nullptr)
+	{ 
+		Gobblet* child = m_currentGobblet->getChild();
+		t_destination->setCurrentGobblet(m_currentGobblet);
+		m_currentGobblet = child;
+		if (m_currentGobblet != nullptr)
+		{
+			m_currentGobblet->setPosition(m_tile.getPosition() + (m_tile.getSize() / 2.0f));
+		}
 	}
 }
