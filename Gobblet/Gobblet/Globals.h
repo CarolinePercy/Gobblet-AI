@@ -10,7 +10,15 @@ enum class Gamestate
 	Help
 };
 
+enum class Status
+{
+	OnGoing,
+	Player1Wins,
+	Player2Wins
+};
+
 extern Gamestate g_gamestate;
+extern Status g_status;
 
 extern sf::Font g_font;
 

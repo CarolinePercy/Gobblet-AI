@@ -130,6 +130,7 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 		fromSize = fromGobblet->getSize();
 	}
 
+
 	Gobblet* toGobblet = t_to->getCurrentGobblet();
 	int toSize = 0;
 	if (toGobblet != nullptr)
@@ -137,12 +138,12 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 		toSize = toGobblet->getSize();
 	}
 
-	return fromSize > toSize;
+	checkRows();
 
-	checkIfThreeIsInARow();
+	return fromSize > toSize;
 }
 
-void Grid::checkIfThreeIsInARow()
+void Grid::checkRows()
 {
 	threeInRow.clear();
 
@@ -179,9 +180,11 @@ void Grid::DiagonalCheck()
 
 	if (numOfPlayer >= 3 || numOfEnemy >= 3)
 	{
-		threeInRow.push_back(std::vector<int>{0, 5, 10, 15});
-		std::cout << "Three in a row!: " << 0 << ", " << 5 << ", " << 10 << ", " << 15 << std::endl;
-		// theres three in a row!
+		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+		{
+			RowWasFound(0, 5, 10, 15);
+			// theres three in a row!
+		}
 	}
 
 	numOfEnemy = 0;
@@ -207,9 +210,11 @@ void Grid::DiagonalCheck()
 
 	if (numOfPlayer >= 3 || numOfEnemy >= 3)
 	{
-		threeInRow.push_back(std::vector<int>{3, 6, 9, 12});
-		std::cout << "Three in a row!: " << 3 << ", " << 6 + 1 << ", " << 9 << ", " << 12 << std::endl;
-		// theres three in a row!
+		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+		{
+			RowWasFound(3, 6, 9, 12);
+			// theres three in a row!
+		}
 	}
 }
 
@@ -245,11 +250,11 @@ void Grid::HorizontalCheck()
 
 		if (numOfPlayer >= 3 || numOfEnemy >= 3)
 		{
-			threeInRow.push_back(std::vector<int>
-			{i, i + 4, i + 8, i + 12});
-			// theres three in a row!
-
-			std::cout << "Three in a row!: " << i << ", " << i + 4 << ", " << i + 8 << ", " << i + 12 << std::endl;
+			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+			{
+				RowWasFound(i, i + 4, i + 8, i + 12);
+				// theres three in a row!
+			}
 		}
 	}
 }
@@ -286,13 +291,36 @@ void Grid::VerticalCheck()
 
 		if (numOfPlayer >= 3 || numOfEnemy >= 3)
 		{
-			int temp = i * 4;
+			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
+			{
+				int temp = i * 4;
+				RowWasFound(temp, temp + 1, temp + 2, temp + 3);
+			}
 
-			threeInRow.push_back(std::vector<int>
-			{temp, temp + 1, temp + 2, temp + 3});
-
-			std::cout << "Three in a row!: " << temp << ", " << temp + 1 << ", " << temp + 2 <<", " << temp + 3 << std::endl;
 			// theres three in a row!
 		}
 	}
+}
+
+void Grid::RowWasFound(int in1, int in2, int in3, int in4)
+{
+	threeInRow.push_back(std::vector<int>{in1, in2, in3, in4});
+	std::cout << "Three in a row!: " << in1 << ", " << in2 << ", " << in3 << ", " << in4 << std::endl;
+}
+
+bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
+{
+	if (t_playerNum >= 4)
+	{
+		g_status = Status::Player1Wins;
+		// Player1 wins!
+	}
+
+	else if (t_enemyNum >= 4)
+	{
+		g_status = Status::Player2Wins;
+		// Player2 wins!
+	}
+
+	return false;
 }
