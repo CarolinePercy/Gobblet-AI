@@ -23,6 +23,7 @@ void Gameplay::processEvents(sf::Event t_event)
 void Gameplay::update(sf::Vector2i t_mousePos)
 {
 	mousePos = t_mousePos;
+	m_grid.update(t_mousePos);
 }
 
 void Gameplay::render(sf::RenderWindow& t_window)

@@ -65,6 +65,18 @@ void Grid::render(sf::RenderWindow& t_window)
 	{
 		tile->render(t_window);
 	}
+	if (m_selectedGobblet != nullptr)
+	{
+		m_selectedGobblet->render(t_window);
+	}
+}
+
+void Grid::update(sf::Vector2i t_mousePos)
+{
+	if (m_selectedGobblet != nullptr)
+	{
+		m_selectedGobblet->setPosition(sf::Vector2f(t_mousePos.x, t_mousePos.y));
+	}
 }
 
 void Grid::onMouseDown(sf::Vector2i t_click)
@@ -83,10 +95,17 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 			m_selectedTile = tile;
 		}
 	}
+	if (m_selectedTile != nullptr)
+	{
+		m_selectedGobblet = m_selectedTile->getCurrentGobblet();
+		m_selectedTile->removeCurrentGobblet();
+	}
 }
 
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
+	m_selectedTile->setCurrentGobblet(m_selectedGobblet);
+	m_selectedGobblet = nullptr;
 	for (Tile* tile : m_boardTiles)
 	{
 		if (tile->isInside(t_click))
