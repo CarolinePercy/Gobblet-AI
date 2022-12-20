@@ -55,6 +55,34 @@ Grid::Grid() : m_selectedTile(nullptr)
 	}
 }
 
+void Grid::resetBoard()
+{
+	std::vector<Gobblet*> playerGobblets;
+	std::vector<Gobblet*> enemyGobblets;
+	Gobblet* g;
+
+	for (Tile* tile : m_boardTiles)
+	{
+		Gobblet* g = tile->getCurrentGobblet();
+		if (g != nullptr)
+		{
+			getChildGobbletsOut(g, &playerGobblets, &enemyGobblets);
+
+			if (g->isControlledByPlayer())
+			{
+				playerGobblets.push_back(g);
+			}
+
+			else
+			{
+				enemyGobblets.push_back(g);
+			}
+
+			tile->removeCurrentGobblet();
+		}
+	}
+}
+
 void Grid::render(sf::RenderWindow& t_window)
 {
 	for (Tile* tile : m_boardTiles)
@@ -141,6 +169,26 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 	}
 
 	return fromSize > toSize;
+}
+
+void Grid::getChildGobbletsOut(Gobblet* parentGobblet, std::vector<Gobblet*>* t_playerGobblets, std::vector<Gobblet*>* t_enemyGobblets)
+{
+	if (parentGobblet->getChild() != nullptr)
+	{
+		getChildGobbletsOut(parentGobblet->getChild(), t_playerGobblets, t_enemyGobblets);
+
+		if (parentGobblet->getChild()->isControlledByPlayer())
+		{
+			t_playerGobblets->push_back(parentGobblet->getChild());
+		}
+
+		else
+		{
+			t_enemyGobblets->push_back(parentGobblet->getChild());
+		}
+
+		parentGobblet->setChild(nullptr);
+	}
 }
 
 void Grid::checkRows()

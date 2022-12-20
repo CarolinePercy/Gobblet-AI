@@ -60,3 +60,8 @@ void Gameplay::DrawText(sf::RenderWindow& t_window)
 	announcementText.setOrigin(announcementText.getLocalBounds().width / 2.0f, announcementText.getLocalBounds().height / 2.0f);
 	t_window.draw(announcementText);
 }
+
+void Gameplay::resetBoard()
+{
+	m_grid.resetBoard();
+}

@@ -18,6 +18,7 @@ enum class Status
 };
 
 extern Gamestate g_gamestate;
+extern Gamestate g_previousstate;
 extern Status g_status;
 
 extern sf::Font g_font;

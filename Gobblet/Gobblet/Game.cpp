@@ -55,6 +55,7 @@ void Game::run()
 /// </summary>
 void Game::processEvents()
 {
+	g_previousstate = g_gamestate;
 	sf::Event newEvent;
 	while (m_window.pollEvent(newEvent))
 	{
@@ -77,6 +78,11 @@ void Game::processEvents()
 		default:
 			break;
 		}
+	}
+
+	if (g_gamestate == Gamestate::Gameplay && g_previousstate == Gamestate::MainMenu)
+	{
+		gameScreen.resetBoard();
 	}
 }
 

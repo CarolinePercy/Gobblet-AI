@@ -10,6 +10,8 @@ public:
 	void update(sf::Vector2i t_mousePos);
 	void onMouseDown(sf::Vector2i t_click);
 	void onMouseUp(sf::Vector2i t_click);
+
+	void resetBoard();
 private:
 	bool compareGobbletSizes(Tile* t_from, Tile* t_to);
 	std::vector<Tile*> m_boardTiles;
@@ -23,7 +25,9 @@ private:
 
 	std::vector<std::vector<int>> threeInRow;
 
-	
+	void getChildGobbletsOut(Gobblet* parentGobblet, std::vector<Gobblet*>* t_playerGobblets,
+		std::vector<Gobblet*>* t_enemyGobblets);
+
 	void checkRows();
 
 	void DiagonalCheck();
