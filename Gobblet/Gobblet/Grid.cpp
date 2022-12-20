@@ -118,6 +118,8 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 		}
 	}
 
+	checkRows();
+
 	m_selectedTile = nullptr;
 }
 
@@ -137,8 +139,6 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 	{
 		toSize = toGobblet->getSize();
 	}
-
-	checkRows();
 
 	return fromSize > toSize;
 }
