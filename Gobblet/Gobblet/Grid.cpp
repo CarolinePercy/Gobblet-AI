@@ -91,15 +91,30 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			m_selectedTile->moveGobbletTo(tile);
-		}
-	}
-	for (Tile* tile : m_inventoryTiles)
-	{
-		if (tile->isInside(t_click))
-		{
-
+			if (compareGobbletSizes(m_selectedTile, tile))
+			{
+				m_selectedTile->moveGobbletTo(tile);
+			}
 		}
 	}
 	m_selectedTile = nullptr;
+}
+
+bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
+{
+	Gobblet* fromGobblet = t_from->getCurrentGobblet();
+	int fromSize = 0;
+	if (fromGobblet != nullptr)
+	{
+		fromSize = fromGobblet->getSize();
+	}
+
+	Gobblet* toGobblet = t_to->getCurrentGobblet();
+	int toSize = 0;
+	if (toGobblet != nullptr)
+	{
+		toSize = toGobblet->getSize();
+	}
+
+	return fromSize > toSize;
 }

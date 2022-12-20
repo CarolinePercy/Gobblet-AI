@@ -10,6 +10,7 @@ public:
 	void onMouseDown(sf::Vector2i t_click);
 	void onMouseUp(sf::Vector2i t_click);
 private:
+	bool compareGobbletSizes(Tile* t_from, Tile* t_to);
 	std::vector<Tile*> m_boardTiles;
 	std::vector<Tile*> m_inventoryTiles;
 
