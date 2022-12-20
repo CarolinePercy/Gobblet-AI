@@ -1,6 +1,6 @@
 #include "Gobblet.h"
 
-Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size)
+Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size), isPlayer(t_isPlayer)
 {
 	float bigRadius = (G_VIEW_HEIGHT - 20) / 8.0f;
 	switch (t_size)

@@ -8,11 +8,13 @@ void Gameplay::processEvents(sf::Event t_event)
 {
 	if (t_event.type == sf::Event::MouseButtonPressed)
 	{
-		m_grid.onMouseDown(mousePos);
+		if(t_event.key.code == sf::Mouse::Left)
+			m_grid.onMouseDown(mousePos);
 	}
 	if (t_event.type == sf::Event::MouseButtonReleased)
 	{
-		m_grid.onMouseUp(mousePos);
+		if (t_event.key.code == sf::Mouse::Left)
+			m_grid.onMouseUp(mousePos);
 	}
 	if (sf::Keyboard::Escape == t_event.key.code && sf::Event::KeyReleased == t_event.type)
 	{

@@ -85,14 +85,20 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			m_selectedTile = tile;
+			if (tile->getCurrentGobblet()->getIsPlayer())
+			{
+				m_selectedTile = tile;
+			}
 		}
 	}
 	for (Tile* tile : m_inventoryTiles)
 	{
 		if(tile->isInside(t_click))
 		{
-			m_selectedTile = tile;
+			if (tile->getCurrentGobblet()->getIsPlayer())
+			{
+				m_selectedTile = tile;
+			}
 		}
 	}
 	if (m_selectedTile != nullptr)
@@ -104,8 +110,11 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
-	m_selectedTile->setCurrentGobblet(m_selectedGobblet);
-	m_selectedGobblet = nullptr;
+	if (m_selectedTile != nullptr)
+	{
+		m_selectedTile->setCurrentGobblet(m_selectedGobblet);
+		m_selectedGobblet = nullptr;
+	}
 	for (Tile* tile : m_boardTiles)
 	{
 		if (tile->isInside(t_click))
@@ -113,26 +122,53 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 			if (compareGobbletSizes(m_selectedTile, tile))
 			{
 				m_selectedTile->moveGobbletTo(tile);
+				processOpponentTurn();
 			}
 		}
 	}
 	m_selectedTile = nullptr;
 }
 
+void Grid::processOpponentTurn()
+{
+	std::vector<Tile*> emptyTiles;
+	for (Tile* tile : m_boardTiles)
+	{
+		if (tile->getCurrentGobblet() == nullptr)
+		{
+			emptyTiles.push_back(tile);
+		}
+	}
+	if (emptyTiles.size() > 0)
+	{
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
+		m_inventoryTiles.back()->moveGobbletTo(emptyTiles.back());
+	}
+}
+
 bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 {
-	Gobblet* fromGobblet = t_from->getCurrentGobblet();
 	int fromSize = 0;
-	if (fromGobblet != nullptr)
-	{
-		fromSize = fromGobblet->getSize();
+	int toSize = 0;
+
+	if(t_from != nullptr)
+	{ 
+		Gobblet* fromGobblet = t_from->getCurrentGobblet();
+		if (fromGobblet != nullptr)
+		{
+			fromSize = fromGobblet->getSize();
+		}
 	}
 
-	Gobblet* toGobblet = t_to->getCurrentGobblet();
-	int toSize = 0;
-	if (toGobblet != nullptr)
+	if (t_from != nullptr)
 	{
-		toSize = toGobblet->getSize();
+		Gobblet* toGobblet = t_to->getCurrentGobblet();
+		if (toGobblet != nullptr)
+		{
+			toSize = toGobblet->getSize();
+		}
 	}
 
 	return fromSize > toSize;

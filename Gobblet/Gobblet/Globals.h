@@ -2,6 +2,9 @@
 #define GLOBALS_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <random>
+#include <algorithm>
+#include <iterator>
 
 enum class Gamestate
 {
