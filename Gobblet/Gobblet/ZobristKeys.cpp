@@ -59,3 +59,42 @@ unsigned long long int ZobristKeys::movePiece(int t_board[4][4],
 
 	return hashValue;
 }
+
+void ZobristKeys::getMove(int t_boardBefore[4][4], int t_boardAfter[4][4], int t_coordinates[4])
+{
+	for (int i = 0; i < NUM_OF_CELLS_IN_ROW; i++)
+	{
+		for (int j = 0; j < NUM_OF_CELLS_IN_ROW; j++)
+		{
+			if (t_boardBefore[i][j] != t_boardAfter[i][j])
+			{
+				int before = t_boardBefore[i][j];
+				int after = t_boardAfter[i][j];
+
+				if (before > 4)
+				{
+					before -= 4;
+				}
+
+				if (after > 4)
+				{
+					after -= 4;
+				}
+
+				if (before > after)
+				{
+					// before coordinates
+					t_coordinates[0] = i;
+					t_coordinates[1] = j;
+				}
+
+				else
+				{
+					//after coordinates
+					t_coordinates[2] = i;
+					t_coordinates[3] = j;
+				}
+			}
+		}
+	}
+}

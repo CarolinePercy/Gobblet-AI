@@ -10,8 +10,6 @@ private:
 
 	unsigned long generateRandomInt();
 	std::mt19937 mt = std::mt19937(01234567);
-	
-	int indexOf(int t_piece);
 
 public:
 
@@ -20,4 +18,5 @@ public:
 	unsigned long long int movePiece(int t_board[4][4],
 		std::pair<int, int> t_from, std::pair<int, int> t_to);
 	
+	void getMove(int t_boardBefore[4][4], int t_boardAfter[4][4], int t_coordinates[4]);
 };
