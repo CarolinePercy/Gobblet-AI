@@ -2,6 +2,10 @@
 #include "Globals.h"
 #include "Button.h"
 
+/// <summary>
+/// The screen that explains to the player how the game Gobblet is played.
+/// </summary>
+
 class HelpScreen
 {
 public:
@@ -12,6 +16,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 
 private:
+
 	///The Button that will bring you back to the MainMenu.
 	Button* m_backButton;
 

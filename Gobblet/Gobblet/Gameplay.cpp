@@ -1,5 +1,8 @@
 #include "Gameplay.h"
 
+/// <summary>
+/// Gameplay's Default Constructor.
+/// </summary>
 Gameplay::Gameplay()
 {
 	announcementText.setFont(g_font);
@@ -9,6 +12,10 @@ Gameplay::Gameplay()
 	announcementText.setOutlineThickness(10);
 }
 
+/// <summary>
+/// Processes the events that happened while the player was on the Gameplay screen.
+/// </summary>
+/// <param name="t_event">The event that occured because of the player.</param>
 void Gameplay::processEvents(sf::Event t_event)
 {
 	if (g_status == Status::OnGoing)
@@ -31,12 +38,21 @@ void Gameplay::processEvents(sf::Event t_event)
 	}
 }
 
+/// <summary>
+/// Updates the Grid and mouse position every frame.
+/// </summary>
+/// <param name="t_mousePos">The mouse's position on the screen.</param>
 void Gameplay::update(sf::Vector2i t_mousePos)
 {
 	mousePos = t_mousePos;
 	m_grid.update(t_mousePos);
 }
 
+/// <summary>
+/// Draws all the relevant items in Gameplay to the sfml window, such as the Grid 
+/// and the announcement text.
+/// </summary>
+/// <param name="t_window">The SFML window to draw to.</param>
 void Gameplay::render(sf::RenderWindow& t_window)
 {
 	m_grid.render(t_window);
@@ -56,6 +72,10 @@ void Gameplay::render(sf::RenderWindow& t_window)
 	}
 }
 
+/// <summary>
+/// Draws the text of the announcement to the screen.
+/// </summary>
+/// <param name="t_window">The SFML window to draw to.</param>
 void Gameplay::DrawText(sf::RenderWindow& t_window)
 {
 	announcementText.setPosition(G_VIEW_WIDTH / 2, G_VIEW_HEIGHT / 2);

@@ -2,6 +2,10 @@
 #include "Globals.h"
 #include "Button.h"
 
+/// <summary>
+/// The screen that helps the player navigate the program.
+/// </summary>
+
 class Menu
 {
 public:
@@ -13,6 +17,7 @@ public:
 
 private:
 
+	/// The buttons on the menu screen.
 	std::vector<Button*> m_buttons;
 };
 
