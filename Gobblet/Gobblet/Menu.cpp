@@ -1,5 +1,8 @@
 #include "Menu.h"
 
+/// <summary>
+/// Menu's Default Constructor.
+/// </summary>
 Menu::Menu()
 {
 	sf::Vector2f buttonSize = sf::Vector2f(400, 150);
@@ -11,6 +14,10 @@ Menu::Menu()
 	}
 }
 
+/// <summary>
+/// Processes the events that happened while the player was on the Menu screen.
+/// </summary>
+/// <param name="t_event">The event that occured because of the player.</param>
 void Menu::processEvents(sf::Event t_event)
 {
 	if (sf::Event::MouseButtonPressed == t_event.type)
@@ -56,6 +63,10 @@ void Menu::processEvents(sf::Event t_event)
 	}
 }
 
+/// <summary>
+/// Updates the buttons every frame.
+/// </summary>
+/// <param name="t_mousePos">The mouse's position on the screen.</param>
 void Menu::update(sf::Vector2i t_mousePos)
 {
 	for (Button* button : m_buttons)
@@ -64,6 +75,10 @@ void Menu::update(sf::Vector2i t_mousePos)
 	}
 }
 
+/// <summary>
+/// Draws all the relevant items in Menu to the sfml window, such as the buttons
+/// </summary>
+/// <param name="t_window">The SFML window to draw to.</param>
 void Menu::render(sf::RenderWindow& t_window)
 {
 	for (Button* button : m_buttons)

@@ -1,21 +1,18 @@
 #include "Game.h"
 #include <iostream>
 
-
-
 /// <summary>
-/// default constructor
-/// setup the window properties
-/// load and setup the text 
-/// load and setup thne image
+/// Default constructor.
+/// Sets up the window properties and load and setup the text,
+/// also loads and sets up the image.
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ G_VIEW_WIDTH, G_VIEW_HEIGHT, 32U }, "SFML Game" }
 {}
 
 /// <summary>
-/// default destructor we didn't dynamically allocate anything
-/// so we don't need to free it, but mthod needs to be here
+/// default destructor. We didn't dynamically allocate anything,
+/// so we don't need to free it, but method needs to be here.
 /// </summary>
 Game::~Game()
 {
@@ -23,11 +20,11 @@ Game::~Game()
 
 
 /// <summary>
-/// main game loop
-/// update 60 times per second,
-/// process update as often as possible and at least 60 times per second
-/// draw as often as possible but only updates are on time
-/// if updates run slow then don't render frames
+/// The main game loop.
+/// This updates 60 times per second.
+/// Also processes update as often as possible and at least 60 times per second.
+/// Draws as often as possible but only updates are on time.
+/// If updates run slow, then don't render frames.
 /// </summary>
 void Game::run()
 {	
@@ -48,10 +45,11 @@ void Game::run()
 		render(); // as many as possible
 	}
 }
+
 /// <summary>
-/// handle user and system events/ input
-/// get key presses/ mouse moves etc. from OS
-/// and user :: Don't do game update here
+/// Handles user and system events/input.
+/// Gets key presses/mouse moves etc from OS
+/// and user.
 /// </summary>
 void Game::processEvents()
 {
@@ -81,9 +79,9 @@ void Game::processEvents()
 }
 
 /// <summary>
-/// Update the game world
+/// Updates the world every 60th of a second.
 /// </summary>
-/// <param name="t_deltaTime">time interval per frame</param>
+/// <param name="t_deltaTime">The time that has passed since last frame.</param>
 void Game::update(sf::Time t_deltaTime)
 {
 	switch (g_gamestate)
@@ -108,7 +106,7 @@ void Game::update(sf::Time t_deltaTime)
 }
 
 /// <summary>
-/// draw the frame and then switch buffers
+/// Draws the whole game to the SFML screen. Controls which screen will be shown to the player.
 /// </summary>
 void Game::render()
 {
