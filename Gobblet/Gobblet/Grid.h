@@ -13,9 +13,11 @@ public:
 
 	void resetBoard();
 private:
+	void processOpponentTurn();
 	bool compareGobbletSizes(Tile* t_from, Tile* t_to);
 	std::vector<Tile*> m_boardTiles;
-	std::vector<Tile*> m_inventoryTiles;
+	std::vector<Tile*> m_player1Tiles;
+	std::vector<Tile*> m_player2Tiles;
 
 	Tile* m_selectedTile;
 	Gobblet* m_selectedGobblet;
@@ -36,5 +38,8 @@ private:
 
 	void RowWasFound(int in1, int in2, int in3, int in4);
 	bool DidAPlayerWin(int t_playerNum, int t_enemyNum);
+
+	bool MovingFromInventory(Tile* t_from);
+	bool CheckIfThreeInARow(Tile* t_from, Tile* t_to);
 
 };

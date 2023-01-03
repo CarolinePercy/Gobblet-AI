@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gobblet.cpp" />
@@ -29,8 +30,10 @@
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="ZobristKeys.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gameplay.h" />
@@ -40,6 +43,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="ZobristKeys.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\SFML-LOGO.png">

@@ -33,7 +33,7 @@ Grid::Grid() : m_selectedTile(nullptr)
 			tile->setCurrentGobblet(gobble);
 		}
 
-		m_inventoryTiles.push_back(tile);
+		m_player1Tiles.push_back(tile);
 		position.y += size.y;
 	}
 
@@ -50,7 +50,7 @@ Grid::Grid() : m_selectedTile(nullptr)
 			tile->setCurrentGobblet(gobble);
 		}
 
-		m_inventoryTiles.push_back(tile);
+		m_player2Tiles.push_back(tile);
 		position.y -= size.y;
 	}
 }
@@ -81,6 +81,8 @@ void Grid::resetBoard()
 			tile->removeCurrentGobblet();
 		}
 	}
+
+	int i = 0;
 }
 
 void Grid::render(sf::RenderWindow& t_window)
@@ -89,7 +91,11 @@ void Grid::render(sf::RenderWindow& t_window)
 	{
 		tile->render(t_window);
 	}
-	for (Tile* tile : m_inventoryTiles)
+	for (Tile* tile : m_player1Tiles)
+	{
+		tile->render(t_window);
+	}
+	for (Tile* tile : m_player2Tiles)
 	{
 		tile->render(t_window);
 	}
@@ -114,14 +120,39 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			m_selectedTile = tile;
+			if (tile->getCurrentGobblet() != nullptr)
+			{
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
+			}
 		}
 	}
-	for (Tile* tile : m_inventoryTiles)
+	for (Tile* tile : m_player1Tiles)
 	{
 		if(tile->isInside(t_click))
 		{
-			m_selectedTile = tile;
+			if (tile->getCurrentGobblet() != nullptr)
+			{
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
+			}
+		}
+	}
+	for (Tile* tile : m_player2Tiles)
+	{
+		if (tile->isInside(t_click))
+		{
+			if (tile->getCurrentGobblet() != nullptr)
+			{
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
+			}
 		}
 	}
 	if (m_selectedTile != nullptr)
@@ -133,39 +164,91 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
-	m_selectedTile->setCurrentGobblet(m_selectedGobblet);
-	m_selectedGobblet = nullptr;
-	for (Tile* tile : m_boardTiles)
+	if (m_selectedTile != nullptr)
 	{
-		if (tile->isInside(t_click))
+		m_selectedTile->setCurrentGobblet(m_selectedGobblet);
+		m_selectedGobblet = nullptr;
+	
+		for (Tile* tile : m_boardTiles)
 		{
-			if (compareGobbletSizes(m_selectedTile, tile))
+			if (tile->isInside(t_click))
 			{
-				m_selectedTile->moveGobbletTo(tile);
+				if (MovingFromInventory(m_selectedTile))
+				{
+					if (tile->getCurrentGobblet() != nullptr)
+					{
+						if (CheckIfThreeInARow(m_selectedTile, tile))
+						{
+							if (compareGobbletSizes(m_selectedTile, tile))
+							{
+								m_selectedTile->moveGobbletTo(tile);
+								processOpponentTurn();
+							}
+						}
+					}
+
+					else
+					{
+						m_selectedTile->moveGobbletTo(tile);
+						processOpponentTurn();
+					}
+
+				}
+				else if (compareGobbletSizes(m_selectedTile, tile))
+				{
+					m_selectedTile->moveGobbletTo(tile);
+					processOpponentTurn();
+				}
 			}
 		}
+
+		checkRows();
+
+		m_selectedTile = nullptr;
 	}
+}
 
-	checkRows();
-
-	m_selectedTile = nullptr;
+void Grid::processOpponentTurn()
+{
+	std::vector<Tile*> emptyTiles;
+	for (Tile* tile : m_boardTiles)
+	{
+		if (tile->getCurrentGobblet() == nullptr)
+		{
+			emptyTiles.push_back(tile);
+		}
+	}
+	if (emptyTiles.size() > 0)
+	{
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
+		m_player2Tiles.back()->moveGobbletTo(emptyTiles.back());
+	}
+	// minimax here
 }
 
 bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 {
-	Gobblet* fromGobblet = t_from->getCurrentGobblet();
 	int fromSize = 0;
-	if (fromGobblet != nullptr)
-	{
-		fromSize = fromGobblet->getSize();
+	int toSize = 0;
+
+	if(t_from != nullptr)
+	{ 
+		Gobblet* fromGobblet = t_from->getCurrentGobblet();
+		if (fromGobblet != nullptr)
+		{
+			fromSize = fromGobblet->getSize();
+		}
 	}
 
-
-	Gobblet* toGobblet = t_to->getCurrentGobblet();
-	int toSize = 0;
-	if (toGobblet != nullptr)
+	if (t_from != nullptr)
 	{
-		toSize = toGobblet->getSize();
+		Gobblet* toGobblet = t_to->getCurrentGobblet();
+		if (toGobblet != nullptr)
+		{
+			toSize = toGobblet->getSize();
+		}
 	}
 
 	return fromSize > toSize;
@@ -371,4 +454,37 @@ bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
 	}
 
 	return false;
+}
+
+bool Grid::MovingFromInventory(Tile* t_from)
+{
+	return std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from) == m_boardTiles.end();
+}
+
+bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
+{
+	bool t_Valid = false;
+	bool inARow = false;
+
+	std::vector<Tile*>::iterator itr = std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from);
+
+	int index = std::distance(m_boardTiles.begin(), itr);
+
+	for (std::vector<int> t : threeInRow)
+	{
+		inARow = std::find(t.begin(), t.end(), index) == t.end();
+
+		if (inARow)
+		{
+			break;
+		}
+	}
+
+	if (inARow)
+	{
+		t_Valid = t_from->getCurrentGobblet()->isControlledByPlayer() !=
+			t_to->getCurrentGobblet()->isControlledByPlayer();
+	}
+
+	return t_Valid;
 }
