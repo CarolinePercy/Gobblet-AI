@@ -90,9 +90,12 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->isControlledByPlayer())
+			if (tile->getCurrentGobblet() != nullptr)
 			{
-				m_selectedTile = tile;
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
 			}
 		}
 	}
@@ -100,9 +103,12 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if(tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->isControlledByPlayer())
+			if (tile->getCurrentGobblet() != nullptr)
 			{
-				m_selectedTile = tile;
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
 			}
 		}
 	}
@@ -110,9 +116,12 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	{
 		if (tile->isInside(t_click))
 		{
-			if (tile->getCurrentGobblet()->isControlledByPlayer())
+			if (tile->getCurrentGobblet() != nullptr)
 			{
-				m_selectedTile = tile;
+				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				{
+					m_selectedTile = tile;
+				}
 			}
 		}
 	}
@@ -129,43 +138,44 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 	{
 		m_selectedTile->setCurrentGobblet(m_selectedGobblet);
 		m_selectedGobblet = nullptr;
-	}
-	for (Tile* tile : m_boardTiles)
-	{
-		if (tile->isInside(t_click))
+	
+		for (Tile* tile : m_boardTiles)
 		{
-			if (MovingFromInventory(m_selectedTile))
+			if (tile->isInside(t_click))
 			{
-				if (tile->getCurrentGobblet() != nullptr)
+				if (MovingFromInventory(m_selectedTile))
 				{
-					if (CheckIfThreeInARow(m_selectedTile, tile))
+					if (tile->getCurrentGobblet() != nullptr)
 					{
-						if (compareGobbletSizes(m_selectedTile, tile))
+						if (CheckIfThreeInARow(m_selectedTile, tile))
 						{
-							m_selectedTile->moveGobbletTo(tile);
-							processOpponentTurn();
+							if (compareGobbletSizes(m_selectedTile, tile))
+							{
+								m_selectedTile->moveGobbletTo(tile);
+								processOpponentTurn();
+							}
 						}
 					}
-				}
 
-				else
+					else
+					{
+						m_selectedTile->moveGobbletTo(tile);
+						processOpponentTurn();
+					}
+
+				}
+				else if (compareGobbletSizes(m_selectedTile, tile))
 				{
 					m_selectedTile->moveGobbletTo(tile);
 					processOpponentTurn();
 				}
-
-			}
-			else if (compareGobbletSizes(m_selectedTile, tile))
-			{
-				m_selectedTile->moveGobbletTo(tile);
-				processOpponentTurn();
 			}
 		}
+
+		checkRows();
+
+		m_selectedTile = nullptr;
 	}
-
-	checkRows();
-
-	m_selectedTile = nullptr;
 }
 
 void Grid::processOpponentTurn()
@@ -185,24 +195,7 @@ void Grid::processOpponentTurn()
 		std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
 		m_player2Tiles.back()->moveGobbletTo(emptyTiles.back());
 	}
-	// placeholder minimax test
-	int bestMoveScore = INT_MIN;
-	int bestMove = 1;
-
-	for (int i = 1; i <= 10; i++)
-	{
-		if (i == 9)
-		{
-			int j = 0;
-		}
-		int moveScore = minimax(0 + i, 0, false);
-		if (moveScore > bestMoveScore)
-		{
-			bestMoveScore = moveScore;
-			bestMove = i;
-		}
-	}
-	std::cout << "best move is to add " << bestMove << std::endl;
+	// minimax here
 }
 
 bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
@@ -444,52 +437,4 @@ bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
 	}
 
 	return t_Valid;
-}
-
-/// <summary>
-/// minimax template, currently has AI aiming for 20 while opponent wants -20, value can change by up to an amount, stops if depth hits 20
-/// </summary>
-/// <param name="board"></param>
-/// <param name="depth"></param>
-/// <param name="AITurn"></param>
-/// <returns></returns>
-int Grid::minimax(int board, int depth, bool AITurn)
-{
-	int maxDepth = 5;
-	// check for win or tie
-	if (board >= 20)
-	{
-		return maxDepth - depth;
-	}
-	else if (board <= -20)
-	{
-		return -depth;
-	}
-	else if (depth > maxDepth)
-	{
-		return 0;
-	}
-
-	// if AIs turn, loop throug Ais moves
-	if (AITurn == true)
-	{
-		int bestVal = INT_MIN;
-		for (int i = 1; i <= 10; i++)
-		{
-			int value = minimax(board + i, depth + 1, !AITurn);
-			bestVal = std::max(bestVal, value);
-		}
-		return bestVal;
-	}
-	// if Players turn, loop throug Players moves
-	else
-	{
-		int bestVal = INT_MAX;
-		for (int i = 5; i >= 1; i--)
-		{
-			int value = minimax(board - i, depth + 1, !AITurn);
-			bestVal = std::min(bestVal, value);
-		}
-		return bestVal;
-	}
 }
