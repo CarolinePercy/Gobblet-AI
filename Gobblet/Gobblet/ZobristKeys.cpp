@@ -4,6 +4,9 @@ std::mt19937 ZobristKeys::mt = std::mt19937(01234567);
 unsigned long ZobristKeys::table[NUM_OF_CELLS_IN_ROW][NUM_OF_CELLS_IN_ROW][NUM_OF_PIECES] = {};
 
 void ZobristKeys::initialise()
+/// <summary>
+/// Default constructor for class.
+/// </summary>
 {
 	for (int i = 0; i < NUM_OF_CELLS_IN_ROW; i++)
 	{
@@ -17,6 +20,11 @@ void ZobristKeys::initialise()
 	}
 }
 
+/// <summary>
+/// Converts the current state of the board into a Zobrist Key.
+/// </summary>
+/// <param name="t_board">The grid in a simplified form.</param>
+/// <returns>The current board's Zobrist key.</returns>
 unsigned long long int ZobristKeys::findHashOfBoard(int t_board[4][4])
 {
 	unsigned long long int h = 0;
@@ -38,6 +46,10 @@ unsigned long long int ZobristKeys::findHashOfBoard(int t_board[4][4])
 	return h;
 }
 
+/// <summary>
+/// Returns a number between 0 and 1.84 * 10^19 (inclusive).
+/// </summary>
+/// <returns>The generated number.</returns>
 unsigned long ZobristKeys::generateRandomInt()
 {
 	std::uniform_int_distribution<unsigned long long int>
@@ -46,6 +58,13 @@ unsigned long ZobristKeys::generateRandomInt()
 	return dist(mt);
 }
 
+/// <summary>
+/// Moves a piece on the board, returning the Zobrist key of the new board state.
+/// </summary>
+/// <param name="t_board">The board in simplified form.</param>
+/// <param name="t_from">Where the piece originally is.</param>
+/// <param name="t_to">Where the piece wants to go.</param>
+/// <returns>The Zobrist Key of the new board state.</returns>
 unsigned long long int ZobristKeys::movePiece(int t_board[4][4],
 	std::pair<int,int> t_from, std::pair<int, int> t_to)
 {
@@ -63,6 +82,12 @@ unsigned long long int ZobristKeys::movePiece(int t_board[4][4],
 	return hashValue;
 }
 
+/// <summary>
+/// Finds what move occured between the first and second board.
+/// </summary>
+/// <param name="t_boardBefore">The board before the move.</param>
+/// <param name="t_boardAfter">The board after the move.</param>
+/// <param name="t_coordinates">What will store the move coordinates.</param>
 void ZobristKeys::getMove(int t_boardBefore[4][4], int t_boardAfter[4][4], int t_coordinates[4])
 {
 	for (int i = 0; i < NUM_OF_CELLS_IN_ROW; i++)

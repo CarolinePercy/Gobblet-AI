@@ -1,5 +1,10 @@
 #include "Gobblet.h"
 
+/// <summary>
+/// The overloaded constructor of the Gobblet piece.
+/// </summary>
+/// <param name="t_size">The size of this gobblet piece.</param>
+/// <param name="t_isPlayer">Whether this piece is controlled by the player or AI.</param>
 Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size), controlledByPlayer(t_isPlayer)
 {
 	float bigRadius = (G_VIEW_HEIGHT - 20) / 8.0f;
@@ -31,6 +36,10 @@ Gobblet::Gobblet(int t_size, bool t_isPlayer) : m_child(nullptr), size(t_size), 
 	controlledByPlayer = t_isPlayer;
 }
 
+/// <summary>
+/// Draws the appearance of the piece onto the board.
+/// </summary>
+/// <param name="t_window">The sfml window to draw to.</param>
 void Gobblet::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_gobblet);
