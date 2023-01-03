@@ -3,10 +3,10 @@
 std::mt19937 ZobristKeys::mt = std::mt19937(01234567);
 unsigned long ZobristKeys::table[NUM_OF_CELLS_IN_ROW][NUM_OF_CELLS_IN_ROW][NUM_OF_PIECES] = {};
 
-void ZobristKeys::initialise()
 /// <summary>
 /// Default constructor for class.
 /// </summary>
+void ZobristKeys::initialise()
 {
 	for (int i = 0; i < NUM_OF_CELLS_IN_ROW; i++)
 	{
