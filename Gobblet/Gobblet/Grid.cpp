@@ -57,8 +57,8 @@ Grid::Grid() : m_selectedTile(nullptr)
 
 void Grid::resetBoard()
 {
-	std::vector<Gobblet*> playerGobblets;
-	std::vector<Gobblet*> enemyGobblets;
+	std::vector<Gobblet*> player1Gobblets;
+	std::vector<Gobblet*> player2Gobblets;
 	Gobblet* g;
 
 	for (Tile* tile : m_boardTiles)
@@ -66,23 +66,62 @@ void Grid::resetBoard()
 		Gobblet* g = tile->getCurrentGobblet();
 		if (g != nullptr)
 		{
-			getChildGobbletsOut(g, &playerGobblets, &enemyGobblets);
+			getChildGobbletsOut(g, &player1Gobblets, &player2Gobblets);
 
 			if (g->isControlledByPlayer())
 			{
-				playerGobblets.push_back(g);
+				player1Gobblets.push_back(g);
 			}
 
 			else
 			{
-				enemyGobblets.push_back(g);
+				player2Gobblets.push_back(g);
 			}
 
 			tile->removeCurrentGobblet();
 		}
 	}
 
-	int i = 0;
+	resetPlayerTiles(m_player1Tiles, player1Gobblets);
+	resetPlayerTiles(m_player2Tiles, player2Gobblets);
+
+}
+
+void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t_playerGobblets)
+{
+	for (Tile* tile : t_player)
+	{
+		int size = -1;
+
+		if (tile->getCurrentGobblet() == nullptr)
+		{
+			size = 1;
+		}
+
+		else if (tile->getCurrentGobblet()->getSize() < 4)
+		{
+			size = tile->getCurrentGobblet()->getSize() + 1;
+		}
+
+		else
+		{
+			continue;
+		}
+
+		while (size <= 4)
+		{
+			for (Gobblet* g : t_playerGobblets)
+			{
+				if (g->getSize() == size)
+				{
+					tile->setCurrentGobblet(g);
+					t_playerGobblets.erase(std::remove(t_playerGobblets.begin(),
+						t_playerGobblets.end(), g), t_playerGobblets.end());
+					size++;
+				}
+			}
+		}
+	}
 }
 
 void Grid::render(sf::RenderWindow& t_window)
@@ -112,7 +151,6 @@ void Grid::update(sf::Vector2i t_mousePos)
 		m_selectedGobblet->setPosition(sf::Vector2f(t_mousePos.x, t_mousePos.y));
 	}
 }
-
 
 void Grid::onMouseDown(sf::Vector2i t_click)
 {

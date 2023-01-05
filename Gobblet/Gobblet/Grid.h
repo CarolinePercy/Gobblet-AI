@@ -29,6 +29,7 @@ private:
 
 	void getChildGobbletsOut(Gobblet* parentGobblet, std::vector<Gobblet*>* t_playerGobblets,
 		std::vector<Gobblet*>* t_enemyGobblets);
+	void resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t_playerGobblets);
 
 	void checkRows();
 

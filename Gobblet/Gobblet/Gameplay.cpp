@@ -12,7 +12,7 @@ Gameplay::Gameplay()
 	announcementText.setOutlineThickness(10);
 }
 
-/// <summary>
+ /// <summary>
 /// Processes the events that happened while the player was on the Gameplay screen.
 /// </summary>
 /// <param name="t_event">The event that occured because of the player.</param>
@@ -86,4 +86,5 @@ void Gameplay::DrawText(sf::RenderWindow& t_window)
 void Gameplay::resetBoard()
 {
 	m_grid.resetBoard();
+	g_status = Status::OnGoing;
 }
