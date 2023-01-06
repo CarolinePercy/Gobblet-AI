@@ -1,6 +1,7 @@
 #pragma once
 #include "Tile.h"
 #include "Gobblet.h"
+#include "Board.h"
 
 class Grid
 {
@@ -37,4 +38,5 @@ private:
 	bool MovingFromInventory(Tile* t_from);
 	bool CheckIfThreeInARow(Tile* t_from, Tile* t_to);
 
+	void calculateBestMove();
 };
