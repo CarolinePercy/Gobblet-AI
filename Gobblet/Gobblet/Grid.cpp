@@ -284,24 +284,7 @@ void Grid::processOpponentTurn()
 
 	if (g_status == Status::OnGoing)
 	{
-		std::vector<Tile*> emptyTiles;
-		for (Tile* tile : m_boardTiles)
-		{
-			if (tile->getCurrentGobblet() == nullptr)
-			{
-				emptyTiles.push_back(tile);
-			}
-		}
-		if (emptyTiles.size() > 0)
-		{
-			std::random_device rd;
-			std::mt19937 g(rd());
-			std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
-			m_player2Tiles.back()->moveGobbletTo(emptyTiles.back());
-		}
-
-
-		// minimax here
+		calculateBestMove();
 		checkRows();
 	}
 
@@ -605,4 +588,46 @@ bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
 	}
 
 	return t_Valid;
+}
+
+void Grid::calculateBestMove()
+{
+	unsigned long long board = 0;
+	for (Tile* tile : m_boardTiles)
+	{
+		board *= 10;
+		Gobblet* current = tile->getCurrentGobblet();
+		if (current != nullptr)
+		{
+			board += current->getSize();
+			if (current->isControlledByPlayer())
+				board += 4; // AI pieces are 1-4, AI are 5-8
+		}
+	}
+	int playerInventory[3] = { 0 };
+	int i = 0;
+	for (Tile* tile : m_player1Tiles)
+	{
+		Gobblet* current = tile->getCurrentGobblet();
+		if (current != nullptr)
+		{
+			playerInventory[i] = current->getSize();
+		}
+		i++;
+	}
+	int enemyInventory[3] = { 0 };
+	i = 0;
+	for (Tile* tile : m_player2Tiles)
+	{
+		Gobblet* current = tile->getCurrentGobblet();
+		if (current != nullptr)
+		{
+			enemyInventory[i] = current->getSize();
+		}
+		i++;
+	}
+	unsigned long long boardHash = board;
+	Board calculate(boardHash, playerInventory, enemyInventory, 0, true);
+	calculate.minimax();
+	unsigned long long moveHash = calculate.getbestHash();
 }

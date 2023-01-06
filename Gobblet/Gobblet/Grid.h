@@ -1,6 +1,7 @@
 #pragma once
 #include "Tile.h"
 #include "Gobblet.h"
+#include "Board.h"
 
 /// <summary>
 /// The class that keeps track of the board. It knows where pieces are and where they can go.
@@ -54,4 +55,6 @@ private:
 
 	bool MovingFromInventory(Tile* t_from);
 	bool CheckIfThreeInARow(Tile* t_from, Tile* t_to);
+
+	void calculateBestMove();
 };

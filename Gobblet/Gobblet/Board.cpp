@@ -1,13 +1,21 @@
 #include "Board.h"
 
-Board::Board(long t_hashCode, int t_playerInventory[3], int t_aiInventory[3], int t_depth, bool t_AIturn) : depth(t_depth), AIturn(t_AIturn)
+Board::Board(unsigned long long t_hashCode, int t_playerInventory[3], int t_aiInventory[3], int t_depth, bool t_AIturn) : depth(t_depth), AIturn(t_AIturn)
 {
 	for (int i = 0; i < 3; i++)
 	{
 		m_playerInventory[i] = t_playerInventory[i];
 		m_aiInventory[i] = t_aiInventory[i];
 	}
-	// convert t_hashCode into m_board
+	bestHash = t_hashCode;
+	for (int i = 3; i >= 0; i--)
+	{
+		for (int j = 3; j >= 0; j--)
+		{
+			m_board[j][i] = t_hashCode % 10;
+			t_hashCode /= 10;
+		}
+	}
 }
 
 int Board::minimax()
@@ -30,23 +38,26 @@ int Board::minimax()
 	if (AIturn == true)
 	{
 		int bestVal = INT_MIN;
-		for (long hash : getOnBoardMoves())
+		std::vector<unsigned long long> moves = getOnBoardMoves();
+		for (unsigned long long hash : moves)
 		{
-			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth++, !AIturn);
+			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth+1, !AIturn);
+
 			int value = nextBoard.minimax();
 			if (value > bestVal)
 			{
-				bestHash = nextBoard.getbestHash();
+				bestHash = hash;
 			}
 			bestVal = std::max(bestVal, value);
 		}
-		for (long hash : getOffBoardMoves())
+		moves = getOffBoardMoves();
+		for (unsigned long long hash : moves)
 		{
-			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth++, !AIturn);
+			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth+1, !AIturn);
 			int value = nextBoard.minimax();
 			if (value > bestVal)
 			{
-				bestHash = nextBoard.getbestHash();
+				bestHash = hash;
 			}
 			bestVal = std::max(bestVal, value);
 		}
@@ -55,24 +66,26 @@ int Board::minimax()
 	// if Players turn, loop throug Players moves
 	else
 	{
-		int bestVal = INT_MIN;
-		for (long hash : getOnBoardMoves())
+		int bestVal = INT_MAX;
+		std::vector<unsigned long long> moves = getOnBoardMoves();
+		for (unsigned long long hash : moves)
 		{
-			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth++, !AIturn);
+			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth+1, !AIturn);
 			int value = nextBoard.minimax();
 			if (value < bestVal)
 			{
-				bestHash = nextBoard.getbestHash();
+				bestHash = hash;
 			}
 			bestVal = std::min(bestVal, value);
 		}
-		for (long hash : getOffBoardMoves())
+		moves = getOffBoardMoves();
+		for (unsigned long long hash : moves)
 		{
-			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth++, !AIturn);
+			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth+1, !AIturn);
 			int value = nextBoard.minimax();
 			if (value < bestVal)
 			{
-				bestHash = nextBoard.getbestHash();
+				bestHash = hash;
 			}
 			bestVal = std::min(bestVal, value);
 		}
@@ -80,9 +93,9 @@ int Board::minimax()
 	}
 }
 
-std::vector<long> Board::getOnBoardMoves()
+std::vector<unsigned long long> Board::getOnBoardMoves()
 {
-	std::vector<long> moves;
+	std::vector<unsigned long long> moves;
 	if (AIturn)
 	{
 		for (int i = 0; i < 4; i++)
@@ -112,7 +125,7 @@ std::vector<long> Board::getOnBoardMoves()
 	return moves;
 }
 
-void Board::processMovesFrom(int x, int y, std::vector<long>& t_listOfMoves)
+void Board::processMovesFrom(int x, int y, std::vector<unsigned long long>& t_listOfMoves)
 {
 	if (AIturn)
 	{
@@ -123,7 +136,7 @@ void Board::processMovesFrom(int x, int y, std::vector<long>& t_listOfMoves)
 			{
 				if (m_board[i][j] < m_board[x][y] || (m_board[i][j] >= 5 && m_board[i][j] < size))
 				{
-					// move from x,y to i,j then add new hash value to the vector
+					t_listOfMoves.push_back(getMoveHash(x, y, i, j));
 				}
 			}
 		}
@@ -137,17 +150,17 @@ void Board::processMovesFrom(int x, int y, std::vector<long>& t_listOfMoves)
 			{
 				if (m_board[i][j] < size || (m_board[i][j] >= 5 && m_board[i][j] < m_board[x][y]))
 				{
-					// move from x,y to i,j then add new hash value to the vector
+					t_listOfMoves.push_back(getMoveHash(x, y, i, j));
 				}
 			}
 		}
 	}
 }
 
-std::vector<long> Board::getOffBoardMoves()
+std::vector<unsigned long long> Board::getOffBoardMoves()
 {
 	char currentBoard[4][4];
-	std::vector<long> moves;
+	std::vector<unsigned long long> moves;
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -197,7 +210,7 @@ std::vector<long> Board::getOffBoardMoves()
 		{
 			if (m_board[i][j] == 0)
 			{
-				// move 5,pieceSize to i,j then add new hash value to the vector
+				moves.push_back(getMoveHash(5, pieceSize, i, j));
 			}
 		}
 	}
@@ -210,6 +223,39 @@ std::vector<long> Board::getOffBoardMoves()
 		}
 	}
 	return moves;
+}
+
+unsigned long long Board::getMoveHash(int x_from, int y_from, int x_to, int y_to)
+{
+	int tempBoard[4][4];
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			tempBoard[i][j] = m_board[i][j];
+		}
+	}
+
+	if (x_from < 4)
+	{
+		tempBoard[x_to][y_to] = tempBoard[x_from][y_from];
+		tempBoard[x_from][y_from] = 0;
+	}
+	else
+	{
+		tempBoard[x_to][y_to] = y_from;
+	}
+
+	unsigned long long board = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			board *= 10;
+			board += tempBoard[j][i];
+		}
+	}
+	return board;
 }
 
 bool Board::checkForWin()
@@ -316,7 +362,7 @@ void Board::modifyForTriplesAI(int t_pieceSize)
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (t_pieceSize - 4 > m_board[i][j])
+				if (t_pieceSize + 4 > m_board[i][j])
 					coverable.push_back(std::pair<int, int>(i, j));
 			}
 		}
@@ -334,7 +380,7 @@ void Board::modifyForTriplesAI(int t_pieceSize)
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (t_pieceSize - 4 > m_board[j][i])
+				if (t_pieceSize + 4 > m_board[j][i])
 					coverable.push_back(std::pair<int, int>(j, i));
 			}
 		}
@@ -350,7 +396,7 @@ void Board::modifyForTriplesAI(int t_pieceSize)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			if (t_pieceSize - 4 > m_board[i][i])
+			if (t_pieceSize + 4 > m_board[i][i])
 				coverable.push_back(std::pair<int, int>(i, i));
 		}
 	}
@@ -365,7 +411,7 @@ void Board::modifyForTriplesAI(int t_pieceSize)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			if (t_pieceSize - 4 > m_board[i][3 - i])
+			if (t_pieceSize + 4 > m_board[i][3 - i])
 				coverable.push_back(std::pair<int, int>(i, 3 - i));
 		}
 	}
@@ -454,5 +500,68 @@ void Board::modifyForTriplesPlayer(int t_pieceSize)
 
 int Board::analyseBoardState()
 {
-	return 0;
+	int score = 0;
+	int AICount = 0;
+	int playerCount = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		AICount = 0;
+		playerCount = 0;
+		for (int j = 0; j < 4; j++)
+		{
+			if (m_board[i][j] < 5 && m_board[i][j] != 0)
+				AICount++;
+			else if (m_board[i][j] > 0)
+				playerCount++;
+		}
+		if (playerCount == 0)
+			score += AICount * AICount;
+		else if (AICount == 0)
+			score -= playerCount * playerCount;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		AICount = 0;
+		playerCount = 0;
+		for (int j = 0; j < 4; j++)
+		{
+			if (m_board[j][i] < 5 && m_board[j][i] != 0)
+				AICount++;
+			else if (m_board[j][i] > 0)
+				playerCount++;
+		}
+		if (playerCount == 0)
+			score += AICount * AICount;
+		else if (AICount == 0)
+			score -= playerCount * playerCount;
+	}
+	AICount = 0;
+	playerCount = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_board[i][i] < 5 && m_board[i][i] != 0)
+			AICount++;
+		else if (m_board[i][i] > 0)
+			playerCount++;
+	}
+	if (playerCount == 0)
+		score += AICount * AICount;
+	else if (AICount == 0)
+		score -= playerCount * playerCount;
+
+	AICount = 0;
+	playerCount = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_board[i][3 - i] < 5 && m_board[i][3 - i] != 0)
+			AICount++;
+		else if (m_board[i][4-i] > 0)
+			playerCount++;
+	}
+	if (playerCount == 0)
+		score += AICount * AICount;
+	else if (AICount == 0)
+		score -= playerCount * playerCount;
+
+	return score;
 }
