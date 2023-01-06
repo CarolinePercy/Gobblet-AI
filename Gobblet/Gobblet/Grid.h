@@ -57,4 +57,5 @@ private:
 	bool CheckIfThreeInARow(Tile* t_from, Tile* t_to);
 
 	void calculateBestMove();
+	void makeMove(unsigned long long before, unsigned long long after);
 };

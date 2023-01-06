@@ -630,4 +630,103 @@ void Grid::calculateBestMove()
 	Board calculate(boardHash, playerInventory, enemyInventory, 0, true);
 	calculate.minimax();
 	unsigned long long moveHash = calculate.getbestHash();
+	makeMove(boardHash, moveHash);
+}
+
+void Grid::makeMove(unsigned long long before, unsigned long long after)
+{
+	std::vector<std::pair<int, int>> coordinates;
+	int beforeBoard[4][4];
+	int afterBoard[4][4];
+
+	for (int i = 3; i >= 0; i--)
+	{
+		for (int j = 3; j >= 0; j--)
+		{
+			beforeBoard[j][i] = before % 10;
+			before /= 10;
+			afterBoard[j][i] = after % 10;
+			after /= 10;
+			if (beforeBoard[j][i] != afterBoard[j][i])
+			{
+				coordinates.push_back(std::pair<int, int>(j, i));
+			}
+		}
+	}
+
+	int differences = coordinates.size();
+	if (differences > 2 || differences <= 0)
+	{
+		std::cout << "error in AI" << std::endl;
+	}
+	else if (differences == 1)
+	{
+		Tile* from = nullptr;
+		Tile* to = nullptr;
+		int biggestSize = -1;
+		for (Tile* tile : m_player2Tiles)
+		{
+			Gobblet* gobblet = tile->getCurrentGobblet();
+			if (gobblet != nullptr)
+			{
+				if (gobblet->getSize() > biggestSize)
+				{
+					from = tile;
+					biggestSize = gobblet->getSize();
+				}
+			}
+		}
+		if (biggestSize > 0)
+		{
+			int counter = coordinates.back().first + (coordinates.back().second * 4);
+			for (Tile* tile : m_boardTiles)
+			{
+				if (counter == 0)
+				{
+					from->moveGobbletTo(tile);
+				}
+				counter--;
+			}
+		}
+	}
+	else if (differences == 2)
+	{
+		Tile* fromTile = nullptr;
+		Tile* toTile = nullptr;
+		int fromCounter = 0;
+		int toCounter = 0;
+		for (std::pair<int, int> coordinate : coordinates)
+		{
+			int beforeSize = beforeBoard[coordinate.first][coordinate.second];
+			int afterSize = afterBoard[coordinate.first][coordinate.second];
+
+			if (beforeSize > 4)
+				beforeSize -= 4;
+			if (afterSize > 4)
+				afterSize -= 4;
+
+			if (beforeSize > afterSize)
+			{
+				fromCounter = coordinate.first + (coordinate.second * 4);
+			}
+			else if (beforeSize < afterSize)
+			{
+				toCounter = coordinate.first + (coordinate.second * 4);
+			}
+		}
+		for (Tile* tile : m_boardTiles)
+		{
+			if (fromCounter == 0)
+			{
+				fromTile = tile;
+			}
+			else if (toCounter == 0)
+			{
+				toTile = tile;
+			}
+			fromCounter--;
+			toCounter--;
+		}
+		fromTile->moveGobbletTo(toTile);
+	}
 }
