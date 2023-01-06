@@ -1,5 +1,8 @@
 #include "Grid.h"
 
+/// <summary>
+/// Default constructor. Initialises the layout of the Grid, and the Gobblet pieces for the Player and AI.
+/// </summary>
 Grid::Grid() : m_selectedTile(nullptr)
 {
 	sf::Vector2f position;
@@ -14,7 +17,7 @@ Grid::Grid() : m_selectedTile(nullptr)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			m_boardTiles.push_back(new Tile(position, size, true));
+			m_boardTiles.push_back(new Tile(position, size));
 			position.y += size.y;
 		}
 		position.y = 10;
@@ -26,7 +29,7 @@ Grid::Grid() : m_selectedTile(nullptr)
 	position.y = 10;
 	for (int i = 0; i < 3; i++)
 	{
-		Tile* tile = new Tile(position, size, false);
+		Tile* tile = new Tile(position, size);
 		for (int i = 1; i <= 4; i++)
 		{
 			Gobblet* gobble = new Gobblet(i, true);
@@ -43,7 +46,7 @@ Grid::Grid() : m_selectedTile(nullptr)
 	position -= size;
 	for (int i = 0; i < 3; i++)
 	{
-		Tile* tile = new Tile(position, size, false);
+		Tile* tile = new Tile(position, size);
 		for (int i = 1; i <= 4; i++)
 		{
 			Gobblet* gobble = new Gobblet(i, false);
@@ -55,6 +58,9 @@ Grid::Grid() : m_selectedTile(nullptr)
 	}
 }
 
+/// <summary>
+/// Resets the board back to it's original state, with all pieces going back to the players' inventories.
+/// </summary>
 void Grid::resetBoard()
 {
 	std::vector<Gobblet*> player1Gobblets;
@@ -63,7 +69,7 @@ void Grid::resetBoard()
 
 	for (Tile* tile : m_boardTiles)
 	{
-		Gobblet* g = tile->getCurrentGobblet();
+		g = tile->getCurrentGobblet();
 		if (g != nullptr)
 		{
 			getChildGobbletsOut(g, &player1Gobblets, &player2Gobblets);
@@ -87,11 +93,17 @@ void Grid::resetBoard()
 
 }
 
+/// <summary>
+/// Puts the gobblets collected from the board back into the player's inventory. Is called for both the user and AI's inventory.
+/// </summary>
+/// <param name="t_player">The tiles of the player's inventory.</param>
+/// <param name="t_playerGobblets">The Gobblets that belong to this player.</param>
 void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t_playerGobblets)
 {
+	int size = -1;
 	for (Tile* tile : t_player)
 	{
-		int size = -1;
+		size = -1;
 
 		if (tile->getCurrentGobblet() == nullptr)
 		{
@@ -124,6 +136,10 @@ void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t
 	}
 }
 
+/// <summary>
+/// Draws each tile and their Gobblets to screen. Also draws the Gobblet that is currently picked up.
+/// </summary>
+/// <param name="t_window">The SFML window to draw to.</param>
 void Grid::render(sf::RenderWindow& t_window)
 {
 	for (Tile* tile : m_boardTiles)
@@ -144,6 +160,10 @@ void Grid::render(sf::RenderWindow& t_window)
 	}
 }
 
+/// <summary>
+/// Updates the Grid each frame.
+/// </summary>
+/// <param name="t_mousePos">The mouse's position during this frame.</param>
 void Grid::update(sf::Vector2i t_mousePos)
 {
 	if (m_selectedGobblet != nullptr)
@@ -152,6 +172,12 @@ void Grid::update(sf::Vector2i t_mousePos)
 	}
 }
 
+/// <summary>
+/// What is triggered when the user presses the left mouse button.
+/// Is used to calculate whether the user is clicking on a Gobblet that they can move, 
+/// and move the piece accordingly if so.
+/// </summary>
+/// <param name="t_click">The position of the mouse on the window when the left mouse button was clicked.</param>
 void Grid::onMouseDown(sf::Vector2i t_click)
 {
 	for (Tile* tile : m_boardTiles)
@@ -200,6 +226,11 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 	}
 }
 
+/// <summary>
+/// What is triggered when the user releases the left mouse button. 
+/// Is used to calculate whether a Gobblet that is currently held can be placed down.
+/// </summary>
+/// <param name="t_click">The position of the mouse on the window when the left mouse button was released.</param>
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
 	if (m_selectedTile != nullptr)
@@ -246,6 +277,9 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 	}
 }
 
+/// <summary>
+/// The AI's turn is triggered by this method.
+/// </summary>
 void Grid::processOpponentTurn()
 {
 	std::vector<Tile*> emptyTiles;
@@ -266,6 +300,13 @@ void Grid::processOpponentTurn()
 	// minimax here
 }
 
+/// <summary>
+/// If the user is trying to move their Gobblet on top of another, this check is to see if the Gobblet underneath is smaller, 
+/// so it can be gobbled.
+/// </summary>
+/// <param name="t_from">The Tile the Gobblet is moving from.</param>
+/// <param name="t_to">The Tile the Gobblet is moving to.</param>
+/// <returns>Whether this is a valid move.</returns>
 bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 {
 	int fromSize = 0;
@@ -292,6 +333,12 @@ bool Grid::compareGobbletSizes(Tile* t_from, Tile* t_to)
 	return fromSize > toSize;
 }
 
+/// <summary>
+/// Gets all the gobblets out from underneath the surface level Gobblets.
+/// </summary>
+/// <param name="parentGobblet">The Gobblet that is being checked to see if it has hidden child Gobblets underneath.</param>
+/// <param name="t_playerGobblets">A reference to a storage of all the player 1 Gobblets on the board.</param>
+/// <param name="t_enemyGobblets">A reference to a storage of all the player 2 Gobblets on the board.</param>
 void Grid::getChildGobbletsOut(Gobblet* parentGobblet, std::vector<Gobblet*>* t_playerGobblets, std::vector<Gobblet*>* t_enemyGobblets)
 {
 	if (parentGobblet->getChild() != nullptr)
@@ -312,6 +359,9 @@ void Grid::getChildGobbletsOut(Gobblet* parentGobblet, std::vector<Gobblet*>* t_
 	}
 }
 
+/// <summary>
+/// Checks the status of the board - whether a player has won, or if there is a three in a row.
+/// </summary>
 void Grid::checkRows()
 {
 	threeInRow.clear();
@@ -321,6 +371,9 @@ void Grid::checkRows()
 	DiagonalCheck();
 }
 
+/// <summary>
+/// Checks the two diagonal lines for four in a row.
+/// </summary>
 void Grid::DiagonalCheck()
 {
 	int numOfEnemy = 0;
@@ -349,11 +402,9 @@ void Grid::DiagonalCheck()
 
 	if (numOfPlayer >= 3 || numOfEnemy >= 3)
 	{
-		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
-		{
-			RowWasFound(0, 5, 10, 15);
-			// theres three in a row!
-		}
+		DidAPlayerWin(numOfPlayer, numOfEnemy);
+		RowWasFound(0, 5, 10, 15);
+		// theres three in a row!
 	}
 
 	numOfEnemy = 0;
@@ -379,14 +430,15 @@ void Grid::DiagonalCheck()
 
 	if (numOfPlayer >= 3 || numOfEnemy >= 3)
 	{
-		if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
-		{
-			RowWasFound(3, 6, 9, 12);
-			// theres three in a row!
-		}
+		DidAPlayerWin(numOfPlayer, numOfEnemy);
+		RowWasFound(3, 6, 9, 12);
+		// theres three in a row!
 	}
 }
 
+/// <summary>
+/// Checks the four horizontal lines for four in a row.
+/// </summary>
 void Grid::HorizontalCheck()
 {
 	int numOfEnemy = 0;
@@ -419,15 +471,16 @@ void Grid::HorizontalCheck()
 
 		if (numOfPlayer >= 3 || numOfEnemy >= 3)
 		{
-			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
-			{
-				RowWasFound(i, i + 4, i + 8, i + 12);
-				// theres three in a row!
-			}
+			DidAPlayerWin(numOfPlayer, numOfEnemy);
+			RowWasFound(i, i + 4, i + 8, i + 12);
+			// theres three in a row!
 		}
 	}
 }
 
+/// <summary>
+/// Checks the four vertical lines for four in a row.
+/// </summary>
 void Grid::VerticalCheck()
 {
 	int numOfEnemy = 0;
@@ -460,24 +513,34 @@ void Grid::VerticalCheck()
 
 		if (numOfPlayer >= 3 || numOfEnemy >= 3)
 		{
-			if (!DidAPlayerWin(numOfPlayer, numOfEnemy))
-			{
-				int temp = i * 4;
-				RowWasFound(temp, temp + 1, temp + 2, temp + 3);
-			}
+			int temp = i * 4;
 
+			DidAPlayerWin(numOfPlayer, numOfEnemy);
+			RowWasFound(temp, temp + 1, temp + 2, temp + 3);
 			// theres three in a row!
 		}
 	}
 }
 
+/// <summary>
+/// Is called to display the three in a row found to the console.
+/// </summary>
+/// <param name="in1">The index of the first Tile.</param>
+/// <param name="in2">The index of the second Tile.</param>
+/// <param name="in3">The index of the third Tile.</param>
+/// <param name="in4">The index of the fourth Tile.</param>
 void Grid::RowWasFound(int in1, int in2, int in3, int in4)
 {
 	threeInRow.push_back(std::vector<int>{in1, in2, in3, in4});
 	std::cout << "Three in a row!: " << in1 << ", " << in2 << ", " << in3 << ", " << in4 << std::endl;
 }
 
-bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
+/// <summary>
+/// Is a check to see whether a player has won or not.
+/// </summary>
+/// <param name="t_playerNum">The highest number of Player 1 pieces on the same line.</param>
+/// <param name="t_enemyNum">The highest number of Player 2 pieces on the same line.</param>
+void Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
 {
 	if (t_playerNum >= 4)
 	{
@@ -490,15 +553,25 @@ bool Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
 		g_status = Status::Player2Wins;
 		// Player2 wins!
 	}
-
-	return false;
 }
 
+/// <summary>
+/// Returns whether the gobblet moved is being moved from the player's inventory, 
+/// or a piece on the board that's being moved to another part of said board.
+/// </summary>
+/// <param name="t_from">The tile the Gobblet is being taken from.</param>
+/// <returns>Whether the tile is from the player's inventories or on the play board.</returns>
 bool Grid::MovingFromInventory(Tile* t_from)
 {
 	return std::find(m_boardTiles.begin(), m_boardTiles.end(), t_from) == m_boardTiles.end();
 }
 
+/// <summary>
+/// Is used to reinforce the rule of "User can only Gobble another piece from their inventory IF the other player has 3 in a row."
+/// </summary>
+/// <param name="t_from">The Tile the Gobblet is moving from.</param>
+/// <param name="t_to">The Tile the Gobblet is moving to.</param>
+/// <returns>Whether this is a valid move.</returns>
 bool Grid::CheckIfThreeInARow(Tile* t_from, Tile* t_to)
 {
 	bool t_Valid = false;

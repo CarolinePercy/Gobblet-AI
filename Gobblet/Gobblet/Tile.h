@@ -2,10 +2,14 @@
 #include "Globals.h"
 #include "Gobblet.h"
 
+/// <summary>
+/// Is one cell on the Grid class.
+/// </summary>
+
 class Tile
 {
 public:
-	Tile(sf::Vector2f t_position, sf::Vector2f t_size, bool t_onBoard);
+	Tile(sf::Vector2f t_position, sf::Vector2f t_size);
 	void render(sf::RenderWindow& t_window);
 	bool isInside(sf::Vector2i t_click);
 
@@ -14,7 +18,10 @@ public:
 	Gobblet* getCurrentGobblet() { return m_currentGobblet; }
 	void moveGobbletTo(Tile* t_destination);
 private:
+
+	/// The Gobblet that is currently on top of this Tile.
 	Gobblet* m_currentGobblet;
+
+	/// The appearance of the Tile object.
 	sf::RectangleShape m_tile;
-	bool onBoard;
 };
