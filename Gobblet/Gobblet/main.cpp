@@ -28,7 +28,7 @@ void setupFont()
 }
 
 /// <summary>
-/// main enrtry point
+/// main entry point.
 /// </summary>
 /// <returns>success or failure</returns>
 int main()

@@ -83,6 +83,9 @@ void Gameplay::DrawText(sf::RenderWindow& t_window)
 	t_window.draw(announcementText);
 }
 
+/// <summary>
+/// Resets the game back to the beginning.
+/// </summary>
 void Gameplay::resetBoard()
 {
 	m_grid.resetBoard();

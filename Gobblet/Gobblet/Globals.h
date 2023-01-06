@@ -32,7 +32,7 @@ extern Gamestate g_gamestate;
 ///The previous screen the user was on.
 extern Gamestate g_previousstate;
 
-
+/// The status of the board game - who won, or if it is still going.
 extern Status g_status;
 
 ///The font used throughout the game.
