@@ -271,8 +271,6 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 			}
 		}
 
-		checkRows();
-
 		m_selectedTile = nullptr;
 	}
 }
@@ -282,22 +280,31 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 /// </summary>
 void Grid::processOpponentTurn()
 {
-	std::vector<Tile*> emptyTiles;
-	for (Tile* tile : m_boardTiles)
+	checkRows();
+
+	if (g_status == Status::OnGoing)
 	{
-		if (tile->getCurrentGobblet() == nullptr)
+		std::vector<Tile*> emptyTiles;
+		for (Tile* tile : m_boardTiles)
 		{
-			emptyTiles.push_back(tile);
+			if (tile->getCurrentGobblet() == nullptr)
+			{
+				emptyTiles.push_back(tile);
+			}
 		}
+		if (emptyTiles.size() > 0)
+		{
+			std::random_device rd;
+			std::mt19937 g(rd());
+			std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
+			m_player2Tiles.back()->moveGobbletTo(emptyTiles.back());
+		}
+
+
+		// minimax here
+		checkRows();
 	}
-	if (emptyTiles.size() > 0)
-	{
-		std::random_device rd;
-		std::mt19937 g(rd());
-		std::shuffle(emptyTiles.begin(), emptyTiles.end(), g);
-		m_player2Tiles.back()->moveGobbletTo(emptyTiles.back());
-	}
-	// minimax here
+
 }
 
 /// <summary>
