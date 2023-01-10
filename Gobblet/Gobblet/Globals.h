@@ -23,7 +23,8 @@ enum class Status
 {
 	OnGoing,
 	Player1Wins,
-	Player2Wins
+	Player2Wins,
+	Draw
 };
 
 ///The current screen the user is on.

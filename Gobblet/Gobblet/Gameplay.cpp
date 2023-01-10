@@ -70,6 +70,13 @@ void Gameplay::render(sf::RenderWindow& t_window)
 		announcementText.setFillColor(sf::Color::Magenta);
 		DrawText(t_window);
 	}
+
+	else if(g_status == Status::Draw)
+	{
+		announcementText.setString("Draw!");
+		announcementText.setFillColor(sf::Color::Yellow);
+		DrawText(t_window);
+	}
 }
 
 /// <summary>

@@ -532,7 +532,12 @@ void Grid::RowWasFound(int in1, int in2, int in3, int in4)
 /// <param name="t_enemyNum">The highest number of Player 2 pieces on the same line.</param>
 void Grid::DidAPlayerWin(int t_playerNum, int t_enemyNum)
 {
-	if (t_playerNum >= 4)
+	if (t_playerNum >= 4 && t_enemyNum >= 4)
+	{
+		g_status = Status::Draw;
+	}
+
+	else if (t_playerNum >= 4)
 	{
 		g_status = Status::Player1Wins;
 		// Player1 wins!
