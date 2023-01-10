@@ -96,7 +96,7 @@ void Game::update(sf::Time t_deltaTime)
 		menuScreen.update(sf::Mouse::getPosition(m_window));
 		break;
 	case Gamestate::Gameplay:
-		gameScreen.update(sf::Mouse::getPosition(m_window));
+		gameScreen.update(sf::Mouse::getPosition(m_window), t_deltaTime);
 		break;
 	case Gamestate::Help:
 		helpScreen.update(sf::Mouse::getPosition(m_window));

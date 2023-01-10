@@ -56,6 +56,12 @@ Grid::Grid() : m_selectedTile(nullptr)
 		m_player2Tiles.push_back(tile);
 		position.y -= size.y;
 	}
+
+	playerBGColours[0] = sf::Color(119, 140, 199);
+	playerBGColours[1] = sf::Color(199, 119, 119);
+
+	background.setFillColor(playerBGColours[0]);
+	background.setSize(sf::Vector2f(G_VIEW_WIDTH, G_VIEW_HEIGHT));
 }
 
 /// <summary>
@@ -142,6 +148,8 @@ void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t
 /// <param name="t_window">The SFML window to draw to.</param>
 void Grid::render(sf::RenderWindow& t_window)
 {
+	t_window.draw(background);
+
 	for (Tile* tile : m_boardTiles)
 	{
 		tile->render(t_window);
@@ -164,11 +172,27 @@ void Grid::render(sf::RenderWindow& t_window)
 /// Updates the Grid each frame.
 /// </summary>
 /// <param name="t_mousePos">The mouse's position during this frame.</param>
-void Grid::update(sf::Vector2i t_mousePos)
+void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 {
 	if (m_selectedGobblet != nullptr)
 	{
 		m_selectedGobblet->setPosition(sf::Vector2f(t_mousePos.x, t_mousePos.y));
+	}
+
+	if (!yourTurn)
+	{
+		if (AIWaitTime < 0)
+		{
+			makeMove(boardStates[0], boardStates[1]);
+			yourTurn = true;
+
+			if (g_status == Status::OnGoing)
+			{
+				background.setFillColor(playerBGColours[0]);
+			}
+		}
+
+		AIWaitTime -= t_deltaTime.asSeconds();
 	}
 }
 
@@ -180,49 +204,52 @@ void Grid::update(sf::Vector2i t_mousePos)
 /// <param name="t_click">The position of the mouse on the window when the left mouse button was clicked.</param>
 void Grid::onMouseDown(sf::Vector2i t_click)
 {
-	for (Tile* tile : m_boardTiles)
+	if (yourTurn)
 	{
-		if (tile->isInside(t_click))
+		for (Tile* tile : m_boardTiles)
 		{
-			if (tile->getCurrentGobblet() != nullptr)
+			if (tile->isInside(t_click))
 			{
-				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				if (tile->getCurrentGobblet() != nullptr)
 				{
-					m_selectedTile = tile;
+					if (tile->getCurrentGobblet()->isControlledByPlayer())
+					{
+						m_selectedTile = tile;
+					}
 				}
 			}
 		}
-	}
-	for (Tile* tile : m_player1Tiles)
-	{
-		if(tile->isInside(t_click))
+		for (Tile* tile : m_player1Tiles)
 		{
-			if (tile->getCurrentGobblet() != nullptr)
+			if (tile->isInside(t_click))
 			{
-				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				if (tile->getCurrentGobblet() != nullptr)
 				{
-					m_selectedTile = tile;
+					if (tile->getCurrentGobblet()->isControlledByPlayer())
+					{
+						m_selectedTile = tile;
+					}
 				}
 			}
 		}
-	}
-	for (Tile* tile : m_player2Tiles)
-	{
-		if (tile->isInside(t_click))
+		for (Tile* tile : m_player2Tiles)
 		{
-			if (tile->getCurrentGobblet() != nullptr)
+			if (tile->isInside(t_click))
 			{
-				if (tile->getCurrentGobblet()->isControlledByPlayer())
+				if (tile->getCurrentGobblet() != nullptr)
 				{
-					m_selectedTile = tile;
+					if (tile->getCurrentGobblet()->isControlledByPlayer())
+					{
+						m_selectedTile = tile;
+					}
 				}
 			}
 		}
-	}
-	if (m_selectedTile != nullptr)
-	{
-		m_selectedGobblet = m_selectedTile->getCurrentGobblet();
-		m_selectedTile->removeCurrentGobblet();
+		if (m_selectedTile != nullptr)
+		{
+			m_selectedGobblet = m_selectedTile->getCurrentGobblet();
+			m_selectedTile->removeCurrentGobblet();
+		}
 	}
 }
 
@@ -233,45 +260,48 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 /// <param name="t_click">The position of the mouse on the window when the left mouse button was released.</param>
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
-	if (m_selectedTile != nullptr)
+	if (yourTurn)
 	{
-		m_selectedTile->setCurrentGobblet(m_selectedGobblet);
-		m_selectedGobblet = nullptr;
-	
-		for (Tile* tile : m_boardTiles)
+		if (m_selectedTile != nullptr)
 		{
-			if (tile->isInside(t_click))
+			m_selectedTile->setCurrentGobblet(m_selectedGobblet);
+			m_selectedGobblet = nullptr;
+
+			for (Tile* tile : m_boardTiles)
 			{
-				if (MovingFromInventory(m_selectedTile))
+				if (tile->isInside(t_click))
 				{
-					if (tile->getCurrentGobblet() != nullptr)
+					if (MovingFromInventory(m_selectedTile))
 					{
-						if (CheckIfThreeInARow(m_selectedTile, tile))
+						if (tile->getCurrentGobblet() != nullptr)
 						{
-							if (compareGobbletSizes(m_selectedTile, tile))
+							if (CheckIfThreeInARow(m_selectedTile, tile))
 							{
-								m_selectedTile->moveGobbletTo(tile);
-								processOpponentTurn();
+								if (compareGobbletSizes(m_selectedTile, tile))
+								{
+									m_selectedTile->moveGobbletTo(tile);
+									processOpponentTurn();
+								}
 							}
 						}
-					}
 
-					else
+						else
+						{
+							m_selectedTile->moveGobbletTo(tile);
+							processOpponentTurn();
+						}
+
+					}
+					else if (compareGobbletSizes(m_selectedTile, tile))
 					{
 						m_selectedTile->moveGobbletTo(tile);
 						processOpponentTurn();
 					}
-
-				}
-				else if (compareGobbletSizes(m_selectedTile, tile))
-				{
-					m_selectedTile->moveGobbletTo(tile);
-					processOpponentTurn();
 				}
 			}
-		}
 
-		m_selectedTile = nullptr;
+			m_selectedTile = nullptr;
+		}
 	}
 }
 
@@ -280,6 +310,10 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 /// </summary>
 void Grid::processOpponentTurn()
 {
+	AIWaitTime = rand() % 2 + 1;
+	yourTurn = false;
+
+	background.setFillColor(playerBGColours[1]);
 	checkRows();
 
 	if (g_status == Status::OnGoing)
@@ -287,7 +321,6 @@ void Grid::processOpponentTurn()
 		calculateBestMove();
 		checkRows();
 	}
-
 }
 
 /// <summary>
@@ -626,15 +659,17 @@ void Grid::calculateBestMove()
 		}
 		i++;
 	}
-	unsigned long long boardHash = board;
-	Board calculate(boardHash, playerInventory, enemyInventory, 0, true);
+	boardStates[0] = board;
+	Board calculate(boardStates[0], playerInventory, enemyInventory, 0, true);
 	calculate.minimax();
-	unsigned long long moveHash = calculate.getbestHash();
-	makeMove(boardHash, moveHash);
+	boardStates[1] = calculate.getbestHash();
+
 }
 
 void Grid::makeMove(unsigned long long before, unsigned long long after)
 {
+	
+
 	std::vector<std::pair<int, int>> coordinates;
 	int beforeBoard[4][4];
 	int afterBoard[4][4];

@@ -12,7 +12,7 @@ public:
 
 	Gameplay();
 	void processEvents(sf::Event t_event);
-	void update(sf::Vector2i t_mousePos);
+	void update(sf::Vector2i t_mousePos, sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 	void resetBoard();
 

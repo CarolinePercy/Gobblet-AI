@@ -12,7 +12,7 @@ class Grid
 public:
 	Grid();
 	void render(sf::RenderWindow& t_window);
-	void update(sf::Vector2i t_mousePos);
+	void update(sf::Vector2i t_mousePos, sf::Time t_deltaTime);
 	void onMouseDown(sf::Vector2i t_click);
 	void onMouseUp(sf::Vector2i t_click);
 
@@ -36,6 +36,15 @@ private:
 
 	///The Gobblet the user is selecting and trying to move.
 	Gobblet* m_selectedGobblet;
+
+	///
+	sf::RectangleShape background;
+
+	sf::Color playerBGColours[2];
+
+	float AIWaitTime;
+	bool yourTurn = true;
+	unsigned long long boardStates[2];
 
 	///All the stored three of the same colour Gobblets in a row.
 	std::vector<std::vector<int>> threeInRow;

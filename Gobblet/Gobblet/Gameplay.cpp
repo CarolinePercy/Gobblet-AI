@@ -42,10 +42,10 @@ void Gameplay::processEvents(sf::Event t_event)
 /// Updates the Grid and mouse position every frame.
 /// </summary>
 /// <param name="t_mousePos">The mouse's position on the screen.</param>
-void Gameplay::update(sf::Vector2i t_mousePos)
+void Gameplay::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 {
 	mousePos = t_mousePos;
-	m_grid.update(t_mousePos);
+	m_grid.update(t_mousePos, t_deltaTime);
 }
 
 /// <summary>
