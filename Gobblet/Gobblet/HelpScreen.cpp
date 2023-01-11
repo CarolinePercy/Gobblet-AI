@@ -11,7 +11,7 @@ HelpScreen::HelpScreen()
 
 	for (int loop = 0; loop < 3; loop++)
 	{
-		m_difficultyButton = new Button(sf::Vector2f(G_VIEW_WIDTH / 2 - (buttonSize.x + 20 * loop), G_VIEW_HEIGHT - (buttonSize.y + 20)),
+		m_difficultyButton[loop] = new Button(sf::Vector2f(G_VIEW_WIDTH / 2 - (buttonSize.x + 20 * loop), G_VIEW_HEIGHT - (buttonSize.y + 20)),
 			buttonSize, std::to_string(loop + 1), sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
 	}
 
