@@ -9,10 +9,11 @@ HelpScreen::HelpScreen()
 	m_backButton = new Button(sf::Vector2f(G_VIEW_WIDTH - (buttonSize.x + 20), G_VIEW_HEIGHT - (buttonSize.y + 20)),
 		buttonSize, "BACK", sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
 
+	sf::Vector2f difficultyButtonSize = sf::Vector2f(100, 100);
 	for (int loop = 0; loop < 3; loop++)
 	{
-		m_difficultyButton[loop] = new Button(sf::Vector2f(G_VIEW_WIDTH / 2 - (buttonSize.x + 20 * loop), G_VIEW_HEIGHT - (buttonSize.y + 20)),
-			buttonSize, std::to_string(loop + 1), sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
+		m_difficultyButton[loop] = new Button(sf::Vector2f(G_VIEW_WIDTH / 4 + ((difficultyButtonSize.x + 20) * loop), G_VIEW_HEIGHT - (difficultyButtonSize.y + 20)),
+			difficultyButtonSize, std::to_string(loop + 1), sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
 	}
 
 	const int line_no = 15;

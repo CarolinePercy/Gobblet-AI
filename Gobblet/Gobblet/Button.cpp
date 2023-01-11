@@ -81,8 +81,7 @@ void Button::render(sf::RenderWindow& t_window)
 /// </summary>
 void Button::selected()
 {
-	hover = true;
-	changeColor();
+	button.setFillColor(hoverColor);
 }
 
 /// <summary>
