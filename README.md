@@ -16,3 +16,5 @@ Extra: Caroline - 5
 Total: Eoin - 50, Caroline - 50  
 
 We both believe we should get equal marks.
+
+Also: The Difficulty option is inside the Help Menu.  
