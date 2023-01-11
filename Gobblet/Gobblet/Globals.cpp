@@ -5,3 +5,4 @@ Gamestate g_previousstate = Gamestate::Gameplay;
 Status g_status = Status::OnGoing;
 sf::Font g_font;
 bool g_exitGame = false;
+bool g_yourTurn = true;

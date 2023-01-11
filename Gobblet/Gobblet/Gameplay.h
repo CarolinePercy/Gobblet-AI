@@ -27,6 +27,11 @@ private:
 	///The text that announces the result of the game.
 	sf::Text announcementText;
 
+	///The text that lets the player(s) know who's turn it is.
+	sf::Text turnText[2];
+
 	void DrawText(sf::RenderWindow& t_window);
+
+	void SetUpTurnText();
 };
 

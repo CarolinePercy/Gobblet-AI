@@ -63,7 +63,7 @@ int Board::minimax()
 		}
 		return bestVal;
 	}
-	// if Players turn, loop throug Players moves
+	// if Players turn, loop through Players moves
 	else
 	{
 		int bestVal = INT_MAX;

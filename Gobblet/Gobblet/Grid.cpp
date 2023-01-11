@@ -179,12 +179,12 @@ void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 		m_selectedGobblet->setPosition(sf::Vector2f(t_mousePos.x, t_mousePos.y));
 	}
 
-	if (!yourTurn)
+	if (!g_yourTurn)
 	{
 		if (AIWaitTime < 0)
 		{
 			makeMove(boardStates[0], boardStates[1]);
-			yourTurn = true;
+			g_yourTurn = true;
 
 			if (g_status == Status::OnGoing)
 			{
@@ -204,7 +204,7 @@ void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 /// <param name="t_click">The position of the mouse on the window when the left mouse button was clicked.</param>
 void Grid::onMouseDown(sf::Vector2i t_click)
 {
-	if (yourTurn)
+	if (g_yourTurn)
 	{
 		for (Tile* tile : m_boardTiles)
 		{
@@ -260,7 +260,7 @@ void Grid::onMouseDown(sf::Vector2i t_click)
 /// <param name="t_click">The position of the mouse on the window when the left mouse button was released.</param>
 void Grid::onMouseUp(sf::Vector2i t_click)
 {
-	if (yourTurn)
+	if (g_yourTurn)
 	{
 		if (m_selectedTile != nullptr)
 		{
@@ -311,7 +311,7 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 void Grid::processOpponentTurn()
 {
 	AIWaitTime = rand() % 2 + 1;
-	yourTurn = false;
+	g_yourTurn = false;
 
 	background.setFillColor(playerBGColours[1]);
 	checkRows();
@@ -668,8 +668,6 @@ void Grid::calculateBestMove()
 
 void Grid::makeMove(unsigned long long before, unsigned long long after)
 {
-	
-
 	std::vector<std::pair<int, int>> coordinates;
 	int beforeBoard[4][4];
 	int afterBoard[4][4];
@@ -762,6 +760,11 @@ void Grid::makeMove(unsigned long long before, unsigned long long after)
 			fromCounter--;
 			toCounter--;
 		}
+
 		fromTile->moveGobbletTo(toTile);
 	}
+}
+
+void Grid::slidePiece()
+{
 }

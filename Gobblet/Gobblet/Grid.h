@@ -43,7 +43,7 @@ private:
 	sf::Color playerBGColours[2];
 
 	float AIWaitTime;
-	bool yourTurn = true;
+	
 	unsigned long long boardStates[2];
 
 	///All the stored three of the same colour Gobblets in a row.
@@ -67,4 +67,5 @@ private:
 
 	void calculateBestMove();
 	void makeMove(unsigned long long before, unsigned long long after);
+	void slidePiece();
 };

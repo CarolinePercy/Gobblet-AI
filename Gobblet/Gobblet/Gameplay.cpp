@@ -10,6 +10,42 @@ Gameplay::Gameplay()
 	announcementText.setScale(1.5, 1.5);
 	announcementText.setOutlineColor(sf::Color::Black);
 	announcementText.setOutlineThickness(10);
+
+	SetUpTurnText();
+}
+
+/// <summary>
+/// Sets up the text letting the player(s) know who's turn it is.
+/// </summary>
+void Gameplay::SetUpTurnText()
+{
+	sf::Color turnTextColour[2];
+	sf::Vector2f textPos[2];
+
+	textPos[0] = sf::Vector2f(G_VIEW_WIDTH / 25, G_VIEW_HEIGHT - (G_VIEW_HEIGHT / 7));
+	textPos[1] = sf::Vector2f(G_VIEW_WIDTH - (G_VIEW_WIDTH / 4.8), G_VIEW_HEIGHT / 10);
+
+	turnTextColour[0] = sf::Color(212, 244, 255);
+	turnTextColour[1] = sf::Color(255, 209, 225);
+
+	turnText[0].setString("Your Turn");
+	turnText[1].setString("Player 2's Turn");
+
+	for (int loop = 0; loop < 2; loop++)
+	{
+		turnText[loop].setFont(g_font);
+		turnText[loop].setCharacterSize(30);
+		turnText[loop].setScale(1.5, 1.5);
+
+		turnText[loop].setOutlineColor(sf::Color::Black);
+		turnText[loop].setOutlineThickness(3);
+		turnText[loop].setFillColor(turnTextColour[loop]);
+
+		turnText[loop].setPosition(textPos[loop]);
+		announcementText.setOrigin(announcementText.getLocalBounds().width / 2.0f, announcementText.getLocalBounds().height / 2.0f);
+	}
+
+
 }
 
  /// <summary>
@@ -69,6 +105,17 @@ void Gameplay::render(sf::RenderWindow& t_window)
 		announcementText.setString("Player 2 Wins!");
 		announcementText.setFillColor(sf::Color::Magenta);
 		DrawText(t_window);
+	}
+
+	if (g_yourTurn)
+	{
+		t_window.draw(turnText[0]);
+	}
+
+	else
+	{
+		t_window.draw(turnText[1]);
+
 	}
 }
 

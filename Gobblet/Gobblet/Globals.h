@@ -35,6 +35,8 @@ extern Gamestate g_previousstate;
 /// The status of the board game - who won, or if it is still going.
 extern Status g_status;
 
+extern bool g_yourTurn;
+
 ///The font used throughout the game.
 extern sf::Font g_font;
 
