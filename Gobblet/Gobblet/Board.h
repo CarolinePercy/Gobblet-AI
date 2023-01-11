@@ -36,9 +36,6 @@ private:
 	/// How far the AI is currently down in Minimax.
 	int depth;
 
-	/// How far the AI should go in Minimax, before cutting it off and making an estimate. Saves on time.
-	const int MAX_DEPTH = 3;
-
 	/// Keeps track of whether it the AI's Turn when predicting Minimax.
 	bool AIturn;
 

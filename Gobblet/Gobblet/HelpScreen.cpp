@@ -9,6 +9,12 @@ HelpScreen::HelpScreen()
 	m_backButton = new Button(sf::Vector2f(G_VIEW_WIDTH - (buttonSize.x + 20), G_VIEW_HEIGHT - (buttonSize.y + 20)),
 		buttonSize, "BACK", sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
 
+	for (int loop = 0; loop < 3; loop++)
+	{
+		m_difficultyButton = new Button(sf::Vector2f(G_VIEW_WIDTH / 2 - (buttonSize.x + 20 * loop), G_VIEW_HEIGHT - (buttonSize.y + 20)),
+			buttonSize, std::to_string(loop + 1), sf::Color::Yellow, sf::Color::Red, sf::Color::Green);
+	}
+
 	const int line_no = 15;
 	std::string help[line_no] = {
 		"Gobblet is a game played on a 4x4 grid with two players,",
@@ -52,6 +58,11 @@ void HelpScreen::processEvents(sf::Event t_event)
 		if (t_event.key.code == sf::Mouse::Left)
 		{
 			m_backButton->onMouseDown();
+
+			for (int loop = 0; loop < 3; loop++)
+			{
+				m_difficultyButton[loop]->onMouseDown();
+			}
 		}
 	}
 	if (sf::Event::MouseButtonReleased == t_event.type)
@@ -61,6 +72,17 @@ void HelpScreen::processEvents(sf::Event t_event)
 			if (m_backButton->onMouseUp())
 			{
 				g_gamestate = Gamestate::MainMenu;
+			}
+
+			else
+			{
+				for (int loop = 0; loop < 3; loop++)
+				{
+					if (m_difficultyButton[loop]->onMouseUp())
+					{
+						g_maxDepth = difficulties[loop];
+					}
+				}
 			}
 		}
 	}
@@ -78,6 +100,16 @@ void HelpScreen::processEvents(sf::Event t_event)
 void HelpScreen::update(sf::Vector2i t_mousePos)
 {
 	m_backButton->update(t_mousePos);
+
+	for (int loop = 0; loop < 3; loop++)
+	{
+		m_difficultyButton[loop]->update(t_mousePos);
+
+		if (difficulties[loop] == g_maxDepth)
+		{
+			m_difficultyButton[loop]->selected();
+		}
+	}
 }
 
 /// <summary>
@@ -89,6 +121,11 @@ void HelpScreen::render(sf::RenderWindow& t_window)
 	for (sf::Text line : helpText)
 	{
 		t_window.draw(line);
+	}
+
+	for (int loop = 0; loop < 3; loop++)
+	{
+		m_difficultyButton[loop]->render(t_window);
 	}
 
 	m_backButton->render(t_window);

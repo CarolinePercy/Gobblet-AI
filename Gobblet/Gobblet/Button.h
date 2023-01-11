@@ -13,6 +13,7 @@ public:
 	bool onMouseUp();
 	void update(sf::Vector2i t_pos);
 	void render(sf::RenderWindow& t_window);
+	void selected();
 private:
 
 	///The physical design of the button.
