@@ -23,11 +23,11 @@ int Board::minimax()
 	// check for win or tie
 	if (checkForWin())
 	{
-		return 50;
+		return 200;
 	}
 	else if (checkForLoss())
 	{
-		return -50;
+		return -200;
 	}
 	else if (depth >= MAX_DEPTH)
 	{

@@ -80,3 +80,12 @@ void Tile::moveGobbletTo(Tile* t_destination)
 		}
 	}
 }
+
+/// <summary>
+/// Returns the position of the tile in relation to the screen.
+/// </summary>
+/// <returns>The position of the tile.</returns>
+sf::Vector2f Tile::getPosition()
+{
+	return m_tile.getPosition();
+}

@@ -166,6 +166,11 @@ void Grid::render(sf::RenderWindow& t_window)
 	{
 		m_selectedGobblet->render(t_window);
 	}
+
+	if (AIMoveFrom != nullptr)
+	{
+		AIMoveFrom->getCurrentGobblet()->render(t_window);
+	}
 }
 
 /// <summary>
@@ -183,13 +188,54 @@ void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 	{
 		if (AIWaitTime < 0)
 		{
-			makeMove(boardStates[0], boardStates[1]);
-			g_yourTurn = true;
-
-			if (g_status == Status::OnGoing)
+			if (AIMoveFrom != nullptr && AIMoveTo != nullptr)
 			{
-				background.setFillColor(playerBGColours[0]);
+				Gobblet* g = AIMoveFrom->getCurrentGobblet();
+
+				sf::Vector2f distance = g->getPosition() - AIMoveTo->getPosition();
+				float distanceLength = sqrt((distance.x * distance.x) + (distance.y * distance.y));
+
+				//std::cout << distanceLength << std::endl;
+
+				if (distanceLength < 100)
+				{
+					g_yourTurn = true;
+					AIMoveFrom->moveGobbletTo(AIMoveTo);
+
+					checkRows();
+
+					if (g_status == Status::OnGoing)
+					{
+						background.setFillColor(playerBGColours[0]);
+					}
+
+					AIMoveFrom = nullptr;
+					AIMoveTo = nullptr;
+				}
+
+				else
+				{
+					g->moveAlong(moveDirection * moveSpeed);
+				}
 			}
+
+			else
+			{
+				std::cout << "Error!" << std::endl;
+
+				g_yourTurn = true;
+
+				checkRows();
+
+				if (g_status == Status::OnGoing)
+				{
+					background.setFillColor(playerBGColours[0]);
+				}
+
+				AIMoveFrom = nullptr;
+				AIMoveTo = nullptr;
+			}
+
 		}
 
 		AIWaitTime -= t_deltaTime.asSeconds();
@@ -319,6 +365,7 @@ void Grid::processOpponentTurn()
 	if (g_status == Status::OnGoing)
 	{
 		calculateBestMove();
+		makeMove(boardStates[0], boardStates[1]);
 		checkRows();
 	}
 }
@@ -695,7 +742,7 @@ void Grid::makeMove(unsigned long long before, unsigned long long after)
 	else if (differences == 1)
 	{
 		Tile* from = nullptr;
-		Tile* to = nullptr;
+
 		int biggestSize = -1;
 		for (Tile* tile : m_player2Tiles)
 		{
@@ -716,7 +763,14 @@ void Grid::makeMove(unsigned long long before, unsigned long long after)
 			{
 				if (counter == 0)
 				{
-					from->moveGobbletTo(tile);
+					AIMoveFrom = from;
+					AIMoveTo = tile;
+
+					moveDirection = tile->getPosition() - from->getPosition();
+					float length = sqrt((moveDirection.x * moveDirection.x) + (moveDirection.y * moveDirection.y));
+					moveDirection = moveDirection / length;
+
+					//from->moveGobbletTo(tile);
 				}
 				counter--;
 			}
@@ -761,7 +815,13 @@ void Grid::makeMove(unsigned long long before, unsigned long long after)
 			toCounter--;
 		}
 
-		fromTile->moveGobbletTo(toTile);
+		AIMoveFrom = fromTile;
+		AIMoveTo = toTile;
+		//fromTile->moveGobbletTo(toTile);
+
+		moveDirection = toTile->getPosition() - fromTile->getPosition();
+		float length = sqrt((moveDirection.x * moveDirection.x) + (moveDirection.y * moveDirection.y));
+		moveDirection = moveDirection / length;
 	}
 }
 

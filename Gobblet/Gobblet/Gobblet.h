@@ -30,6 +30,17 @@ public:
 	void setPosition(sf::Vector2f t_position) { m_gobblet.setPosition(t_position); }
 
 	/// <summary>
+	/// Moves the gobblet along a straight line.
+	/// </summary>
+	void moveAlong(sf::Vector2f t_addedMove) { m_gobblet.move(t_addedMove); }
+
+	/// <summary>
+	/// Returns the position of the Gobblet.
+	/// </summary>
+	sf::Vector2f getPosition() { return sf::Vector2f(m_gobblet.getPosition().x - m_gobblet.getRadius(),
+		m_gobblet.getPosition().y - m_gobblet.getRadius()); }
+
+	/// <summary>
 	/// 
 	/// </summary>
 	/// <returns>The size of this gobblet.</returns>

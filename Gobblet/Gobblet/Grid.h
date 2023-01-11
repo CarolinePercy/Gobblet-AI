@@ -43,7 +43,12 @@ private:
 	sf::Color playerBGColours[2];
 
 	float AIWaitTime;
-	
+	sf::Vector2f moveDirection;
+	float moveSpeed = 30;
+	Tile* AIMoveFrom;
+	Tile* AIMoveTo;
+
+
 	unsigned long long boardStates[2];
 
 	///All the stored three of the same colour Gobblets in a row.

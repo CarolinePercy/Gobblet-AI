@@ -17,6 +17,8 @@ public:
 	void setCurrentGobblet(Gobblet* t_currentGobblet);
 	Gobblet* getCurrentGobblet() { return m_currentGobblet; }
 	void moveGobbletTo(Tile* t_destination);
+
+	sf::Vector2f getPosition();
 private:
 
 	/// The Gobblet that is currently on top of this Tile.
