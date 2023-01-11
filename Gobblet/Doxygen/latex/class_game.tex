@@ -1,0 +1,163 @@
+\hypertarget{class_game}{}\doxysection{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+Main \mbox{\hyperlink{class_game}{Game}} class. Used to control the flow of the program.   
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Sets up the window properties and load and setup the text, also loads and sets up the image.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game}} ()
+\begin{DoxyCompactList}\small\item\em default destructor. We didn\textquotesingle{}t dynamically allocate anything, so we don\textquotesingle{}t need to free it, but method needs to be here.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}} ()
+\begin{DoxyCompactList}\small\item\em The main game loop. This updates 60 times per second. Also processes update as often as possible and at least 60 times per second. Draws as often as possible but only updates are on time. If updates run slow, then don\textquotesingle{}t render frames.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_a79f698dda206dd7a9bed28b3f88bdc38}{process\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Handles user and system events/input. Gets key presses/mouse moves etc from OS and user.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1d2aee62bac8e228344e1f44fab504e0}{update}} (sf\+::\+Time t\+\_\+delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the world every 60th of a second.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a15ddd769261d923827a3cdf41499c843}{render}} ()
+\begin{DoxyCompactList}\small\item\em Draws the whole game to the SFML screen. Controls which screen will be shown to the player.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}{m\+\_\+window}}
+\begin{DoxyCompactList}\small\item\em The main SFML window, where everything will draw to. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_help_screen}{Help\+Screen}} \mbox{\hyperlink{class_game_ae597cc0dd5add091e8776cdf17c8bb8b}{help\+Screen}}
+\begin{DoxyCompactList}\small\item\em The help screen instance the player will see. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_gameplay}{Gameplay}} \mbox{\hyperlink{class_game_aacc89f757a43931e84b20c47112b85c2}{game\+Screen}}
+\begin{DoxyCompactList}\small\item\em The gameplay screen instance the player will see. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_menu}{Menu}} \mbox{\hyperlink{class_game_a14381432fa3150bec40ff4b4fcb110f1}{menu\+Screen}}
+\begin{DoxyCompactList}\small\item\em The menu screen instance the player will see. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main \mbox{\hyperlink{class_game}{Game}} class. Used to control the flow of the program.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\label{class_game_ad59df6562a58a614fda24622d3715b65}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. Sets up the window properties and load and setup the text, also loads and sets up the image.  
+
+\mbox{\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\label{class_game_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+default destructor. We didn\textquotesingle{}t dynamically allocate anything, so we don\textquotesingle{}t need to free it, but method needs to be here.  
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a79f698dda206dd7a9bed28b3f88bdc38}\label{class_game_a79f698dda206dd7a9bed28b3f88bdc38}} 
+\index{Game@{Game}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily void Game\+::process\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles user and system events/input. Gets key presses/mouse moves etc from OS and user.  
+
+\mbox{\Hypertarget{class_game_a15ddd769261d923827a3cdf41499c843}\label{class_game_a15ddd769261d923827a3cdf41499c843}} 
+\index{Game@{Game}!render@{render}}
+\index{render@{render}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Game\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draws the whole game to the SFML screen. Controls which screen will be shown to the player.  
+
+\mbox{\Hypertarget{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}\label{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}} 
+\index{Game@{Game}!run@{run}}
+\index{run@{run}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Game\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The main game loop. This updates 60 times per second. Also processes update as often as possible and at least 60 times per second. Draws as often as possible but only updates are on time. If updates run slow, then don\textquotesingle{}t render frames.  
+
+\mbox{\Hypertarget{class_game_a1d2aee62bac8e228344e1f44fab504e0}\label{class_game_a1d2aee62bac8e228344e1f44fab504e0}} 
+\index{Game@{Game}!update@{update}}
+\index{update@{update}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Game\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{t\+\_\+delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the world every 60th of a second.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+delta\+Time} & The time that has passed since last frame.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_aacc89f757a43931e84b20c47112b85c2}\label{class_game_aacc89f757a43931e84b20c47112b85c2}} 
+\index{Game@{Game}!gameScreen@{gameScreen}}
+\index{gameScreen@{gameScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{gameScreen}{gameScreen}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gameplay}{Gameplay}} Game\+::game\+Screen\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The gameplay screen instance the player will see. 
+
+\mbox{\Hypertarget{class_game_ae597cc0dd5add091e8776cdf17c8bb8b}\label{class_game_ae597cc0dd5add091e8776cdf17c8bb8b}} 
+\index{Game@{Game}!helpScreen@{helpScreen}}
+\index{helpScreen@{helpScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{helpScreen}{helpScreen}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_help_screen}{Help\+Screen}} Game\+::help\+Screen\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The help screen instance the player will see. 
+
+\mbox{\Hypertarget{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}\label{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}} 
+\index{Game@{Game}!m\_window@{m\_window}}
+\index{m\_window@{m\_window}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_window}{m\_window}}
+{\footnotesize\ttfamily sf\+::\+Render\+Window Game\+::m\+\_\+window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The main SFML window, where everything will draw to. 
+
+\mbox{\Hypertarget{class_game_a14381432fa3150bec40ff4b4fcb110f1}\label{class_game_a14381432fa3150bec40ff4b4fcb110f1}} 
+\index{Game@{Game}!menuScreen@{menuScreen}}
+\index{menuScreen@{menuScreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{menuScreen}{menuScreen}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_menu}{Menu}} Game\+::menu\+Screen\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The menu screen instance the player will see. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

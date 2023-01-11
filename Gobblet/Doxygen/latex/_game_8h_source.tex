@@ -1,0 +1,46 @@
+\hypertarget{_game_8h_source}{}\doxysection{Game.\+h}
+\label{_game_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Game.h@{Gobblet-\/AI/Gobblet/Gobblet/Game.h}}
+\mbox{\hyperlink{_game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef GAME\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define GAME\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{// include guards used so we don't process this file twice}}
+\DoxyCodeLine{5 \textcolor{comment}{// same as \#pragma once}}
+\DoxyCodeLine{6 \textcolor{comment}{// Don't forget the endif at the bottom}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{// Gobblet -\/ made by Eoin Galavan \& Caroline Percy}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_gameplay_8h}{Gameplay.h}}"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_menu_8h}{Menu.h}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_help_screen_8h}{HelpScreen.h}}"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_game}{Game}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}}();}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{\string~Game}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}}();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{private}:}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a79f698dda206dd7a9bed28b3f88bdc38}{processEvents}}();}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a1d2aee62bac8e228344e1f44fab504e0}{update}}(sf::Time t\_deltaTime);}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a15ddd769261d923827a3cdf41499c843}{render}}();}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32     sf::RenderWindow \mbox{\hyperlink{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}{m\_window}}; }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36     \mbox{\hyperlink{class_help_screen}{HelpScreen}} \mbox{\hyperlink{class_game_ae597cc0dd5add091e8776cdf17c8bb8b}{helpScreen}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39     \mbox{\hyperlink{class_gameplay}{Gameplay}} \mbox{\hyperlink{class_game_aacc89f757a43931e84b20c47112b85c2}{gameScreen}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42     \mbox{\hyperlink{class_menu}{Menu}} \mbox{\hyperlink{class_game_a14381432fa3150bec40ff4b4fcb110f1}{menuScreen}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !GAME\_HPP}}
+\DoxyCodeLine{47 }
+
+\end{DoxyCode}

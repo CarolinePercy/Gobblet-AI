@@ -1,0 +1,169 @@
+\hypertarget{_globals_8h}{}\doxysection{Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\+Globals.h File Reference}
+\label{_globals_8h}\index{Gobblet-\/AI/Gobblet/Gobblet/Globals.h@{Gobblet-\/AI/Gobblet/Gobblet/Globals.h}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}} \{ \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5aad1111b48f98329333237912fc3b371b}{Main\+Menu}}
+, \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6288740a1cd0de37312619df3b6ddcf3}{Gameplay}}
+, \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6a26f548831e6a8c26bfbbd9f6ec61e0}{Help}}
+ \}
+\begin{DoxyCompactList}\small\item\em All the screens the player has the choice of viewing.  \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}{Status}} \{ \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baba1b1211f539a4d043d056c9e1322d9c}{On\+Going}}
+, \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70babbe0b7eb4cf4d9ff82e134b88ba0591b}{Player1\+Wins}}
+, \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baafaf0eda13f71a023c70872f7f8f5231}{Player2\+Wins}}
+ \}
+\begin{DoxyCompactList}\small\item\em The status of the \mbox{\hyperlink{class_gobblet}{Gobblet}} game -\/ who won and lost, or if its still being played.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}} \mbox{\hyperlink{_globals_8h_a9344dbdd78ef2f8ec839413396c5d99a}{g\+\_\+gamestate}}
+\begin{DoxyCompactList}\small\item\em The current screen the user is on. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}} \mbox{\hyperlink{_globals_8h_a440a2010ce9f687c6bce38f4240bd73e}{g\+\_\+previousstate}}
+\begin{DoxyCompactList}\small\item\em The previous screen the user was on. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}{Status}} \mbox{\hyperlink{_globals_8h_aafb25b8b682394d429673c492c1f5558}{g\+\_\+status}}
+\begin{DoxyCompactList}\small\item\em The status of the board game -\/ who won, or if it is still going. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_globals_8h_a71bc62cd0287527ca170689bf4245450}{g\+\_\+your\+Turn}}
+\item 
+sf\+::\+Font \mbox{\hyperlink{_globals_8h_a924211755bba964bfe8403fd49db0b4d}{g\+\_\+font}}
+\begin{DoxyCompactList}\small\item\em The font used throughout the game. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_globals_8h_a71e590000c554e5f4e8ec83c07ce910f}{g\+\_\+exit\+Game}}
+\begin{DoxyCompactList}\small\item\em Bool that controls when the game ends. \end{DoxyCompactList}\item 
+unsigned const int \mbox{\hyperlink{_globals_8h_adb4bf3f2c109fbaf8a9c11bfa807c26e}{G\+\_\+\+VIEW\+\_\+\+WIDTH}} = 1920U
+\begin{DoxyCompactList}\small\item\em The width of the SFMl screen the game takes place. \end{DoxyCompactList}\item 
+unsigned const int \mbox{\hyperlink{_globals_8h_aef568164fbd6d0a6bf25a86c448e74f2}{G\+\_\+\+VIEW\+\_\+\+HEIGHT}} = 1080U
+\begin{DoxyCompactList}\small\item\em The height of the SFMl screen the game takes place. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}\label{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}} 
+\index{Globals.h@{Globals.h}!Gamestate@{Gamestate}}
+\index{Gamestate@{Gamestate}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{Gamestate}{Gamestate}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+All the screens the player has the choice of viewing.  
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MainMenu@{MainMenu}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!MainMenu@{MainMenu}}}\mbox{\Hypertarget{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5aad1111b48f98329333237912fc3b371b}\label{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5aad1111b48f98329333237912fc3b371b}} 
+Main\+Menu&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Gameplay@{Gameplay}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!Gameplay@{Gameplay}}}\mbox{\Hypertarget{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6288740a1cd0de37312619df3b6ddcf3}\label{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6288740a1cd0de37312619df3b6ddcf3}} 
+Gameplay&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Help@{Help}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!Help@{Help}}}\mbox{\Hypertarget{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6a26f548831e6a8c26bfbbd9f6ec61e0}\label{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5a6a26f548831e6a8c26bfbbd9f6ec61e0}} 
+Help&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}\label{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}} 
+\index{Globals.h@{Globals.h}!Status@{Status}}
+\index{Status@{Status}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}{Status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The status of the \mbox{\hyperlink{class_gobblet}{Gobblet}} game -\/ who won and lost, or if its still being played.  
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OnGoing@{OnGoing}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!OnGoing@{OnGoing}}}\mbox{\Hypertarget{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baba1b1211f539a4d043d056c9e1322d9c}\label{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baba1b1211f539a4d043d056c9e1322d9c}} 
+On\+Going&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Player1Wins@{Player1Wins}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!Player1Wins@{Player1Wins}}}\mbox{\Hypertarget{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70babbe0b7eb4cf4d9ff82e134b88ba0591b}\label{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70babbe0b7eb4cf4d9ff82e134b88ba0591b}} 
+Player1\+Wins&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Player2Wins@{Player2Wins}!Globals.h@{Globals.h}}\index{Globals.h@{Globals.h}!Player2Wins@{Player2Wins}}}\mbox{\Hypertarget{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baafaf0eda13f71a023c70872f7f8f5231}\label{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70baafaf0eda13f71a023c70872f7f8f5231}} 
+Player2\+Wins&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_globals_8h_a71e590000c554e5f4e8ec83c07ce910f}\label{_globals_8h_a71e590000c554e5f4e8ec83c07ce910f}} 
+\index{Globals.h@{Globals.h}!g\_exitGame@{g\_exitGame}}
+\index{g\_exitGame@{g\_exitGame}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_exitGame}{g\_exitGame}}
+{\footnotesize\ttfamily bool g\+\_\+exit\+Game\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Bool that controls when the game ends. 
+
+\mbox{\Hypertarget{_globals_8h_a924211755bba964bfe8403fd49db0b4d}\label{_globals_8h_a924211755bba964bfe8403fd49db0b4d}} 
+\index{Globals.h@{Globals.h}!g\_font@{g\_font}}
+\index{g\_font@{g\_font}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_font}{g\_font}}
+{\footnotesize\ttfamily sf\+::\+Font g\+\_\+font\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+The font used throughout the game. 
+
+\mbox{\Hypertarget{_globals_8h_a9344dbdd78ef2f8ec839413396c5d99a}\label{_globals_8h_a9344dbdd78ef2f8ec839413396c5d99a}} 
+\index{Globals.h@{Globals.h}!g\_gamestate@{g\_gamestate}}
+\index{g\_gamestate@{g\_gamestate}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_gamestate}{g\_gamestate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}} g\+\_\+gamestate\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+The current screen the user is on. 
+
+\mbox{\Hypertarget{_globals_8h_a440a2010ce9f687c6bce38f4240bd73e}\label{_globals_8h_a440a2010ce9f687c6bce38f4240bd73e}} 
+\index{Globals.h@{Globals.h}!g\_previousstate@{g\_previousstate}}
+\index{g\_previousstate@{g\_previousstate}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_previousstate}{g\_previousstate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_globals_8h_ad6eff87c4b0d26838106d44dfa85a3d5}{Gamestate}} g\+\_\+previousstate\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+The previous screen the user was on. 
+
+\mbox{\Hypertarget{_globals_8h_aafb25b8b682394d429673c492c1f5558}\label{_globals_8h_aafb25b8b682394d429673c492c1f5558}} 
+\index{Globals.h@{Globals.h}!g\_status@{g\_status}}
+\index{g\_status@{g\_status}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_status}{g\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_globals_8h_a67a0db04d321a74b7e7fcfd3f1a3f70b}{Status}} g\+\_\+status\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+The status of the board game -\/ who won, or if it is still going. 
+
+\mbox{\Hypertarget{_globals_8h_aef568164fbd6d0a6bf25a86c448e74f2}\label{_globals_8h_aef568164fbd6d0a6bf25a86c448e74f2}} 
+\index{Globals.h@{Globals.h}!G\_VIEW\_HEIGHT@{G\_VIEW\_HEIGHT}}
+\index{G\_VIEW\_HEIGHT@{G\_VIEW\_HEIGHT}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{G\_VIEW\_HEIGHT}{G\_VIEW\_HEIGHT}}
+{\footnotesize\ttfamily unsigned const int G\+\_\+\+VIEW\+\_\+\+HEIGHT = 1080U}
+
+
+
+The height of the SFMl screen the game takes place. 
+
+\mbox{\Hypertarget{_globals_8h_adb4bf3f2c109fbaf8a9c11bfa807c26e}\label{_globals_8h_adb4bf3f2c109fbaf8a9c11bfa807c26e}} 
+\index{Globals.h@{Globals.h}!G\_VIEW\_WIDTH@{G\_VIEW\_WIDTH}}
+\index{G\_VIEW\_WIDTH@{G\_VIEW\_WIDTH}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{G\_VIEW\_WIDTH}{G\_VIEW\_WIDTH}}
+{\footnotesize\ttfamily unsigned const int G\+\_\+\+VIEW\+\_\+\+WIDTH = 1920U}
+
+
+
+The width of the SFMl screen the game takes place. 
+
+\mbox{\Hypertarget{_globals_8h_a71bc62cd0287527ca170689bf4245450}\label{_globals_8h_a71bc62cd0287527ca170689bf4245450}} 
+\index{Globals.h@{Globals.h}!g\_yourTurn@{g\_yourTurn}}
+\index{g\_yourTurn@{g\_yourTurn}!Globals.h@{Globals.h}}
+\doxysubsubsection{\texorpdfstring{g\_yourTurn}{g\_yourTurn}}
+{\footnotesize\ttfamily bool g\+\_\+your\+Turn\hspace{0.3cm}{\ttfamily [extern]}}
+

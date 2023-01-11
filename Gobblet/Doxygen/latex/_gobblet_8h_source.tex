@@ -1,0 +1,40 @@
+\hypertarget{_gobblet_8h_source}{}\doxysection{Gobblet.\+h}
+\label{_gobblet_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Gobblet.h@{Gobblet-\/AI/Gobblet/Gobblet/Gobblet.h}}
+\mbox{\hyperlink{_gobblet_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_gobblet}{Gobblet}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_gobblet}{Gobblet}}(\textcolor{keywordtype}{int} t\_size, \textcolor{keywordtype}{bool} t\_isPlayer);}
+\DoxyCodeLine{12     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gobblet_a2bbac2e8ec63bedc88e4b31677482fd9}{render}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{18     \mbox{\hyperlink{class_gobblet}{Gobblet}}* \mbox{\hyperlink{class_gobblet_af0ae2e939570918fe68113d84ae8af18}{getChild}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}{m\_child}}; \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gobblet_a1a8afbf638aa05500bba878785c76dd1}{setChild}}(\mbox{\hyperlink{class_gobblet}{Gobblet}}* t\_child) \{ \mbox{\hyperlink{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}{m\_child}} = t\_child;  \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gobblet_a7077369309e40774ec212806794dda99}{setPosition}}(sf::Vector2f t\_position) \{ \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.setPosition(t\_position); \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gobblet_aab7e0369de57bcd530f177336f83c47e}{moveAlong}}(sf::Vector2f t\_addedMove) \{ \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.move(t\_addedMove); \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{40     sf::Vector2f \mbox{\hyperlink{class_gobblet_a6fd8130e241cecbe9795b16f82a70297}{getPosition}}() \{ \textcolor{keywordflow}{return} sf::Vector2f(\mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.getPosition().x -\/ \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.getRadius(),}
+\DoxyCodeLine{41         \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.getPosition().y -\/ \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}}.getRadius()); \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_gobblet_aeede9d352bb95f42d67b595945c8202e}{getSize}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_gobblet_a448e221f19af88dc7877a00360e8f365}{size}}; \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_gobblet_ae610142386a249041d3f0e59aadc2f5c}{isControlledByPlayer}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_gobblet_afea1ac4f026c83d0b8a3e668f7a66cab}{controlledByPlayer}}; \};}
+\DoxyCodeLine{54 \textcolor{keyword}{private}:}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{57     sf::CircleShape \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\_gobblet}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{60     \mbox{\hyperlink{class_gobblet}{Gobblet}}* \mbox{\hyperlink{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}{m\_child}};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_gobblet_a448e221f19af88dc7877a00360e8f365}{size}} = -\/1;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_gobblet_afea1ac4f026c83d0b8a3e668f7a66cab}{controlledByPlayer}};}
+\DoxyCodeLine{67 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,122 @@
+\hypertarget{class_help_screen}{}\doxysection{Help\+Screen Class Reference}
+\label{class_help_screen}\index{HelpScreen@{HelpScreen}}
+
+
+The screen that explains to the player how the game \mbox{\hyperlink{class_gobblet}{Gobblet}} is played.   
+
+
+
+
+{\ttfamily \#include $<$Help\+Screen.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_help_screen_ae5e10103c27ebf92c5cb80de20219555}{Help\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_help_screen}{Help\+Screen}}\textquotesingle{}s Default Constructor.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_help_screen_ad959c973c43bcebffd7d8613530437d3}{process\+Events}} (sf\+::\+Event t\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Processes the events that happened while the player was on the help screen.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_help_screen_a37535815eddbf41e614115fabbc85619}{update}} (sf\+::\+Vector2i t\+\_\+mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Updates the back button every frame.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_help_screen_a00980f4a9709b6de29b2090e341af339}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws all the relevant items in \mbox{\hyperlink{class_help_screen}{Help\+Screen}} to the sfml window, such as the back button and the text explaining the game.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_button}{Button}} $\ast$ \mbox{\hyperlink{class_help_screen_a9c9d11eb140990b06c1a356084a7ae4a}{m\+\_\+back\+Button}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_button}{Button}} that will bring you back to the Main\+Menu. \end{DoxyCompactList}\item 
+std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_help_screen_ae6206d10b4128e64aa61b2a3f39d307c}{help\+Text}}
+\begin{DoxyCompactList}\small\item\em The text that will tell the player how to play. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The screen that explains to the player how the game \mbox{\hyperlink{class_gobblet}{Gobblet}} is played.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_help_screen_ae5e10103c27ebf92c5cb80de20219555}\label{class_help_screen_ae5e10103c27ebf92c5cb80de20219555}} 
+\index{HelpScreen@{HelpScreen}!HelpScreen@{HelpScreen}}
+\index{HelpScreen@{HelpScreen}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{HelpScreen()}{HelpScreen()}}
+{\footnotesize\ttfamily Help\+Screen\+::\+Help\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_help_screen}{Help\+Screen}}\textquotesingle{}s Default Constructor.  
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_help_screen_ad959c973c43bcebffd7d8613530437d3}\label{class_help_screen_ad959c973c43bcebffd7d8613530437d3}} 
+\index{HelpScreen@{HelpScreen}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily void Help\+Screen\+::process\+Events (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{t\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+Processes the events that happened while the player was on the help screen.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+event} & The event that occured because of the player.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_help_screen_a00980f4a9709b6de29b2090e341af339}\label{class_help_screen_a00980f4a9709b6de29b2090e341af339}} 
+\index{HelpScreen@{HelpScreen}!render@{render}}
+\index{render@{render}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Help\+Screen\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws all the relevant items in \mbox{\hyperlink{class_help_screen}{Help\+Screen}} to the sfml window, such as the back button and the text explaining the game.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The SFML window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_help_screen_a37535815eddbf41e614115fabbc85619}\label{class_help_screen_a37535815eddbf41e614115fabbc85619}} 
+\index{HelpScreen@{HelpScreen}!update@{update}}
+\index{update@{update}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Help\+Screen\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+mouse\+Pos }\end{DoxyParamCaption})}
+
+
+
+Updates the back button every frame.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+mouse\+Pos} & The mouse\textquotesingle{}s position on the screen.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_help_screen_ae6206d10b4128e64aa61b2a3f39d307c}\label{class_help_screen_ae6206d10b4128e64aa61b2a3f39d307c}} 
+\index{HelpScreen@{HelpScreen}!helpText@{helpText}}
+\index{helpText@{helpText}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{helpText}{helpText}}
+{\footnotesize\ttfamily std\+::vector$<$sf\+::\+Text$>$ Help\+Screen\+::help\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The text that will tell the player how to play. 
+
+\mbox{\Hypertarget{class_help_screen_a9c9d11eb140990b06c1a356084a7ae4a}\label{class_help_screen_a9c9d11eb140990b06c1a356084a7ae4a}} 
+\index{HelpScreen@{HelpScreen}!m\_backButton@{m\_backButton}}
+\index{m\_backButton@{m\_backButton}!HelpScreen@{HelpScreen}}
+\doxysubsubsection{\texorpdfstring{m\_backButton}{m\_backButton}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_button}{Button}}$\ast$ Help\+Screen\+::m\+\_\+back\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The \mbox{\hyperlink{class_button}{Button}} that will bring you back to the Main\+Menu. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_help_screen_8h}{Help\+Screen.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_help_screen_8cpp}{Help\+Screen.\+cpp}}\end{DoxyCompactItemize}

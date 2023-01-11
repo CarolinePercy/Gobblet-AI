@@ -1,0 +1,195 @@
+\hypertarget{class_tile}{}\doxysection{Tile Class Reference}
+\label{class_tile}\index{Tile@{Tile}}
+
+
+Is one cell on the \mbox{\hyperlink{class_grid}{Grid}} class.   
+
+
+
+
+{\ttfamily \#include $<$Tile.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tile_a19c37369e0a40cf88b90e459457f7954}{Tile}} (sf\+::\+Vector2f t\+\_\+position, sf\+::\+Vector2f t\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor of this class.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tile_a6c5cb0da8b4f32496cff838567323ce9}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws the \mbox{\hyperlink{class_tile}{Tile}}, and the \mbox{\hyperlink{class_gobblet}{Gobblet}} on top of it.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tile_ac6a9c29a3c3902d866840a5c31a66829}{is\+Inside}} (sf\+::\+Vector2i t\+\_\+click)
+\begin{DoxyCompactList}\small\item\em Checks whether the mouse is inside this \mbox{\hyperlink{class_tile}{Tile}}.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tile_aa164ab1f21fbe83f385ef4cb69ab2324}{remove\+Current\+Gobblet}} ()
+\item 
+void \mbox{\hyperlink{class_tile_a36cebffc62088f1a7d158d35bf92edf5}{set\+Current\+Gobblet}} (\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$t\+\_\+current\+Gobblet)
+\begin{DoxyCompactList}\small\item\em Sets the \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently on this \mbox{\hyperlink{class_tile}{Tile}}.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ \mbox{\hyperlink{class_tile_a4418bedd6b864ab34f285c1de93bcc28}{get\+Current\+Gobblet}} ()
+\item 
+void \mbox{\hyperlink{class_tile_a163d47dd5bba54a93704dc1cd1711ac7}{move\+Gobblet\+To}} (\mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+destination)
+\begin{DoxyCompactList}\small\item\em Moves the \mbox{\hyperlink{class_gobblet}{Gobblet}} on this \mbox{\hyperlink{class_tile}{Tile}} to another.  \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_tile_afd69da1519691d4f82bfe0534db4f01c}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the tile in relation to the screen.  \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_tile_ada5bb7b02b1663a4c3d8d959c771341b}{get\+Offset\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the tile in relation to the screen, plus centring it to the middle of the square.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ \mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\+\_\+current\+Gobblet}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently on top of this \mbox{\hyperlink{class_tile}{Tile}}. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_tile_a269fd8b79131de9eb73dbc6c5a6704fd}{m\+\_\+tile}}
+\begin{DoxyCompactList}\small\item\em The appearance of the \mbox{\hyperlink{class_tile}{Tile}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Is one cell on the \mbox{\hyperlink{class_grid}{Grid}} class.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tile_a19c37369e0a40cf88b90e459457f7954}\label{class_tile_a19c37369e0a40cf88b90e459457f7954}} 
+\index{Tile@{Tile}!Tile@{Tile}}
+\index{Tile@{Tile}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{Tile()}{Tile()}}
+{\footnotesize\ttfamily Tile\+::\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t\+\_\+position,  }\item[{sf\+::\+Vector2f}]{t\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor of this class.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+position} & The position this \mbox{\hyperlink{class_tile}{Tile}} will be.\\
+\hline
+{\em t\+\_\+size} & The size of this new \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tile_a4418bedd6b864ab34f285c1de93bcc28}\label{class_tile_a4418bedd6b864ab34f285c1de93bcc28}} 
+\index{Tile@{Tile}!getCurrentGobblet@{getCurrentGobblet}}
+\index{getCurrentGobblet@{getCurrentGobblet}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{getCurrentGobblet()}{getCurrentGobblet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ Tile\+::get\+Current\+Gobblet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tile_ada5bb7b02b1663a4c3d8d959c771341b}\label{class_tile_ada5bb7b02b1663a4c3d8d959c771341b}} 
+\index{Tile@{Tile}!getOffsetPosition@{getOffsetPosition}}
+\index{getOffsetPosition@{getOffsetPosition}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{getOffsetPosition()}{getOffsetPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Tile\+::get\+Offset\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the position of the tile in relation to the screen, plus centring it to the middle of the square.  
+
+\begin{DoxyReturn}{Returns}
+The position of the tile.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tile_afd69da1519691d4f82bfe0534db4f01c}\label{class_tile_afd69da1519691d4f82bfe0534db4f01c}} 
+\index{Tile@{Tile}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Tile\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the position of the tile in relation to the screen.  
+
+\begin{DoxyReturn}{Returns}
+The position of the tile.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tile_ac6a9c29a3c3902d866840a5c31a66829}\label{class_tile_ac6a9c29a3c3902d866840a5c31a66829}} 
+\index{Tile@{Tile}!isInside@{isInside}}
+\index{isInside@{isInside}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{isInside()}{isInside()}}
+{\footnotesize\ttfamily bool Tile\+::is\+Inside (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+click }\end{DoxyParamCaption})}
+
+
+
+Checks whether the mouse is inside this \mbox{\hyperlink{class_tile}{Tile}}.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+click} & The position of the mouse.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the mouse is in the tile.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tile_a163d47dd5bba54a93704dc1cd1711ac7}\label{class_tile_a163d47dd5bba54a93704dc1cd1711ac7}} 
+\index{Tile@{Tile}!moveGobbletTo@{moveGobbletTo}}
+\index{moveGobbletTo@{moveGobbletTo}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{moveGobbletTo()}{moveGobbletTo()}}
+{\footnotesize\ttfamily void Tile\+::move\+Gobblet\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+destination }\end{DoxyParamCaption})}
+
+
+
+Moves the \mbox{\hyperlink{class_gobblet}{Gobblet}} on this \mbox{\hyperlink{class_tile}{Tile}} to another.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+destination} & The new \mbox{\hyperlink{class_tile}{Tile}} the \mbox{\hyperlink{class_gobblet}{Gobblet}} will be moved to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tile_aa164ab1f21fbe83f385ef4cb69ab2324}\label{class_tile_aa164ab1f21fbe83f385ef4cb69ab2324}} 
+\index{Tile@{Tile}!removeCurrentGobblet@{removeCurrentGobblet}}
+\index{removeCurrentGobblet@{removeCurrentGobblet}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{removeCurrentGobblet()}{removeCurrentGobblet()}}
+{\footnotesize\ttfamily void Tile\+::remove\+Current\+Gobblet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tile_a6c5cb0da8b4f32496cff838567323ce9}\label{class_tile_a6c5cb0da8b4f32496cff838567323ce9}} 
+\index{Tile@{Tile}!render@{render}}
+\index{render@{render}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tile\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws the \mbox{\hyperlink{class_tile}{Tile}}, and the \mbox{\hyperlink{class_gobblet}{Gobblet}} on top of it.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The window to draw the tile to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tile_a36cebffc62088f1a7d158d35bf92edf5}\label{class_tile_a36cebffc62088f1a7d158d35bf92edf5}} 
+\index{Tile@{Tile}!setCurrentGobblet@{setCurrentGobblet}}
+\index{setCurrentGobblet@{setCurrentGobblet}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{setCurrentGobblet()}{setCurrentGobblet()}}
+{\footnotesize\ttfamily void Tile\+::set\+Current\+Gobblet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$}]{t\+\_\+current\+Gobblet }\end{DoxyParamCaption})}
+
+
+
+Sets the \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently on this \mbox{\hyperlink{class_tile}{Tile}}.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+current\+Gobblet} & The new \mbox{\hyperlink{class_gobblet}{Gobblet}} on this \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_tile_ad6d8a17e11190660fb3f2105b77c750b}\label{class_tile_ad6d8a17e11190660fb3f2105b77c750b}} 
+\index{Tile@{Tile}!m\_currentGobblet@{m\_currentGobblet}}
+\index{m\_currentGobblet@{m\_currentGobblet}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{m\_currentGobblet}{m\_currentGobblet}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}}$\ast$ Tile\+::m\+\_\+current\+Gobblet\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently on top of this \mbox{\hyperlink{class_tile}{Tile}}. 
+
+\mbox{\Hypertarget{class_tile_a269fd8b79131de9eb73dbc6c5a6704fd}\label{class_tile_a269fd8b79131de9eb73dbc6c5a6704fd}} 
+\index{Tile@{Tile}!m\_tile@{m\_tile}}
+\index{m\_tile@{m\_tile}!Tile@{Tile}}
+\doxysubsubsection{\texorpdfstring{m\_tile}{m\_tile}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Tile\+::m\+\_\+tile\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The appearance of the \mbox{\hyperlink{class_tile}{Tile}} object. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_tile_8h}{Tile.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_tile_8cpp}{Tile.\+cpp}}\end{DoxyCompactItemize}

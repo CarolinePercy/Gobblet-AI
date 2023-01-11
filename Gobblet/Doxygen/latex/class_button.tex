@@ -1,0 +1,222 @@
+\hypertarget{class_button}{}\doxysection{Button Class Reference}
+\label{class_button}\index{Button@{Button}}
+
+
+A button class, that keeps track of when it it hovered over, pressed, and what it looks like.   
+
+
+
+
+{\ttfamily \#include $<$Button.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_button_a46e477e6837844e4abb35900f88bfef4}{Button}} (sf\+::\+Vector2f t\+\_\+pos, sf\+::\+Vector2f t\+\_\+size, std\+::string t\+\_\+button\+Text, sf\+::\+Color t\+\_\+idle, sf\+::\+Color t\+\_\+hover, sf\+::\+Color t\+\_\+click)
+\begin{DoxyCompactList}\small\item\em Overloaded Constructor of the \mbox{\hyperlink{class_button}{Button}} class.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_af9d8bfdc8b67c2294e324697cace7220}{on\+Mouse\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Method that is called when the player releases the left mouse button.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_abe44d38ef114e1922018313e5e383e58}{on\+Mouse\+Up}} ()
+\begin{DoxyCompactList}\small\item\em Method that is called when the player clicks down the left mouse button.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a59b1f36b760cca2dea433f6a120b2184}{update}} (sf\+::\+Vector2i t\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Checks the current status of this button, like it\textquotesingle{}s colour and whether its being hovered over.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_af08ba240267a4ef1c87bc53fc96d2f94}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws the button and its text to the screen.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_button_ae05acdacdad978c2ddc3a66dbe313eae}{change\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Changes the colour of the button, depending on how the player is interacting with it.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_button_a361ae5d1ac301f789d723f19176f575e}{button}}
+\begin{DoxyCompactList}\small\item\em The physical design of the button. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_button_a32b0267c1639505fee5aa21d3ab0f95a}{button\+Text}}
+\begin{DoxyCompactList}\small\item\em The text that appears on the button, telling the user what it will do once clicked. \end{DoxyCompactList}\item 
+sf\+::\+Color \mbox{\hyperlink{class_button_a19700a262c93e332bd979fa884304cf2}{idle\+Color}}
+\begin{DoxyCompactList}\small\item\em The colour the button will be when idle. \end{DoxyCompactList}\item 
+sf\+::\+Color \mbox{\hyperlink{class_button_a721b37218f6069a780443a39eb298fa0}{hover\+Color}}
+\begin{DoxyCompactList}\small\item\em The colour the button will be when hovered over. \end{DoxyCompactList}\item 
+sf\+::\+Color \mbox{\hyperlink{class_button_a4498bae738c99e87c44df834d96ea8de}{click\+Color}}
+\begin{DoxyCompactList}\small\item\em The colour the button will be when clicked. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_a9f2c80b737911ad8de25410fe120cbc4}{hover}} = false
+\begin{DoxyCompactList}\small\item\em Whether the mouse is currently hovering over this button. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_ad051b0a188af599d3ca171de373fa0c9}{clicking}} = false
+\begin{DoxyCompactList}\small\item\em Whether the mouse is currently clicking on this button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A button class, that keeps track of when it it hovered over, pressed, and what it looks like.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_button_a46e477e6837844e4abb35900f88bfef4}\label{class_button_a46e477e6837844e4abb35900f88bfef4}} 
+\index{Button@{Button}!Button@{Button}}
+\index{Button@{Button}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{Button()}{Button()}}
+{\footnotesize\ttfamily Button\+::\+Button (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t\+\_\+pos,  }\item[{sf\+::\+Vector2f}]{t\+\_\+size,  }\item[{std\+::string}]{t\+\_\+button\+Text,  }\item[{sf\+::\+Color}]{t\+\_\+idle,  }\item[{sf\+::\+Color}]{t\+\_\+hover,  }\item[{sf\+::\+Color}]{t\+\_\+click }\end{DoxyParamCaption})}
+
+
+
+Overloaded Constructor of the \mbox{\hyperlink{class_button}{Button}} class.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+pos} & The position of the button.\\
+\hline
+{\em t\+\_\+size} & The size of the button.\\
+\hline
+{\em t\+\_\+button\+Text} & What the button should say on it.\\
+\hline
+{\em t\+\_\+idle} & What colour the button should be when not interacted with.\\
+\hline
+{\em t\+\_\+hover} & What colour the button should be when its hovered over.\\
+\hline
+{\em t\+\_\+click} & What colour the button should be when its clicked.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_button_ae05acdacdad978c2ddc3a66dbe313eae}\label{class_button_ae05acdacdad978c2ddc3a66dbe313eae}} 
+\index{Button@{Button}!changeColor@{changeColor}}
+\index{changeColor@{changeColor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{changeColor()}{changeColor()}}
+{\footnotesize\ttfamily void Button\+::change\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Changes the colour of the button, depending on how the player is interacting with it.  
+
+\mbox{\Hypertarget{class_button_af9d8bfdc8b67c2294e324697cace7220}\label{class_button_af9d8bfdc8b67c2294e324697cace7220}} 
+\index{Button@{Button}!onMouseDown@{onMouseDown}}
+\index{onMouseDown@{onMouseDown}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{onMouseDown()}{onMouseDown()}}
+{\footnotesize\ttfamily void Button\+::on\+Mouse\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method that is called when the player releases the left mouse button.  
+
+\mbox{\Hypertarget{class_button_abe44d38ef114e1922018313e5e383e58}\label{class_button_abe44d38ef114e1922018313e5e383e58}} 
+\index{Button@{Button}!onMouseUp@{onMouseUp}}
+\index{onMouseUp@{onMouseUp}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{onMouseUp()}{onMouseUp()}}
+{\footnotesize\ttfamily bool Button\+::on\+Mouse\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method that is called when the player clicks down the left mouse button.  
+
+\begin{DoxyReturn}{Returns}
+Whether the mouse is hovering over the button.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_button_af08ba240267a4ef1c87bc53fc96d2f94}\label{class_button_af08ba240267a4ef1c87bc53fc96d2f94}} 
+\index{Button@{Button}!render@{render}}
+\index{render@{render}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Button\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws the button and its text to the screen.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_button_a59b1f36b760cca2dea433f6a120b2184}\label{class_button_a59b1f36b760cca2dea433f6a120b2184}} 
+\index{Button@{Button}!update@{update}}
+\index{update@{update}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Button\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Checks the current status of this button, like it\textquotesingle{}s colour and whether its being hovered over.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+pos} & The position of the mouse on the screen.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_button_a361ae5d1ac301f789d723f19176f575e}\label{class_button_a361ae5d1ac301f789d723f19176f575e}} 
+\index{Button@{Button}!button@{button}}
+\index{button@{button}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{button}{button}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Button\+::button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The physical design of the button. 
+
+\mbox{\Hypertarget{class_button_a32b0267c1639505fee5aa21d3ab0f95a}\label{class_button_a32b0267c1639505fee5aa21d3ab0f95a}} 
+\index{Button@{Button}!buttonText@{buttonText}}
+\index{buttonText@{buttonText}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{buttonText}{buttonText}}
+{\footnotesize\ttfamily sf\+::\+Text Button\+::button\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The text that appears on the button, telling the user what it will do once clicked. 
+
+\mbox{\Hypertarget{class_button_a4498bae738c99e87c44df834d96ea8de}\label{class_button_a4498bae738c99e87c44df834d96ea8de}} 
+\index{Button@{Button}!clickColor@{clickColor}}
+\index{clickColor@{clickColor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{clickColor}{clickColor}}
+{\footnotesize\ttfamily sf\+::\+Color Button\+::click\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The colour the button will be when clicked. 
+
+\mbox{\Hypertarget{class_button_ad051b0a188af599d3ca171de373fa0c9}\label{class_button_ad051b0a188af599d3ca171de373fa0c9}} 
+\index{Button@{Button}!clicking@{clicking}}
+\index{clicking@{clicking}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{clicking}{clicking}}
+{\footnotesize\ttfamily bool Button\+::clicking = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Whether the mouse is currently clicking on this button. 
+
+\mbox{\Hypertarget{class_button_a9f2c80b737911ad8de25410fe120cbc4}\label{class_button_a9f2c80b737911ad8de25410fe120cbc4}} 
+\index{Button@{Button}!hover@{hover}}
+\index{hover@{hover}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{hover}{hover}}
+{\footnotesize\ttfamily bool Button\+::hover = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Whether the mouse is currently hovering over this button. 
+
+\mbox{\Hypertarget{class_button_a721b37218f6069a780443a39eb298fa0}\label{class_button_a721b37218f6069a780443a39eb298fa0}} 
+\index{Button@{Button}!hoverColor@{hoverColor}}
+\index{hoverColor@{hoverColor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{hoverColor}{hoverColor}}
+{\footnotesize\ttfamily sf\+::\+Color Button\+::hover\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The colour the button will be when hovered over. 
+
+\mbox{\Hypertarget{class_button_a19700a262c93e332bd979fa884304cf2}\label{class_button_a19700a262c93e332bd979fa884304cf2}} 
+\index{Button@{Button}!idleColor@{idleColor}}
+\index{idleColor@{idleColor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{idleColor}{idleColor}}
+{\footnotesize\ttfamily sf\+::\+Color Button\+::idle\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The colour the button will be when idle. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_button_8h}{Button.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_button_8cpp}{Button.\+cpp}}\end{DoxyCompactItemize}

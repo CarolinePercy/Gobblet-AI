@@ -1,0 +1,222 @@
+\hypertarget{class_gobblet}{}\doxysection{Gobblet Class Reference}
+\label{class_gobblet}\index{Gobblet@{Gobblet}}
+
+
+\mbox{\hyperlink{class_gobblet}{Gobblet}} class. Is one of the pieces on the board in \mbox{\hyperlink{class_grid}{Grid}}.   
+
+
+
+
+{\ttfamily \#include $<$Gobblet.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gobblet_ac7c90784fe85440850749f50e37fb671}{Gobblet}} (int t\+\_\+size, bool t\+\_\+is\+Player)
+\begin{DoxyCompactList}\small\item\em The overloaded constructor of the \mbox{\hyperlink{class_gobblet}{Gobblet}} piece.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gobblet_a2bbac2e8ec63bedc88e4b31677482fd9}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws the appearance of the piece onto the board.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ \mbox{\hyperlink{class_gobblet_af0ae2e939570918fe68113d84ae8af18}{get\+Child}} ()
+\begin{DoxyCompactList}\small\item\em Returns the \mbox{\hyperlink{class_gobblet}{Gobblet}} underneath this one, if there is one.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gobblet_a1a8afbf638aa05500bba878785c76dd1}{set\+Child}} (\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$t\+\_\+child)
+\begin{DoxyCompactList}\small\item\em Sets the gobblet underneath this one. Used for when this piece is moved on top of another.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gobblet_a7077369309e40774ec212806794dda99}{set\+Position}} (sf\+::\+Vector2f t\+\_\+position)
+\item 
+void \mbox{\hyperlink{class_gobblet_aab7e0369de57bcd530f177336f83c47e}{move\+Along}} (sf\+::\+Vector2f t\+\_\+added\+Move)
+\begin{DoxyCompactList}\small\item\em Moves the gobblet along a straight line.  \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_gobblet_a6fd8130e241cecbe9795b16f82a70297}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the \mbox{\hyperlink{class_gobblet}{Gobblet}}.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gobblet_aeede9d352bb95f42d67b595945c8202e}{get\+Size}} ()
+\item 
+bool \mbox{\hyperlink{class_gobblet_ae610142386a249041d3f0e59aadc2f5c}{is\+Controlled\+By\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether this piece belongs to the player or AI. Used to make sure the player can\textquotesingle{}t move the AI\textquotesingle{}s pieces.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Circle\+Shape \mbox{\hyperlink{class_gobblet_ad7993a8d78578cff81706a1f562045bc}{m\+\_\+gobblet}}
+\begin{DoxyCompactList}\small\item\em The appearance of this \mbox{\hyperlink{class_gobblet}{Gobblet}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ \mbox{\hyperlink{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}{m\+\_\+child}}
+\begin{DoxyCompactList}\small\item\em What gobblet piece is underneath this one. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gobblet_a448e221f19af88dc7877a00360e8f365}{size}} = -\/1
+\begin{DoxyCompactList}\small\item\em The size of this \mbox{\hyperlink{class_gobblet}{Gobblet}} piece. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_gobblet_afea1ac4f026c83d0b8a3e668f7a66cab}{controlled\+By\+Player}}
+\begin{DoxyCompactList}\small\item\em Whether this piece is controlled by the player or AI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_gobblet}{Gobblet}} class. Is one of the pieces on the board in \mbox{\hyperlink{class_grid}{Grid}}.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_gobblet_ac7c90784fe85440850749f50e37fb671}\label{class_gobblet_ac7c90784fe85440850749f50e37fb671}} 
+\index{Gobblet@{Gobblet}!Gobblet@{Gobblet}}
+\index{Gobblet@{Gobblet}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{Gobblet()}{Gobblet()}}
+{\footnotesize\ttfamily Gobblet\+::\+Gobblet (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+size,  }\item[{bool}]{t\+\_\+is\+Player }\end{DoxyParamCaption})}
+
+
+
+The overloaded constructor of the \mbox{\hyperlink{class_gobblet}{Gobblet}} piece.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+size} & The size of this gobblet piece.\\
+\hline
+{\em t\+\_\+is\+Player} & Whether this piece is controlled by the player or AI.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gobblet_af0ae2e939570918fe68113d84ae8af18}\label{class_gobblet_af0ae2e939570918fe68113d84ae8af18}} 
+\index{Gobblet@{Gobblet}!getChild@{getChild}}
+\index{getChild@{getChild}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getChild()}{getChild()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ Gobblet\+::get\+Child (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the \mbox{\hyperlink{class_gobblet}{Gobblet}} underneath this one, if there is one.  
+
+\begin{DoxyReturn}{Returns}
+The gobblet underneath this one.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_a6fd8130e241cecbe9795b16f82a70297}\label{class_gobblet_a6fd8130e241cecbe9795b16f82a70297}} 
+\index{Gobblet@{Gobblet}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Gobblet\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the position of the \mbox{\hyperlink{class_gobblet}{Gobblet}}.  
+
+\mbox{\Hypertarget{class_gobblet_aeede9d352bb95f42d67b595945c8202e}\label{class_gobblet_aeede9d352bb95f42d67b595945c8202e}} 
+\index{Gobblet@{Gobblet}!getSize@{getSize}}
+\index{getSize@{getSize}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily int Gobblet\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+The size of this gobblet.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_ae610142386a249041d3f0e59aadc2f5c}\label{class_gobblet_ae610142386a249041d3f0e59aadc2f5c}} 
+\index{Gobblet@{Gobblet}!isControlledByPlayer@{isControlledByPlayer}}
+\index{isControlledByPlayer@{isControlledByPlayer}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{isControlledByPlayer()}{isControlledByPlayer()}}
+{\footnotesize\ttfamily bool Gobblet\+::is\+Controlled\+By\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns whether this piece belongs to the player or AI. Used to make sure the player can\textquotesingle{}t move the AI\textquotesingle{}s pieces.  
+
+\begin{DoxyReturn}{Returns}
+Whether this piece is controlled by the player.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_gobblet_aab7e0369de57bcd530f177336f83c47e}\label{class_gobblet_aab7e0369de57bcd530f177336f83c47e}} 
+\index{Gobblet@{Gobblet}!moveAlong@{moveAlong}}
+\index{moveAlong@{moveAlong}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{moveAlong()}{moveAlong()}}
+{\footnotesize\ttfamily void Gobblet\+::move\+Along (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t\+\_\+added\+Move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Moves the gobblet along a straight line.  
+
+\mbox{\Hypertarget{class_gobblet_a2bbac2e8ec63bedc88e4b31677482fd9}\label{class_gobblet_a2bbac2e8ec63bedc88e4b31677482fd9}} 
+\index{Gobblet@{Gobblet}!render@{render}}
+\index{render@{render}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Gobblet\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws the appearance of the piece onto the board.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The sfml window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_gobblet_a1a8afbf638aa05500bba878785c76dd1}\label{class_gobblet_a1a8afbf638aa05500bba878785c76dd1}} 
+\index{Gobblet@{Gobblet}!setChild@{setChild}}
+\index{setChild@{setChild}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{setChild()}{setChild()}}
+{\footnotesize\ttfamily void Gobblet\+::set\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$}]{t\+\_\+child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the gobblet underneath this one. Used for when this piece is moved on top of another.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+child} & The new gobblet under this one.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_gobblet_a7077369309e40774ec212806794dda99}\label{class_gobblet_a7077369309e40774ec212806794dda99}} 
+\index{Gobblet@{Gobblet}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Gobblet\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t\+\_\+position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+position} & The new position of this gobblet piece.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_gobblet_afea1ac4f026c83d0b8a3e668f7a66cab}\label{class_gobblet_afea1ac4f026c83d0b8a3e668f7a66cab}} 
+\index{Gobblet@{Gobblet}!controlledByPlayer@{controlledByPlayer}}
+\index{controlledByPlayer@{controlledByPlayer}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{controlledByPlayer}{controlledByPlayer}}
+{\footnotesize\ttfamily bool Gobblet\+::controlled\+By\+Player\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Whether this piece is controlled by the player or AI. 
+
+\mbox{\Hypertarget{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}\label{class_gobblet_a3b681ebe5721ba1c513e30570e1d34b2}} 
+\index{Gobblet@{Gobblet}!m\_child@{m\_child}}
+\index{m\_child@{m\_child}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{m\_child}{m\_child}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}}$\ast$ Gobblet\+::m\+\_\+child\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+What gobblet piece is underneath this one. 
+
+\mbox{\Hypertarget{class_gobblet_ad7993a8d78578cff81706a1f562045bc}\label{class_gobblet_ad7993a8d78578cff81706a1f562045bc}} 
+\index{Gobblet@{Gobblet}!m\_gobblet@{m\_gobblet}}
+\index{m\_gobblet@{m\_gobblet}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{m\_gobblet}{m\_gobblet}}
+{\footnotesize\ttfamily sf\+::\+Circle\+Shape Gobblet\+::m\+\_\+gobblet\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The appearance of this \mbox{\hyperlink{class_gobblet}{Gobblet}}. 
+
+\mbox{\Hypertarget{class_gobblet_a448e221f19af88dc7877a00360e8f365}\label{class_gobblet_a448e221f19af88dc7877a00360e8f365}} 
+\index{Gobblet@{Gobblet}!size@{size}}
+\index{size@{size}!Gobblet@{Gobblet}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Gobblet\+::size = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The size of this \mbox{\hyperlink{class_gobblet}{Gobblet}} piece. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_8h}{Gobblet.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gobblet_8cpp}{Gobblet.\+cpp}}\end{DoxyCompactItemize}

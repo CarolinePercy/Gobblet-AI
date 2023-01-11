@@ -1,0 +1,190 @@
+\hypertarget{class_gameplay}{}\doxysection{Gameplay Class Reference}
+\label{class_gameplay}\index{Gameplay@{Gameplay}}
+
+
+The screen that will display the game to the player, and control it.   
+
+
+
+
+{\ttfamily \#include $<$Gameplay.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}{Gameplay}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_gameplay}{Gameplay}}\textquotesingle{}s Default Constructor.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gameplay_a367fddb609ffb3323b52ee41762d66ed}{process\+Events}} (sf\+::\+Event t\+\_\+event)
+\item 
+void \mbox{\hyperlink{class_gameplay_aff1bc655f7bfeaeb6702be17eb3c3b4a}{update}} (sf\+::\+Vector2i t\+\_\+mouse\+Pos, sf\+::\+Time t\+\_\+delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the \mbox{\hyperlink{class_grid}{Grid}} and mouse position every frame.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gameplay_a00a815c3b7352357c2f844f19087ebac}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws all the relevant items in \mbox{\hyperlink{class_gameplay}{Gameplay}} to the sfml window, such as the \mbox{\hyperlink{class_grid}{Grid}} and the announcement text.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gameplay_a01b26632ad211492759b0b64c78d448e}{reset\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Resets the game back to the beginning.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_gameplay_afce943ad542f282bfe1ebcc90f4809cc}{Draw\+Text}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws the text of the announcement to the screen.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gameplay_a3eabf1e864570a7479615a8d3dfa64b6}{Set\+Up\+Turn\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Sets up the text letting the player(s) know who\textquotesingle{}s turn it is.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grid}{Grid}} \mbox{\hyperlink{class_gameplay_a8848de9136c3a2aaa8d017439423e987}{m\+\_\+grid}}
+\begin{DoxyCompactList}\small\item\em The grid all the gameplay occurs on. \end{DoxyCompactList}\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_gameplay_a3e4e69b4c0b5a1685d09f601a86682b3}{mouse\+Pos}}
+\begin{DoxyCompactList}\small\item\em The position of the mouse on the screen. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_gameplay_aff37cd3dee33c0eda22c59f9c331ea87}{announcement\+Text}}
+\begin{DoxyCompactList}\small\item\em The text that announces the result of the game. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_gameplay_a1e716c16ab2ac9f086fd0b0316c1d7f7}{turn\+Text}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em The text that lets the player(s) know who\textquotesingle{}s turn it is. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The screen that will display the game to the player, and control it.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}\label{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}} 
+\index{Gameplay@{Gameplay}!Gameplay@{Gameplay}}
+\index{Gameplay@{Gameplay}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{Gameplay()}{Gameplay()}}
+{\footnotesize\ttfamily Gameplay\+::\+Gameplay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_gameplay}{Gameplay}}\textquotesingle{}s Default Constructor.  
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gameplay_afce943ad542f282bfe1ebcc90f4809cc}\label{class_gameplay_afce943ad542f282bfe1ebcc90f4809cc}} 
+\index{Gameplay@{Gameplay}!DrawText@{DrawText}}
+\index{DrawText@{DrawText}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{DrawText()}{DrawText()}}
+{\footnotesize\ttfamily void Gameplay\+::\+Draw\+Text (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draws the text of the announcement to the screen.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The SFML window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_gameplay_a367fddb609ffb3323b52ee41762d66ed}\label{class_gameplay_a367fddb609ffb3323b52ee41762d66ed}} 
+\index{Gameplay@{Gameplay}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily void Gameplay\+::process\+Events (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{t\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+
+
+Processes the events that happened while the player was on the \mbox{\hyperlink{class_gameplay}{Gameplay}} screen.  
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+event} & The event that occured because of the player.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_gameplay_a00a815c3b7352357c2f844f19087ebac}\label{class_gameplay_a00a815c3b7352357c2f844f19087ebac}} 
+\index{Gameplay@{Gameplay}!render@{render}}
+\index{render@{render}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Gameplay\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws all the relevant items in \mbox{\hyperlink{class_gameplay}{Gameplay}} to the sfml window, such as the \mbox{\hyperlink{class_grid}{Grid}} and the announcement text.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The SFML window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_gameplay_a01b26632ad211492759b0b64c78d448e}\label{class_gameplay_a01b26632ad211492759b0b64c78d448e}} 
+\index{Gameplay@{Gameplay}!resetBoard@{resetBoard}}
+\index{resetBoard@{resetBoard}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{resetBoard()}{resetBoard()}}
+{\footnotesize\ttfamily void Gameplay\+::reset\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets the game back to the beginning.  
+
+\mbox{\Hypertarget{class_gameplay_a3eabf1e864570a7479615a8d3dfa64b6}\label{class_gameplay_a3eabf1e864570a7479615a8d3dfa64b6}} 
+\index{Gameplay@{Gameplay}!SetUpTurnText@{SetUpTurnText}}
+\index{SetUpTurnText@{SetUpTurnText}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{SetUpTurnText()}{SetUpTurnText()}}
+{\footnotesize\ttfamily void Gameplay\+::\+Set\+Up\+Turn\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up the text letting the player(s) know who\textquotesingle{}s turn it is.  
+
+\mbox{\Hypertarget{class_gameplay_aff1bc655f7bfeaeb6702be17eb3c3b4a}\label{class_gameplay_aff1bc655f7bfeaeb6702be17eb3c3b4a}} 
+\index{Gameplay@{Gameplay}!update@{update}}
+\index{update@{update}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Gameplay\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+mouse\+Pos,  }\item[{sf\+::\+Time}]{t\+\_\+delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Updates the \mbox{\hyperlink{class_grid}{Grid}} and mouse position every frame.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+mouse\+Pos} & The mouse\textquotesingle{}s position on the screen.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_gameplay_aff37cd3dee33c0eda22c59f9c331ea87}\label{class_gameplay_aff37cd3dee33c0eda22c59f9c331ea87}} 
+\index{Gameplay@{Gameplay}!announcementText@{announcementText}}
+\index{announcementText@{announcementText}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{announcementText}{announcementText}}
+{\footnotesize\ttfamily sf\+::\+Text Gameplay\+::announcement\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The text that announces the result of the game. 
+
+\mbox{\Hypertarget{class_gameplay_a8848de9136c3a2aaa8d017439423e987}\label{class_gameplay_a8848de9136c3a2aaa8d017439423e987}} 
+\index{Gameplay@{Gameplay}!m\_grid@{m\_grid}}
+\index{m\_grid@{m\_grid}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{m\_grid}{m\_grid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_grid}{Grid}} Gameplay\+::m\+\_\+grid\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The grid all the gameplay occurs on. 
+
+\mbox{\Hypertarget{class_gameplay_a3e4e69b4c0b5a1685d09f601a86682b3}\label{class_gameplay_a3e4e69b4c0b5a1685d09f601a86682b3}} 
+\index{Gameplay@{Gameplay}!mousePos@{mousePos}}
+\index{mousePos@{mousePos}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{mousePos}{mousePos}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Gameplay\+::mouse\+Pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The position of the mouse on the screen. 
+
+\mbox{\Hypertarget{class_gameplay_a1e716c16ab2ac9f086fd0b0316c1d7f7}\label{class_gameplay_a1e716c16ab2ac9f086fd0b0316c1d7f7}} 
+\index{Gameplay@{Gameplay}!turnText@{turnText}}
+\index{turnText@{turnText}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{turnText}{turnText}}
+{\footnotesize\ttfamily sf\+::\+Text Gameplay\+::turn\+Text\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The text that lets the player(s) know who\textquotesingle{}s turn it is. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gameplay_8h}{Gameplay.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_gameplay_8cpp}{Gameplay.\+cpp}}\end{DoxyCompactItemize}

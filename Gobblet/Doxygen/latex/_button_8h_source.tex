@@ -1,0 +1,36 @@
+\hypertarget{_button_8h_source}{}\doxysection{Button.\+h}
+\label{_button_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Button.h@{Gobblet-\/AI/Gobblet/Gobblet/Button.h}}
+\mbox{\hyperlink{_button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_button}{Button}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_button}{Button}}(sf::Vector2f t\_pos, sf::Vector2f t\_size, std::string t\_buttonText, sf::Color t\_idle, sf::Color t\_hover, sf::Color t\_click);}
+\DoxyCodeLine{12     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_button_af9d8bfdc8b67c2294e324697cace7220}{onMouseDown}}();}
+\DoxyCodeLine{13     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_button_abe44d38ef114e1922018313e5e383e58}{onMouseUp}}();}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_button_a59b1f36b760cca2dea433f6a120b2184}{update}}(sf::Vector2i t\_pos);}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_button_af08ba240267a4ef1c87bc53fc96d2f94}{render}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19     sf::RectangleShape \mbox{\hyperlink{class_button_a361ae5d1ac301f789d723f19176f575e}{button}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{22     sf::Text \mbox{\hyperlink{class_button_a32b0267c1639505fee5aa21d3ab0f95a}{buttonText}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{25     sf::Color \mbox{\hyperlink{class_button_a19700a262c93e332bd979fa884304cf2}{idleColor}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{28     sf::Color \mbox{\hyperlink{class_button_a721b37218f6069a780443a39eb298fa0}{hoverColor}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     sf::Color \mbox{\hyperlink{class_button_a4498bae738c99e87c44df834d96ea8de}{clickColor}};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_button_a9f2c80b737911ad8de25410fe120cbc4}{hover}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_button_ad051b0a188af599d3ca171de373fa0c9}{clicking}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_button_ae05acdacdad978c2ddc3a66dbe313eae}{changeColor}}();}
+\DoxyCodeLine{40 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,30 @@
+\hypertarget{_zobrist_keys_8h_source}{}\doxysection{Zobrist\+Keys.\+h}
+\label{_zobrist_keys_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/ZobristKeys.h@{Gobblet-\/AI/Gobblet/Gobblet/ZobristKeys.h}}
+\mbox{\hyperlink{_zobrist_keys_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_grid_8h}{Grid.h}}"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_zobrist_keys}{ZobristKeys}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10 \textcolor{keyword}{private}:}
+\DoxyCodeLine{14     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}{NUM\_OF\_PIECES}} = 8;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\_OF\_CELLS\_IN\_ROW}} = 4; }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{24     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_zobrist_keys_a3b76eee837985aba7318f2ed9ac60297}{table}}[\mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\_OF\_CELLS\_IN\_ROW}}][\mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\_OF\_CELLS\_IN\_ROW}}][\mbox{\hyperlink{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}{NUM\_OF\_PIECES}}];}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{29     \textcolor{keyword}{static} std::mt19937 \mbox{\hyperlink{class_zobrist_keys_a04c75936e4f9c34e0544b36a61b04d00}{mt}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_zobrist_keys_a818f6f2bb9dc88ae343646f0a9a40f52}{initialise}}();}
+\DoxyCodeLine{34     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_zobrist_keys_adaf5c949d3439637e9073e81e9279b24}{generateRandomInt}}();}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_zobrist_keys_a2284fc13b4233c7d6d77c524b22783b6}{findHashOfBoard}}(\textcolor{keywordtype}{int} t\_board[4][4]); \textcolor{comment}{// }}
+\DoxyCodeLine{37     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_zobrist_keys_ab8a867be0e5c27e4f3273f3c508e7a9c}{movePiece}}(\textcolor{keywordtype}{int} t\_board[4][4], std::pair<int, int> t\_from, std::pair<int, int> t\_to);  }
+\DoxyCodeLine{38     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_zobrist_keys_a96fef0845109c0e7ab3d2229aaf59aec}{getMove}}(\textcolor{keywordtype}{int} t\_boardBefore[4][4], \textcolor{keywordtype}{int} t\_boardAfter[4][4], \textcolor{keywordtype}{int} t\_coordinates[4]);}
+\DoxyCodeLine{39 \};}
+
+\end{DoxyCode}

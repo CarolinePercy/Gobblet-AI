@@ -1,0 +1,36 @@
+\hypertarget{_gameplay_8h_source}{}\doxysection{Gameplay.\+h}
+\label{_gameplay_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Gameplay.h@{Gobblet-\/AI/Gobblet/Gobblet/Gameplay.h}}
+\mbox{\hyperlink{_gameplay_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_grid_8h}{Grid.h}}"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_gameplay}{Gameplay}}}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \mbox{\hyperlink{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}{Gameplay}}();}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_a367fddb609ffb3323b52ee41762d66ed}{processEvents}}(sf::Event t\_event);}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_aff1bc655f7bfeaeb6702be17eb3c3b4a}{update}}(sf::Vector2i t\_mousePos, sf::Time t\_deltaTime);}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_a00a815c3b7352357c2f844f19087ebac}{render}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_a01b26632ad211492759b0b64c78d448e}{resetBoard}}();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{private}:}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{22     \mbox{\hyperlink{class_grid}{Grid}} \mbox{\hyperlink{class_gameplay_a8848de9136c3a2aaa8d017439423e987}{m\_grid}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{25     sf::Vector2i \mbox{\hyperlink{class_gameplay_a3e4e69b4c0b5a1685d09f601a86682b3}{mousePos}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{28     sf::Text \mbox{\hyperlink{class_gameplay_aff37cd3dee33c0eda22c59f9c331ea87}{announcementText}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     sf::Text \mbox{\hyperlink{class_gameplay_a1e716c16ab2ac9f086fd0b0316c1d7f7}{turnText}}[2];}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_afce943ad542f282bfe1ebcc90f4809cc}{DrawText}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_gameplay_a3eabf1e864570a7479615a8d3dfa64b6}{SetUpTurnText}}();}
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+
+\end{DoxyCode}

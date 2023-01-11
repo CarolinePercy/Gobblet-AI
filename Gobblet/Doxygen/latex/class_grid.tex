@@ -1,0 +1,496 @@
+\hypertarget{class_grid}{}\doxysection{Grid Class Reference}
+\label{class_grid}\index{Grid@{Grid}}
+
+
+The class that keeps track of the board. It knows where pieces are and where they can go.   
+
+
+
+
+{\ttfamily \#include $<$Grid.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}{Grid}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initialises the layout of the \mbox{\hyperlink{class_grid}{Grid}}, and the \mbox{\hyperlink{class_gobblet}{Gobblet}} pieces for the Player and AI.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_ad182493bc95dd9e6c2b369decca23894}{render}} (sf\+::\+Render\+Window \&t\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws each tile and their Gobblets to screen. Also draws the \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently picked up.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a05adb3e108271336fba140607fc2a622}{update}} (sf\+::\+Vector2i t\+\_\+mouse\+Pos, sf\+::\+Time t\+\_\+delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the \mbox{\hyperlink{class_grid}{Grid}} each frame.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a165b3578b0ea5d160c53d8f378e57c83}{on\+Mouse\+Down}} (sf\+::\+Vector2i t\+\_\+click)
+\begin{DoxyCompactList}\small\item\em What is triggered when the user presses the left mouse button. Is used to calculate whether the user is clicking on a \mbox{\hyperlink{class_gobblet}{Gobblet}} that they can move, and move the piece accordingly if so.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_aa21e976f1f6709684bb59ee05ef87115}{on\+Mouse\+Up}} (sf\+::\+Vector2i t\+\_\+click)
+\begin{DoxyCompactList}\small\item\em What is triggered when the user releases the left mouse button. Is used to calculate whether a \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently held can be placed down.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_aa1728228a29c834c441e90b191d7171f}{reset\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Resets the board back to it\textquotesingle{}s original state, with all pieces going back to the players\textquotesingle{} inventories.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_grid_a3a99229b467c8dd036b8fabd46143779}{process\+Opponent\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em The AI\textquotesingle{}s turn is triggered by this method.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grid_a56574796f5c7f9a952f92e9c10be29df}{compare\+Gobblet\+Sizes}} (\mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+from, \mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+to)
+\begin{DoxyCompactList}\small\item\em If the user is trying to move their \mbox{\hyperlink{class_gobblet}{Gobblet}} on top of another, this check is to see if the \mbox{\hyperlink{class_gobblet}{Gobblet}} underneath is smaller, so it can be gobbled.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a2a88d877f87c5c8fd76247c9f71246cd}{get\+Child\+Gobblets\+Out}} (\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$parent\+Gobblet, std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$ $\ast$t\+\_\+player\+Gobblets, std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$ $\ast$t\+\_\+enemy\+Gobblets)
+\begin{DoxyCompactList}\small\item\em Gets all the gobblets out from underneath the surface level Gobblets.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a1fb0df094926cb4fbddcdbd807ffac30}{reset\+Player\+Tiles}} (std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $\ast$ $>$ t\+\_\+player, std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$ t\+\_\+player\+Gobblets)
+\begin{DoxyCompactList}\small\item\em Puts the gobblets collected from the board back into the player\textquotesingle{}s inventory. Is called for both the user and AI\textquotesingle{}s inventory.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a71c81ecd22ec6be33392c727fe4de231}{check\+Rows}} ()
+\begin{DoxyCompactList}\small\item\em Checks the status of the board -\/ whether a player has won, or if there is a three in a row.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a9ac4b3dc788e243de6653aa4e81a1b77}{Diagonal\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Checks the two diagonal lines for four in a row.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a24bc23a9214c35e470f048eb084b9316}{Horizontal\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Checks the four horizontal lines for four in a row.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a67e05a20a1da73209ed5877940b3aabe}{Vertical\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Checks the four vertical lines for four in a row.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_ae1bf91b0d5cbea2bc9f10cdb33d5cf0c}{Row\+Was\+Found}} (int in1, int in2, int in3, int in4)
+\begin{DoxyCompactList}\small\item\em Is called to display the three in a row found to the console.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a68ef8a0bd8eb97c5120d6f630370917e}{Did\+APlayer\+Win}} (int t\+\_\+player\+Num, int t\+\_\+enemy\+Num)
+\begin{DoxyCompactList}\small\item\em Is a check to see whether a player has won or not.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grid_ab10fee9b32fc6c08f46afe818eb2fd9d}{Moving\+From\+Inventory}} (\mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+from)
+\begin{DoxyCompactList}\small\item\em Returns whether the gobblet moved is being moved from the player\textquotesingle{}s inventory, or a piece on the board that\textquotesingle{}s being moved to another part of said board.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grid_aaccb8b683842bcdb9e5a89a5d7a3155e}{Check\+If\+Three\+In\+ARow}} (\mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+from, \mbox{\hyperlink{class_tile}{Tile}} $\ast$t\+\_\+to)
+\begin{DoxyCompactList}\small\item\em Is used to reinforce the rule of \char`\"{}\+User can only Gobble another piece from their inventory IF the other player has 3 in a row.\char`\"{}  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grid_a73d8f221b413ebf5a74eb6341199b30e}{calculate\+Best\+Move}} ()
+\item 
+void \mbox{\hyperlink{class_grid_a15ce96c4e62671c8507b46abee0e4a6c}{make\+Move}} (unsigned long long before, unsigned long long after)
+\item 
+void \mbox{\hyperlink{class_grid_a94521af5e370f7eeccda214fa5da5faa}{slide\+Piece}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $\ast$ $>$ \mbox{\hyperlink{class_grid_a2daddb214f14dbba9a333a03a44e4c0d}{m\+\_\+board\+Tiles}}
+\begin{DoxyCompactList}\small\item\em The tiles on the main board, between the two players. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $\ast$ $>$ \mbox{\hyperlink{class_grid_afe1460dc0bb68da62b5136e7db714926}{m\+\_\+player1\+Tiles}}
+\begin{DoxyCompactList}\small\item\em The inventory of the second player (AKA the user). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $\ast$ $>$ \mbox{\hyperlink{class_grid_adc8875552351f5f52d7c55a0c8d5608d}{m\+\_\+player2\+Tiles}}
+\begin{DoxyCompactList}\small\item\em The inventory of the second player (AKA the AI). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tile}{Tile}} $\ast$ \mbox{\hyperlink{class_grid_ac5da4f7f7bc91a16203af8104b84b19e}{m\+\_\+selected\+Tile}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_tile}{Tile}} the user has selected by clicking on it. Is saved in case the placing of the \mbox{\hyperlink{class_gobblet}{Gobblet}} is invalid, so it has this to refer back to. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ \mbox{\hyperlink{class_grid_a0f00257720a6bf2f111579721da3491a}{m\+\_\+selected\+Gobblet}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_gobblet}{Gobblet}} the user is selecting and trying to move. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_grid_af40233c270c905c5d6cea5733864cc53}{background}}
+\item 
+sf\+::\+Color \mbox{\hyperlink{class_grid_a9fe4b79104ab6130af0d19e9ef82ab15}{player\+BGColours}} \mbox{[}2\mbox{]}
+\item 
+float \mbox{\hyperlink{class_grid_a7569e75d5c9d2fe956774bcc2d096659}{AIWait\+Time}}
+\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_grid_aa5f6f8cc543ed9e3d92012d5ff2ea943}{move\+Direction}}
+\item 
+float \mbox{\hyperlink{class_grid_a808f2101c9610878bb6456ac807952c0}{move\+Speed}} = 30
+\item 
+\mbox{\hyperlink{class_tile}{Tile}} $\ast$ \mbox{\hyperlink{class_grid_a60ecdb57c74c1230ce9494c8e2801266}{AIMove\+From}}
+\item 
+\mbox{\hyperlink{class_tile}{Tile}} $\ast$ \mbox{\hyperlink{class_grid_a186a57f51cedd54e9b39f0c2ffabf28e}{AIMove\+To}}
+\item 
+unsigned long long \mbox{\hyperlink{class_grid_a62c0453f02f3c4f9b59278407ebd371c}{board\+States}} \mbox{[}2\mbox{]}
+\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{class_grid_afeb58c64563554d6fe79323482c0f103}{three\+In\+Row}}
+\begin{DoxyCompactList}\small\item\em All the stored three of the same colour Gobblets in a row. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class that keeps track of the board. It knows where pieces are and where they can go.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}\label{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}} 
+\index{Grid@{Grid}!Grid@{Grid}}
+\index{Grid@{Grid}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{Grid()}{Grid()}}
+{\footnotesize\ttfamily Grid\+::\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. Initialises the layout of the \mbox{\hyperlink{class_grid}{Grid}}, and the \mbox{\hyperlink{class_gobblet}{Gobblet}} pieces for the Player and AI.  
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_grid_a73d8f221b413ebf5a74eb6341199b30e}\label{class_grid_a73d8f221b413ebf5a74eb6341199b30e}} 
+\index{Grid@{Grid}!calculateBestMove@{calculateBestMove}}
+\index{calculateBestMove@{calculateBestMove}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{calculateBestMove()}{calculateBestMove()}}
+{\footnotesize\ttfamily void Grid\+::calculate\+Best\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_aaccb8b683842bcdb9e5a89a5d7a3155e}\label{class_grid_aaccb8b683842bcdb9e5a89a5d7a3155e}} 
+\index{Grid@{Grid}!CheckIfThreeInARow@{CheckIfThreeInARow}}
+\index{CheckIfThreeInARow@{CheckIfThreeInARow}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{CheckIfThreeInARow()}{CheckIfThreeInARow()}}
+{\footnotesize\ttfamily bool Grid\+::\+Check\+If\+Three\+In\+ARow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+from,  }\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is used to reinforce the rule of \char`\"{}\+User can only Gobble another piece from their inventory IF the other player has 3 in a row.\char`\"{}  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+from} & The \mbox{\hyperlink{class_tile}{Tile}} the \mbox{\hyperlink{class_gobblet}{Gobblet}} is moving from.\\
+\hline
+{\em t\+\_\+to} & The \mbox{\hyperlink{class_tile}{Tile}} the \mbox{\hyperlink{class_gobblet}{Gobblet}} is moving to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether this is a valid move.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_grid_a71c81ecd22ec6be33392c727fe4de231}\label{class_grid_a71c81ecd22ec6be33392c727fe4de231}} 
+\index{Grid@{Grid}!checkRows@{checkRows}}
+\index{checkRows@{checkRows}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{checkRows()}{checkRows()}}
+{\footnotesize\ttfamily void Grid\+::check\+Rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks the status of the board -\/ whether a player has won, or if there is a three in a row.  
+
+\mbox{\Hypertarget{class_grid_a56574796f5c7f9a952f92e9c10be29df}\label{class_grid_a56574796f5c7f9a952f92e9c10be29df}} 
+\index{Grid@{Grid}!compareGobbletSizes@{compareGobbletSizes}}
+\index{compareGobbletSizes@{compareGobbletSizes}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{compareGobbletSizes()}{compareGobbletSizes()}}
+{\footnotesize\ttfamily bool Grid\+::compare\+Gobblet\+Sizes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+from,  }\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+If the user is trying to move their \mbox{\hyperlink{class_gobblet}{Gobblet}} on top of another, this check is to see if the \mbox{\hyperlink{class_gobblet}{Gobblet}} underneath is smaller, so it can be gobbled.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+from} & The \mbox{\hyperlink{class_tile}{Tile}} the \mbox{\hyperlink{class_gobblet}{Gobblet}} is moving from.\\
+\hline
+{\em t\+\_\+to} & The \mbox{\hyperlink{class_tile}{Tile}} the \mbox{\hyperlink{class_gobblet}{Gobblet}} is moving to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether this is a valid move.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_grid_a9ac4b3dc788e243de6653aa4e81a1b77}\label{class_grid_a9ac4b3dc788e243de6653aa4e81a1b77}} 
+\index{Grid@{Grid}!DiagonalCheck@{DiagonalCheck}}
+\index{DiagonalCheck@{DiagonalCheck}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{DiagonalCheck()}{DiagonalCheck()}}
+{\footnotesize\ttfamily void Grid\+::\+Diagonal\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks the two diagonal lines for four in a row.  
+
+\mbox{\Hypertarget{class_grid_a68ef8a0bd8eb97c5120d6f630370917e}\label{class_grid_a68ef8a0bd8eb97c5120d6f630370917e}} 
+\index{Grid@{Grid}!DidAPlayerWin@{DidAPlayerWin}}
+\index{DidAPlayerWin@{DidAPlayerWin}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{DidAPlayerWin()}{DidAPlayerWin()}}
+{\footnotesize\ttfamily void Grid\+::\+Did\+APlayer\+Win (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+player\+Num,  }\item[{int}]{t\+\_\+enemy\+Num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is a check to see whether a player has won or not.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+player\+Num} & The highest number of Player 1 pieces on the same line.\\
+\hline
+{\em t\+\_\+enemy\+Num} & The highest number of Player 2 pieces on the same line.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_a2a88d877f87c5c8fd76247c9f71246cd}\label{class_grid_a2a88d877f87c5c8fd76247c9f71246cd}} 
+\index{Grid@{Grid}!getChildGobbletsOut@{getChildGobbletsOut}}
+\index{getChildGobbletsOut@{getChildGobbletsOut}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{getChildGobbletsOut()}{getChildGobbletsOut()}}
+{\footnotesize\ttfamily void Grid\+::get\+Child\+Gobblets\+Out (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$}]{parent\+Gobblet,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$ $\ast$}]{t\+\_\+player\+Gobblets,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$ $\ast$}]{t\+\_\+enemy\+Gobblets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets all the gobblets out from underneath the surface level Gobblets.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Gobblet} & The \mbox{\hyperlink{class_gobblet}{Gobblet}} that is being checked to see if it has hidden child Gobblets underneath.\\
+\hline
+{\em t\+\_\+player\+Gobblets} & A reference to a storage of all the player 1 Gobblets on the board.\\
+\hline
+{\em t\+\_\+enemy\+Gobblets} & A reference to a storage of all the player 2 Gobblets on the board.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_a24bc23a9214c35e470f048eb084b9316}\label{class_grid_a24bc23a9214c35e470f048eb084b9316}} 
+\index{Grid@{Grid}!HorizontalCheck@{HorizontalCheck}}
+\index{HorizontalCheck@{HorizontalCheck}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{HorizontalCheck()}{HorizontalCheck()}}
+{\footnotesize\ttfamily void Grid\+::\+Horizontal\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks the four horizontal lines for four in a row.  
+
+\mbox{\Hypertarget{class_grid_a15ce96c4e62671c8507b46abee0e4a6c}\label{class_grid_a15ce96c4e62671c8507b46abee0e4a6c}} 
+\index{Grid@{Grid}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily void Grid\+::make\+Move (\begin{DoxyParamCaption}\item[{unsigned long long}]{before,  }\item[{unsigned long long}]{after }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_ab10fee9b32fc6c08f46afe818eb2fd9d}\label{class_grid_ab10fee9b32fc6c08f46afe818eb2fd9d}} 
+\index{Grid@{Grid}!MovingFromInventory@{MovingFromInventory}}
+\index{MovingFromInventory@{MovingFromInventory}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{MovingFromInventory()}{MovingFromInventory()}}
+{\footnotesize\ttfamily bool Grid\+::\+Moving\+From\+Inventory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tile}{Tile}} $\ast$}]{t\+\_\+from }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns whether the gobblet moved is being moved from the player\textquotesingle{}s inventory, or a piece on the board that\textquotesingle{}s being moved to another part of said board.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+from} & The tile the \mbox{\hyperlink{class_gobblet}{Gobblet}} is being taken from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the tile is from the player\textquotesingle{}s inventories or on the play board.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_grid_a165b3578b0ea5d160c53d8f378e57c83}\label{class_grid_a165b3578b0ea5d160c53d8f378e57c83}} 
+\index{Grid@{Grid}!onMouseDown@{onMouseDown}}
+\index{onMouseDown@{onMouseDown}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{onMouseDown()}{onMouseDown()}}
+{\footnotesize\ttfamily void Grid\+::on\+Mouse\+Down (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+click }\end{DoxyParamCaption})}
+
+
+
+What is triggered when the user presses the left mouse button. Is used to calculate whether the user is clicking on a \mbox{\hyperlink{class_gobblet}{Gobblet}} that they can move, and move the piece accordingly if so.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+click} & The position of the mouse on the window when the left mouse button was clicked.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_aa21e976f1f6709684bb59ee05ef87115}\label{class_grid_aa21e976f1f6709684bb59ee05ef87115}} 
+\index{Grid@{Grid}!onMouseUp@{onMouseUp}}
+\index{onMouseUp@{onMouseUp}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{onMouseUp()}{onMouseUp()}}
+{\footnotesize\ttfamily void Grid\+::on\+Mouse\+Up (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+click }\end{DoxyParamCaption})}
+
+
+
+What is triggered when the user releases the left mouse button. Is used to calculate whether a \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently held can be placed down.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+click} & The position of the mouse on the window when the left mouse button was released.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_a3a99229b467c8dd036b8fabd46143779}\label{class_grid_a3a99229b467c8dd036b8fabd46143779}} 
+\index{Grid@{Grid}!processOpponentTurn@{processOpponentTurn}}
+\index{processOpponentTurn@{processOpponentTurn}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{processOpponentTurn()}{processOpponentTurn()}}
+{\footnotesize\ttfamily void Grid\+::process\+Opponent\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The AI\textquotesingle{}s turn is triggered by this method.  
+
+\mbox{\Hypertarget{class_grid_ad182493bc95dd9e6c2b369decca23894}\label{class_grid_ad182493bc95dd9e6c2b369decca23894}} 
+\index{Grid@{Grid}!render@{render}}
+\index{render@{render}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Grid\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{t\+\_\+window }\end{DoxyParamCaption})}
+
+
+
+Draws each tile and their Gobblets to screen. Also draws the \mbox{\hyperlink{class_gobblet}{Gobblet}} that is currently picked up.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+window} & The SFML window to draw to.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_aa1728228a29c834c441e90b191d7171f}\label{class_grid_aa1728228a29c834c441e90b191d7171f}} 
+\index{Grid@{Grid}!resetBoard@{resetBoard}}
+\index{resetBoard@{resetBoard}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{resetBoard()}{resetBoard()}}
+{\footnotesize\ttfamily void Grid\+::reset\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets the board back to it\textquotesingle{}s original state, with all pieces going back to the players\textquotesingle{} inventories.  
+
+\mbox{\Hypertarget{class_grid_a1fb0df094926cb4fbddcdbd807ffac30}\label{class_grid_a1fb0df094926cb4fbddcdbd807ffac30}} 
+\index{Grid@{Grid}!resetPlayerTiles@{resetPlayerTiles}}
+\index{resetPlayerTiles@{resetPlayerTiles}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{resetPlayerTiles()}{resetPlayerTiles()}}
+{\footnotesize\ttfamily void Grid\+::reset\+Player\+Tiles (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_tile}{Tile}} $\ast$ $>$}]{t\+\_\+player,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_gobblet}{Gobblet}} $\ast$ $>$}]{t\+\_\+player\+Gobblets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Puts the gobblets collected from the board back into the player\textquotesingle{}s inventory. Is called for both the user and AI\textquotesingle{}s inventory.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+player} & The tiles of the player\textquotesingle{}s inventory.\\
+\hline
+{\em t\+\_\+player\+Gobblets} & The Gobblets that belong to this player.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_ae1bf91b0d5cbea2bc9f10cdb33d5cf0c}\label{class_grid_ae1bf91b0d5cbea2bc9f10cdb33d5cf0c}} 
+\index{Grid@{Grid}!RowWasFound@{RowWasFound}}
+\index{RowWasFound@{RowWasFound}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{RowWasFound()}{RowWasFound()}}
+{\footnotesize\ttfamily void Grid\+::\+Row\+Was\+Found (\begin{DoxyParamCaption}\item[{int}]{in1,  }\item[{int}]{in2,  }\item[{int}]{in3,  }\item[{int}]{in4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is called to display the three in a row found to the console.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em in1} & The index of the first \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+{\em in2} & The index of the second \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+{\em in3} & The index of the third \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+{\em in4} & The index of the fourth \mbox{\hyperlink{class_tile}{Tile}}.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_a94521af5e370f7eeccda214fa5da5faa}\label{class_grid_a94521af5e370f7eeccda214fa5da5faa}} 
+\index{Grid@{Grid}!slidePiece@{slidePiece}}
+\index{slidePiece@{slidePiece}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{slidePiece()}{slidePiece()}}
+{\footnotesize\ttfamily void Grid\+::slide\+Piece (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a05adb3e108271336fba140607fc2a622}\label{class_grid_a05adb3e108271336fba140607fc2a622}} 
+\index{Grid@{Grid}!update@{update}}
+\index{update@{update}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Grid\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{t\+\_\+mouse\+Pos,  }\item[{sf\+::\+Time}]{t\+\_\+delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Updates the \mbox{\hyperlink{class_grid}{Grid}} each frame.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+mouse\+Pos} & The mouse\textquotesingle{}s position during this frame.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_grid_a67e05a20a1da73209ed5877940b3aabe}\label{class_grid_a67e05a20a1da73209ed5877940b3aabe}} 
+\index{Grid@{Grid}!VerticalCheck@{VerticalCheck}}
+\index{VerticalCheck@{VerticalCheck}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{VerticalCheck()}{VerticalCheck()}}
+{\footnotesize\ttfamily void Grid\+::\+Vertical\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks the four vertical lines for four in a row.  
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_grid_a60ecdb57c74c1230ce9494c8e2801266}\label{class_grid_a60ecdb57c74c1230ce9494c8e2801266}} 
+\index{Grid@{Grid}!AIMoveFrom@{AIMoveFrom}}
+\index{AIMoveFrom@{AIMoveFrom}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{AIMoveFrom}{AIMoveFrom}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tile}{Tile}}$\ast$ Grid\+::\+AIMove\+From\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a186a57f51cedd54e9b39f0c2ffabf28e}\label{class_grid_a186a57f51cedd54e9b39f0c2ffabf28e}} 
+\index{Grid@{Grid}!AIMoveTo@{AIMoveTo}}
+\index{AIMoveTo@{AIMoveTo}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{AIMoveTo}{AIMoveTo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tile}{Tile}}$\ast$ Grid\+::\+AIMove\+To\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a7569e75d5c9d2fe956774bcc2d096659}\label{class_grid_a7569e75d5c9d2fe956774bcc2d096659}} 
+\index{Grid@{Grid}!AIWaitTime@{AIWaitTime}}
+\index{AIWaitTime@{AIWaitTime}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{AIWaitTime}{AIWaitTime}}
+{\footnotesize\ttfamily float Grid\+::\+AIWait\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_af40233c270c905c5d6cea5733864cc53}\label{class_grid_af40233c270c905c5d6cea5733864cc53}} 
+\index{Grid@{Grid}!background@{background}}
+\index{background@{background}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{background}{background}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Grid\+::background\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a62c0453f02f3c4f9b59278407ebd371c}\label{class_grid_a62c0453f02f3c4f9b59278407ebd371c}} 
+\index{Grid@{Grid}!boardStates@{boardStates}}
+\index{boardStates@{boardStates}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{boardStates}{boardStates}}
+{\footnotesize\ttfamily unsigned long long Grid\+::board\+States\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a2daddb214f14dbba9a333a03a44e4c0d}\label{class_grid_a2daddb214f14dbba9a333a03a44e4c0d}} 
+\index{Grid@{Grid}!m\_boardTiles@{m\_boardTiles}}
+\index{m\_boardTiles@{m\_boardTiles}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{m\_boardTiles}{m\_boardTiles}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_tile}{Tile}}$\ast$$>$ Grid\+::m\+\_\+board\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The tiles on the main board, between the two players. 
+
+\mbox{\Hypertarget{class_grid_afe1460dc0bb68da62b5136e7db714926}\label{class_grid_afe1460dc0bb68da62b5136e7db714926}} 
+\index{Grid@{Grid}!m\_player1Tiles@{m\_player1Tiles}}
+\index{m\_player1Tiles@{m\_player1Tiles}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{m\_player1Tiles}{m\_player1Tiles}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_tile}{Tile}}$\ast$$>$ Grid\+::m\+\_\+player1\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The inventory of the second player (AKA the user). 
+
+\mbox{\Hypertarget{class_grid_adc8875552351f5f52d7c55a0c8d5608d}\label{class_grid_adc8875552351f5f52d7c55a0c8d5608d}} 
+\index{Grid@{Grid}!m\_player2Tiles@{m\_player2Tiles}}
+\index{m\_player2Tiles@{m\_player2Tiles}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{m\_player2Tiles}{m\_player2Tiles}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_tile}{Tile}}$\ast$$>$ Grid\+::m\+\_\+player2\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The inventory of the second player (AKA the AI). 
+
+\mbox{\Hypertarget{class_grid_a0f00257720a6bf2f111579721da3491a}\label{class_grid_a0f00257720a6bf2f111579721da3491a}} 
+\index{Grid@{Grid}!m\_selectedGobblet@{m\_selectedGobblet}}
+\index{m\_selectedGobblet@{m\_selectedGobblet}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{m\_selectedGobblet}{m\_selectedGobblet}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_gobblet}{Gobblet}}$\ast$ Grid\+::m\+\_\+selected\+Gobblet\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The \mbox{\hyperlink{class_gobblet}{Gobblet}} the user is selecting and trying to move. 
+
+\mbox{\Hypertarget{class_grid_ac5da4f7f7bc91a16203af8104b84b19e}\label{class_grid_ac5da4f7f7bc91a16203af8104b84b19e}} 
+\index{Grid@{Grid}!m\_selectedTile@{m\_selectedTile}}
+\index{m\_selectedTile@{m\_selectedTile}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{m\_selectedTile}{m\_selectedTile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tile}{Tile}}$\ast$ Grid\+::m\+\_\+selected\+Tile\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The \mbox{\hyperlink{class_tile}{Tile}} the user has selected by clicking on it. Is saved in case the placing of the \mbox{\hyperlink{class_gobblet}{Gobblet}} is invalid, so it has this to refer back to. 
+
+\mbox{\Hypertarget{class_grid_aa5f6f8cc543ed9e3d92012d5ff2ea943}\label{class_grid_aa5f6f8cc543ed9e3d92012d5ff2ea943}} 
+\index{Grid@{Grid}!moveDirection@{moveDirection}}
+\index{moveDirection@{moveDirection}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{moveDirection}{moveDirection}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::move\+Direction\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a808f2101c9610878bb6456ac807952c0}\label{class_grid_a808f2101c9610878bb6456ac807952c0}} 
+\index{Grid@{Grid}!moveSpeed@{moveSpeed}}
+\index{moveSpeed@{moveSpeed}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{moveSpeed}{moveSpeed}}
+{\footnotesize\ttfamily float Grid\+::move\+Speed = 30\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_a9fe4b79104ab6130af0d19e9ef82ab15}\label{class_grid_a9fe4b79104ab6130af0d19e9ef82ab15}} 
+\index{Grid@{Grid}!playerBGColours@{playerBGColours}}
+\index{playerBGColours@{playerBGColours}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{playerBGColours}{playerBGColours}}
+{\footnotesize\ttfamily sf\+::\+Color Grid\+::player\+BGColours\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_grid_afeb58c64563554d6fe79323482c0f103}\label{class_grid_afeb58c64563554d6fe79323482c0f103}} 
+\index{Grid@{Grid}!threeInRow@{threeInRow}}
+\index{threeInRow@{threeInRow}!Grid@{Grid}}
+\doxysubsubsection{\texorpdfstring{threeInRow}{threeInRow}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$int$>$ $>$ Grid\+::three\+In\+Row\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All the stored three of the same colour Gobblets in a row. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_grid_8h}{Grid.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_grid_8cpp}{Grid.\+cpp}}\end{DoxyCompactItemize}

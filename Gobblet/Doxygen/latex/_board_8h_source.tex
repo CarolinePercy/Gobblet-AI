@@ -1,0 +1,43 @@
+\hypertarget{_board_8h_source}{}\doxysection{Board.\+h}
+\label{_board_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Board.h@{Gobblet-\/AI/Gobblet/Gobblet/Board.h}}
+\mbox{\hyperlink{_board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_zobrist_keys_8h}{ZobristKeys.h}}"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_board}{Board}}}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_board}{Board}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} t\_hashCode, \textcolor{keywordtype}{int} t\_playerInventory[3], \textcolor{keywordtype}{int} t\_aiInventory[3], \textcolor{keywordtype}{int} t\_depth, \textcolor{keywordtype}{bool} t\_AIturn);}
+\DoxyCodeLine{13     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_aeeee7abcdd384f1257f68b8156079fc2}{minimax}}();}
+\DoxyCodeLine{14     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_board_af0d039f6f94db72e298ba53373a1832e}{getbestHash}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_board_a73ac69cfb541711a14efaab2910083b9}{bestHash}}; \}}
+\DoxyCodeLine{15 \textcolor{keyword}{private}:}
+\DoxyCodeLine{16     std::vector<unsigned long long> \mbox{\hyperlink{class_board_af5a503533c597769af1326dde738a27a}{getOnBoardMoves}}();}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_a9389ef2f74fadf3d924a6b220076427b}{processMovesFrom}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y, std::vector<unsigned long long>\& t\_listOfMoves);}
+\DoxyCodeLine{18     std::vector<unsigned long long> \mbox{\hyperlink{class_board_a10194d513a03b4650fbb921eb7060405}{getOffBoardMoves}}();}
+\DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_board_a2450d4be5f7a227d492d4e4c5a3636a3}{getMoveHash}}(\textcolor{keywordtype}{int} x\_from, \textcolor{keywordtype}{int} y\_from, \textcolor{keywordtype}{int} x\_to, \textcolor{keywordtype}{int} y\_to);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_aae190b7e1f8adff8eb02391af89e93ea}{checkForWin}}();}
+\DoxyCodeLine{22     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_abf95b5155a0fa5fdad7f2e5dff1564b2}{checkForLoss}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_aaeade214a63232493d912806c38dcf4b}{modifyForTriplesAI}}(\textcolor{keywordtype}{int} t\_pieceSize);}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_a38651932a1f9b5f7d74b6c5a793047da}{modifyForTriplesPlayer}}(\textcolor{keywordtype}{int} t\_pieceSize);}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_a6b54458a00a3c3f914bde078daa62aed}{analyseBoardState}}();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_ae03cdbda20669f8999c019535eda3c92}{m\_board}}[4][4] = \{\};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_a091fb4c2d4203e1a4965a33db69c0cbe}{m\_playerInventory}}[3];}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_a5780a302e6338b74f3e28ca9a031e6df}{m\_aiInventory}}[3];}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_aedf6c6163ba9dbd4f41cd6cecb050444}{depth}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{40     \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_a483be89a5c8b565a6d93e49d1f61c674}{MAX\_DEPTH}} = 3;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_abea23b326ae69965ec915756959e0fa5}{AIturn}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_board_a73ac69cfb541711a14efaab2910083b9}{bestHash}};}
+\DoxyCodeLine{47 \};}
+
+\end{DoxyCode}

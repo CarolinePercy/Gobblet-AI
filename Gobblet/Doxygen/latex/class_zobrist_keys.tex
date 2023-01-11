@@ -1,0 +1,172 @@
+\hypertarget{class_zobrist_keys}{}\doxysection{Zobrist\+Keys Class Reference}
+\label{class_zobrist_keys}\index{ZobristKeys@{ZobristKeys}}
+
+
+Zobrist Key class. Helps with the storing of board states.   
+
+
+
+
+{\ttfamily \#include $<$Zobrist\+Keys.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_zobrist_keys_a818f6f2bb9dc88ae343646f0a9a40f52}{initialise}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for class.  \end{DoxyCompactList}\item 
+static unsigned long \mbox{\hyperlink{class_zobrist_keys_adaf5c949d3439637e9073e81e9279b24}{generate\+Random\+Int}} ()
+\begin{DoxyCompactList}\small\item\em Returns a number between 0 and 1.\+84 $\ast$ 10$^\wedge$19 (inclusive).  \end{DoxyCompactList}\item 
+static unsigned long long int \mbox{\hyperlink{class_zobrist_keys_a2284fc13b4233c7d6d77c524b22783b6}{find\+Hash\+Of\+Board}} (int t\+\_\+board\mbox{[}4\mbox{]}\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Converts the current state of the board into a Zobrist Key.  \end{DoxyCompactList}\item 
+static unsigned long long int \mbox{\hyperlink{class_zobrist_keys_ab8a867be0e5c27e4f3273f3c508e7a9c}{move\+Piece}} (int t\+\_\+board\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}, std\+::pair$<$ int, int $>$ t\+\_\+from, std\+::pair$<$ int, int $>$ t\+\_\+to)
+\begin{DoxyCompactList}\small\item\em Moves a piece on the board, returning the Zobrist key of the new board state.  \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_zobrist_keys_a96fef0845109c0e7ab3d2229aaf59aec}{get\+Move}} (int t\+\_\+board\+Before\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}, int t\+\_\+board\+After\mbox{[}4\mbox{]}\mbox{[}4\mbox{]}, int t\+\_\+coordinates\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Finds what move occured between the first and second board.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned int \mbox{\hyperlink{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}{NUM\+\_\+\+OF\+\_\+\+PIECES}} = 8
+\begin{DoxyCompactList}\small\item\em Number of gobblet pieces for each player.  \end{DoxyCompactList}\item 
+static const unsigned int \mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\+\_\+\+OF\+\_\+\+CELLS\+\_\+\+IN\+\_\+\+ROW}} = 4
+\begin{DoxyCompactList}\small\item\em The amount of cells in a row in the grid \+: 4 x 4 spaces.  \end{DoxyCompactList}\item 
+static unsigned long \mbox{\hyperlink{class_zobrist_keys_a3b76eee837985aba7318f2ed9ac60297}{table}} \mbox{[}\mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\+\_\+\+OF\+\_\+\+CELLS\+\_\+\+IN\+\_\+\+ROW}}\mbox{]}\mbox{[}\mbox{\hyperlink{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}{NUM\+\_\+\+OF\+\_\+\+CELLS\+\_\+\+IN\+\_\+\+ROW}}\mbox{]}\mbox{[}\mbox{\hyperlink{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}{NUM\+\_\+\+OF\+\_\+\+PIECES}}\mbox{]} = \{\}
+\begin{DoxyCompactList}\small\item\em The grid in Zobrist Keys.  \end{DoxyCompactList}\item 
+static std\+::mt19937 \mbox{\hyperlink{class_zobrist_keys_a04c75936e4f9c34e0544b36a61b04d00}{mt}} = std\+::mt19937(01234567)
+\begin{DoxyCompactList}\small\item\em Helps with random number generation.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Zobrist Key class. Helps with the storing of board states.  
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_zobrist_keys_a2284fc13b4233c7d6d77c524b22783b6}\label{class_zobrist_keys_a2284fc13b4233c7d6d77c524b22783b6}} 
+\index{ZobristKeys@{ZobristKeys}!findHashOfBoard@{findHashOfBoard}}
+\index{findHashOfBoard@{findHashOfBoard}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{findHashOfBoard()}{findHashOfBoard()}}
+{\footnotesize\ttfamily unsigned long long int Zobrist\+Keys\+::find\+Hash\+Of\+Board (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+board\mbox{[}4\mbox{]}\mbox{[}4\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts the current state of the board into a Zobrist Key.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & The grid in a simplified form.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current board\textquotesingle{}s Zobrist key.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_zobrist_keys_adaf5c949d3439637e9073e81e9279b24}\label{class_zobrist_keys_adaf5c949d3439637e9073e81e9279b24}} 
+\index{ZobristKeys@{ZobristKeys}!generateRandomInt@{generateRandomInt}}
+\index{generateRandomInt@{generateRandomInt}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{generateRandomInt()}{generateRandomInt()}}
+{\footnotesize\ttfamily unsigned long Zobrist\+Keys\+::generate\+Random\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a number between 0 and 1.\+84 $\ast$ 10$^\wedge$19 (inclusive).  
+
+\begin{DoxyReturn}{Returns}
+The generated number.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_zobrist_keys_a96fef0845109c0e7ab3d2229aaf59aec}\label{class_zobrist_keys_a96fef0845109c0e7ab3d2229aaf59aec}} 
+\index{ZobristKeys@{ZobristKeys}!getMove@{getMove}}
+\index{getMove@{getMove}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{getMove()}{getMove()}}
+{\footnotesize\ttfamily void Zobrist\+Keys\+::get\+Move (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+board\+Before\mbox{[}4\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{t\+\_\+board\+After\mbox{[}4\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{t\+\_\+coordinates\mbox{[}4\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Finds what move occured between the first and second board.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board\+Before} & The board before the move.\\
+\hline
+{\em t\+\_\+board\+After} & The board after the move.\\
+\hline
+{\em t\+\_\+coordinates} & What will store the move coordinates.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_zobrist_keys_a818f6f2bb9dc88ae343646f0a9a40f52}\label{class_zobrist_keys_a818f6f2bb9dc88ae343646f0a9a40f52}} 
+\index{ZobristKeys@{ZobristKeys}!initialise@{initialise}}
+\index{initialise@{initialise}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily void Zobrist\+Keys\+::initialise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Default constructor for class.  
+
+\mbox{\Hypertarget{class_zobrist_keys_ab8a867be0e5c27e4f3273f3c508e7a9c}\label{class_zobrist_keys_ab8a867be0e5c27e4f3273f3c508e7a9c}} 
+\index{ZobristKeys@{ZobristKeys}!movePiece@{movePiece}}
+\index{movePiece@{movePiece}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{movePiece()}{movePiece()}}
+{\footnotesize\ttfamily unsigned long long int Zobrist\+Keys\+::move\+Piece (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+board\mbox{[}4\mbox{]}\mbox{[}4\mbox{]},  }\item[{std\+::pair$<$ int, int $>$}]{t\+\_\+from,  }\item[{std\+::pair$<$ int, int $>$}]{t\+\_\+to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Moves a piece on the board, returning the Zobrist key of the new board state.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+board} & The board in simplified form.\\
+\hline
+{\em t\+\_\+from} & Where the piece originally is.\\
+\hline
+{\em t\+\_\+to} & Where the piece wants to go.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Zobrist Key of the new board state.
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_zobrist_keys_a04c75936e4f9c34e0544b36a61b04d00}\label{class_zobrist_keys_a04c75936e4f9c34e0544b36a61b04d00}} 
+\index{ZobristKeys@{ZobristKeys}!mt@{mt}}
+\index{mt@{mt}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{mt}{mt}}
+{\footnotesize\ttfamily std\+::mt19937 Zobrist\+Keys\+::mt = std\+::mt19937(01234567)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Helps with random number generation.  
+
+\mbox{\Hypertarget{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}\label{class_zobrist_keys_a730fa3dcde870282189e54de3d985e44}} 
+\index{ZobristKeys@{ZobristKeys}!NUM\_OF\_CELLS\_IN\_ROW@{NUM\_OF\_CELLS\_IN\_ROW}}
+\index{NUM\_OF\_CELLS\_IN\_ROW@{NUM\_OF\_CELLS\_IN\_ROW}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{NUM\_OF\_CELLS\_IN\_ROW}{NUM\_OF\_CELLS\_IN\_ROW}}
+{\footnotesize\ttfamily const unsigned int Zobrist\+Keys\+::\+NUM\+\_\+\+OF\+\_\+\+CELLS\+\_\+\+IN\+\_\+\+ROW = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The amount of cells in a row in the grid \+: 4 x 4 spaces.  
+
+\mbox{\Hypertarget{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}\label{class_zobrist_keys_a3992ca4e254cc9121a86b6eb1b4acacf}} 
+\index{ZobristKeys@{ZobristKeys}!NUM\_OF\_PIECES@{NUM\_OF\_PIECES}}
+\index{NUM\_OF\_PIECES@{NUM\_OF\_PIECES}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{NUM\_OF\_PIECES}{NUM\_OF\_PIECES}}
+{\footnotesize\ttfamily const unsigned int Zobrist\+Keys\+::\+NUM\+\_\+\+OF\+\_\+\+PIECES = 8\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Number of gobblet pieces for each player.  
+
+\mbox{\Hypertarget{class_zobrist_keys_a3b76eee837985aba7318f2ed9ac60297}\label{class_zobrist_keys_a3b76eee837985aba7318f2ed9ac60297}} 
+\index{ZobristKeys@{ZobristKeys}!table@{table}}
+\index{table@{table}!ZobristKeys@{ZobristKeys}}
+\doxysubsubsection{\texorpdfstring{table}{table}}
+{\footnotesize\ttfamily unsigned long Zobrist\+Keys\+::table = \{\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The grid in Zobrist Keys.  
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_zobrist_keys_8h}{Zobrist\+Keys.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_zobrist_keys_8cpp}{Zobrist\+Keys.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,72 @@
+\hypertarget{_grid_8h_source}{}\doxysection{Grid.\+h}
+\label{_grid_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Grid.h@{Gobblet-\/AI/Gobblet/Gobblet/Grid.h}}
+\mbox{\hyperlink{_grid_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_tile_8h}{Tile.h}}"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_gobblet_8h}{Gobblet.h}}"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_board_8h}{Board.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_grid}{Grid}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \mbox{\hyperlink{class_grid_a4ac9ff4f63552b4c61ff90fcb35ad66c}{Grid}}();}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_ad182493bc95dd9e6c2b369decca23894}{render}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a05adb3e108271336fba140607fc2a622}{update}}(sf::Vector2i t\_mousePos, sf::Time t\_deltaTime);}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a165b3578b0ea5d160c53d8f378e57c83}{onMouseDown}}(sf::Vector2i t\_click);}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_aa21e976f1f6709684bb59ee05ef87115}{onMouseUp}}(sf::Vector2i t\_click);}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_aa1728228a29c834c441e90b191d7171f}{resetBoard}}();}
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a3a99229b467c8dd036b8fabd46143779}{processOpponentTurn}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_grid_a56574796f5c7f9a952f92e9c10be29df}{compareGobbletSizes}}(\mbox{\hyperlink{class_tile}{Tile}}* t\_from, \mbox{\hyperlink{class_tile}{Tile}}* t\_to);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{26     std::vector<Tile*> \mbox{\hyperlink{class_grid_a2daddb214f14dbba9a333a03a44e4c0d}{m\_boardTiles}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29     std::vector<Tile*> \mbox{\hyperlink{class_grid_afe1460dc0bb68da62b5136e7db714926}{m\_player1Tiles}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32     std::vector<Tile*> \mbox{\hyperlink{class_grid_adc8875552351f5f52d7c55a0c8d5608d}{m\_player2Tiles}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{35     \mbox{\hyperlink{class_tile}{Tile}}* \mbox{\hyperlink{class_grid_ac5da4f7f7bc91a16203af8104b84b19e}{m\_selectedTile}};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38     \mbox{\hyperlink{class_gobblet}{Gobblet}}* \mbox{\hyperlink{class_grid_a0f00257720a6bf2f111579721da3491a}{m\_selectedGobblet}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41     sf::RectangleShape \mbox{\hyperlink{class_grid_af40233c270c905c5d6cea5733864cc53}{background}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     sf::Color \mbox{\hyperlink{class_grid_a9fe4b79104ab6130af0d19e9ef82ab15}{playerBGColours}}[2];}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{keywordtype}{float} \mbox{\hyperlink{class_grid_a7569e75d5c9d2fe956774bcc2d096659}{AIWaitTime}};}
+\DoxyCodeLine{46     sf::Vector2f \mbox{\hyperlink{class_grid_aa5f6f8cc543ed9e3d92012d5ff2ea943}{moveDirection}};}
+\DoxyCodeLine{47     \textcolor{keywordtype}{float} \mbox{\hyperlink{class_grid_a808f2101c9610878bb6456ac807952c0}{moveSpeed}} = 30;}
+\DoxyCodeLine{48     \mbox{\hyperlink{class_tile}{Tile}}* \mbox{\hyperlink{class_grid_a60ecdb57c74c1230ce9494c8e2801266}{AIMoveFrom}};}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_tile}{Tile}}* \mbox{\hyperlink{class_grid_a186a57f51cedd54e9b39f0c2ffabf28e}{AIMoveTo}};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_grid_a62c0453f02f3c4f9b59278407ebd371c}{boardStates}}[2];}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{55     std::vector<std::vector<int>> \mbox{\hyperlink{class_grid_afeb58c64563554d6fe79323482c0f103}{threeInRow}};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a2a88d877f87c5c8fd76247c9f71246cd}{getChildGobbletsOut}}(\mbox{\hyperlink{class_gobblet}{Gobblet}}* parentGobblet, std::vector<Gobblet*>* t\_playerGobblets,}
+\DoxyCodeLine{58         std::vector<Gobblet*>* t\_enemyGobblets);}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a1fb0df094926cb4fbddcdbd807ffac30}{resetPlayerTiles}}(std::vector<Tile*> t\_player, std::vector<Gobblet*> t\_playerGobblets);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a71c81ecd22ec6be33392c727fe4de231}{checkRows}}();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a9ac4b3dc788e243de6653aa4e81a1b77}{DiagonalCheck}}();}
+\DoxyCodeLine{64     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a24bc23a9214c35e470f048eb084b9316}{HorizontalCheck}}();}
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a67e05a20a1da73209ed5877940b3aabe}{VerticalCheck}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_ae1bf91b0d5cbea2bc9f10cdb33d5cf0c}{RowWasFound}}(\textcolor{keywordtype}{int} in1, \textcolor{keywordtype}{int} in2, \textcolor{keywordtype}{int} in3, \textcolor{keywordtype}{int} in4);}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a68ef8a0bd8eb97c5120d6f630370917e}{DidAPlayerWin}}(\textcolor{keywordtype}{int} t\_playerNum, \textcolor{keywordtype}{int} t\_enemyNum);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_grid_ab10fee9b32fc6c08f46afe818eb2fd9d}{MovingFromInventory}}(\mbox{\hyperlink{class_tile}{Tile}}* t\_from);}
+\DoxyCodeLine{71     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_grid_aaccb8b683842bcdb9e5a89a5d7a3155e}{CheckIfThreeInARow}}(\mbox{\hyperlink{class_tile}{Tile}}* t\_from, \mbox{\hyperlink{class_tile}{Tile}}* t\_to);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a73d8f221b413ebf5a74eb6341199b30e}{calculateBestMove}}();}
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a15ce96c4e62671c8507b46abee0e4a6c}{makeMove}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} before, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} after);}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_grid_a94521af5e370f7eeccda214fa5da5faa}{slidePiece}}();}
+\DoxyCodeLine{76 \};}
+
+\end{DoxyCode}

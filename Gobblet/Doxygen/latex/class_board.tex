@@ -1,0 +1,326 @@
+\hypertarget{class_board}{}\doxysection{Board Class Reference}
+\label{class_board}\index{Board@{Board}}
+
+
+Minimax analytic class. Is used to store a numeral representation of the \mbox{\hyperlink{class_grid}{Grid}}.   
+
+
+
+
+{\ttfamily \#include $<$Board.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_board_a26e73f880d4f5d5d8a8d72898e3a09bc}{Board}} (unsigned long long t\+\_\+hash\+Code, int t\+\_\+player\+Inventory\mbox{[}3\mbox{]}, int t\+\_\+ai\+Inventory\mbox{[}3\mbox{]}, int t\+\_\+depth, bool t\+\_\+\+AIturn)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor of the \mbox{\hyperlink{class_board}{Board}}, used for initialising and figuring out the board state in a simple way.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_aeeee7abcdd384f1257f68b8156079fc2}{minimax}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the best move for each user. Iterates to get this as accurate as possible.  \end{DoxyCompactList}\item 
+unsigned long long \mbox{\hyperlink{class_board_af0d039f6f94db72e298ba53373a1832e}{getbest\+Hash}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ unsigned long long $>$ \mbox{\hyperlink{class_board_af5a503533c597769af1326dde738a27a}{get\+On\+Board\+Moves}} ()
+\begin{DoxyCompactList}\small\item\em Gets all the possible moves the Player has on the board.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a9389ef2f74fadf3d924a6b220076427b}{process\+Moves\+From}} (int x, int y, std\+::vector$<$ unsigned long long $>$ \&t\+\_\+list\+Of\+Moves)
+\begin{DoxyCompactList}\small\item\em Calculates if its possible to move a piece to the X and Y passed in. If it is, store the hash code of move in the list.  \end{DoxyCompactList}\item 
+std\+::vector$<$ unsigned long long $>$ \mbox{\hyperlink{class_board_a10194d513a03b4650fbb921eb7060405}{get\+Off\+Board\+Moves}} ()
+\begin{DoxyCompactList}\small\item\em Gets all the possible moves the Player has off the board. (aka; their inventory)  \end{DoxyCompactList}\item 
+unsigned long long \mbox{\hyperlink{class_board_a2450d4be5f7a227d492d4e4c5a3636a3}{get\+Move\+Hash}} (int x\+\_\+from, int y\+\_\+from, int x\+\_\+to, int y\+\_\+to)
+\begin{DoxyCompactList}\small\item\em Gets the hash code of the move, from the coordinates of the before and after.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_aae190b7e1f8adff8eb02391af89e93ea}{check\+For\+Win}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the AI wins in this board state.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_abf95b5155a0fa5fdad7f2e5dff1564b2}{check\+For\+Loss}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the AI loses in this board state.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_aaeade214a63232493d912806c38dcf4b}{modify\+For\+Triples\+AI}} (int t\+\_\+piece\+Size)
+\begin{DoxyCompactList}\small\item\em Changes the AI\textquotesingle{}s thinking, depending on whether the Player has three in a row.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a38651932a1f9b5f7d74b6c5a793047da}{modify\+For\+Triples\+Player}} (int t\+\_\+piece\+Size)
+\begin{DoxyCompactList}\small\item\em Changes the AI\textquotesingle{}s thinking when its meant to simulate the player, depending on whether the AI has three in a row.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_a6b54458a00a3c3f914bde078daa62aed}{analyse\+Board\+State}} ()
+\begin{DoxyCompactList}\small\item\em Calculates a score for the board in this state \+: is used when the depth is maxed out.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_board_ae03cdbda20669f8999c019535eda3c92}{m\+\_\+board}} \mbox{[}4\mbox{]}\mbox{[}4\mbox{]} = \{\}
+\begin{DoxyCompactList}\small\item\em The layout of the the \mbox{\hyperlink{class_grid}{Grid}}, in numeral form. 1-\/4 is AI pieces, 5-\/8 is the Users, 9 is an empty \mbox{\hyperlink{class_tile}{Tile}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_a091fb4c2d4203e1a4965a33db69c0cbe}{m\+\_\+player\+Inventory}} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Pieces left in the first player\textquotesingle{}s inventory (User) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_a5780a302e6338b74f3e28ca9a031e6df}{m\+\_\+ai\+Inventory}} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em The Pieces left in the second player\textquotesingle{}s inventory (AI) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_aedf6c6163ba9dbd4f41cd6cecb050444}{depth}}
+\begin{DoxyCompactList}\small\item\em How far the AI is currently down in Minimax. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_board_a483be89a5c8b565a6d93e49d1f61c674}{MAX\+\_\+\+DEPTH}} = 3
+\begin{DoxyCompactList}\small\item\em How far the AI should go in Minimax, before cutting it off and making an estimate. Saves on time. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_abea23b326ae69965ec915756959e0fa5}{AIturn}}
+\begin{DoxyCompactList}\small\item\em Keeps track of whether it the AI\textquotesingle{}s Turn when predicting Minimax. \end{DoxyCompactList}\item 
+unsigned long long \mbox{\hyperlink{class_board_a73ac69cfb541711a14efaab2910083b9}{best\+Hash}}
+\begin{DoxyCompactList}\small\item\em the best next move the AI can make. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Minimax analytic class. Is used to store a numeral representation of the \mbox{\hyperlink{class_grid}{Grid}}.  
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_board_a26e73f880d4f5d5d8a8d72898e3a09bc}\label{class_board_a26e73f880d4f5d5d8a8d72898e3a09bc}} 
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily Board\+::\+Board (\begin{DoxyParamCaption}\item[{unsigned long long}]{t\+\_\+hash\+Code,  }\item[{int}]{t\+\_\+player\+Inventory\mbox{[}3\mbox{]},  }\item[{int}]{t\+\_\+ai\+Inventory\mbox{[}3\mbox{]},  }\item[{int}]{t\+\_\+depth,  }\item[{bool}]{t\+\_\+\+AIturn }\end{DoxyParamCaption})}
+
+
+
+Overloaded constructor of the \mbox{\hyperlink{class_board}{Board}}, used for initialising and figuring out the board state in a simple way.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+hash\+Code} & The code of the board the previous depth of this one.\\
+\hline
+{\em t\+\_\+player\+Inventory} & How many pieces the User has in its inventory.\\
+\hline
+{\em t\+\_\+ai\+Inventory} & How many pieces the AI has in its inventory.\\
+\hline
+{\em t\+\_\+depth} & How far down the minimax iteration this board is.\\
+\hline
+{\em t\+\_\+\+AIturn} & Whether this board is for the AI\textquotesingle{}s turn or the players.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_board_a6b54458a00a3c3f914bde078daa62aed}\label{class_board_a6b54458a00a3c3f914bde078daa62aed}} 
+\index{Board@{Board}!analyseBoardState@{analyseBoardState}}
+\index{analyseBoardState@{analyseBoardState}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{analyseBoardState()}{analyseBoardState()}}
+{\footnotesize\ttfamily int Board\+::analyse\+Board\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates a score for the board in this state \+: is used when the depth is maxed out.  
+
+\begin{DoxyReturn}{Returns}
+The score for the board in this depth.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_abf95b5155a0fa5fdad7f2e5dff1564b2}\label{class_board_abf95b5155a0fa5fdad7f2e5dff1564b2}} 
+\index{Board@{Board}!checkForLoss@{checkForLoss}}
+\index{checkForLoss@{checkForLoss}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkForLoss()}{checkForLoss()}}
+{\footnotesize\ttfamily bool Board\+::check\+For\+Loss (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the AI loses in this board state.  
+
+\begin{DoxyReturn}{Returns}
+Whether the AI loses here.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_aae190b7e1f8adff8eb02391af89e93ea}\label{class_board_aae190b7e1f8adff8eb02391af89e93ea}} 
+\index{Board@{Board}!checkForWin@{checkForWin}}
+\index{checkForWin@{checkForWin}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkForWin()}{checkForWin()}}
+{\footnotesize\ttfamily bool Board\+::check\+For\+Win (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the AI wins in this board state.  
+
+\begin{DoxyReturn}{Returns}
+Whether the AI wins here.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_af0d039f6f94db72e298ba53373a1832e}\label{class_board_af0d039f6f94db72e298ba53373a1832e}} 
+\index{Board@{Board}!getbestHash@{getbestHash}}
+\index{getbestHash@{getbestHash}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getbestHash()}{getbestHash()}}
+{\footnotesize\ttfamily unsigned long long Board\+::getbest\+Hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_board_a2450d4be5f7a227d492d4e4c5a3636a3}\label{class_board_a2450d4be5f7a227d492d4e4c5a3636a3}} 
+\index{Board@{Board}!getMoveHash@{getMoveHash}}
+\index{getMoveHash@{getMoveHash}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getMoveHash()}{getMoveHash()}}
+{\footnotesize\ttfamily unsigned long long Board\+::get\+Move\+Hash (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+from,  }\item[{int}]{y\+\_\+from,  }\item[{int}]{x\+\_\+to,  }\item[{int}]{y\+\_\+to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the hash code of the move, from the coordinates of the before and after.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+from} & The X coordinate before the move.\\
+\hline
+{\em y\+\_\+from} & The Y coordinate before the move.\\
+\hline
+{\em x\+\_\+to} & The X coordinate after the move.\\
+\hline
+{\em y\+\_\+to} & The Y coordinate after the move.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash code of the board after the move.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a10194d513a03b4650fbb921eb7060405}\label{class_board_a10194d513a03b4650fbb921eb7060405}} 
+\index{Board@{Board}!getOffBoardMoves@{getOffBoardMoves}}
+\index{getOffBoardMoves@{getOffBoardMoves}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getOffBoardMoves()}{getOffBoardMoves()}}
+{\footnotesize\ttfamily std\+::vector$<$ unsigned long long $>$ Board\+::get\+Off\+Board\+Moves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets all the possible moves the Player has off the board. (aka; their inventory)  
+
+\begin{DoxyReturn}{Returns}
+All possible moves for this player off the board.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_af5a503533c597769af1326dde738a27a}\label{class_board_af5a503533c597769af1326dde738a27a}} 
+\index{Board@{Board}!getOnBoardMoves@{getOnBoardMoves}}
+\index{getOnBoardMoves@{getOnBoardMoves}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getOnBoardMoves()}{getOnBoardMoves()}}
+{\footnotesize\ttfamily std\+::vector$<$ unsigned long long $>$ Board\+::get\+On\+Board\+Moves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets all the possible moves the Player has on the board.  
+
+\begin{DoxyReturn}{Returns}
+All possible moves for this player on the board.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_aeeee7abcdd384f1257f68b8156079fc2}\label{class_board_aeeee7abcdd384f1257f68b8156079fc2}} 
+\index{Board@{Board}!minimax@{minimax}}
+\index{minimax@{minimax}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily int Board\+::minimax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the best move for each user. Iterates to get this as accurate as possible.  
+
+\begin{DoxyReturn}{Returns}
+The best value move.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_aaeade214a63232493d912806c38dcf4b}\label{class_board_aaeade214a63232493d912806c38dcf4b}} 
+\index{Board@{Board}!modifyForTriplesAI@{modifyForTriplesAI}}
+\index{modifyForTriplesAI@{modifyForTriplesAI}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{modifyForTriplesAI()}{modifyForTriplesAI()}}
+{\footnotesize\ttfamily void Board\+::modify\+For\+Triples\+AI (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+piece\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Changes the AI\textquotesingle{}s thinking, depending on whether the Player has three in a row.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+piece\+Size} & The largest piece the AI has avaiable.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_board_a38651932a1f9b5f7d74b6c5a793047da}\label{class_board_a38651932a1f9b5f7d74b6c5a793047da}} 
+\index{Board@{Board}!modifyForTriplesPlayer@{modifyForTriplesPlayer}}
+\index{modifyForTriplesPlayer@{modifyForTriplesPlayer}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{modifyForTriplesPlayer()}{modifyForTriplesPlayer()}}
+{\footnotesize\ttfamily void Board\+::modify\+For\+Triples\+Player (\begin{DoxyParamCaption}\item[{int}]{t\+\_\+piece\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Changes the AI\textquotesingle{}s thinking when its meant to simulate the player, depending on whether the AI has three in a row.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+piece\+Size} & The largest piece the Player has avaiable.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_board_a9389ef2f74fadf3d924a6b220076427b}\label{class_board_a9389ef2f74fadf3d924a6b220076427b}} 
+\index{Board@{Board}!processMovesFrom@{processMovesFrom}}
+\index{processMovesFrom@{processMovesFrom}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{processMovesFrom()}{processMovesFrom()}}
+{\footnotesize\ttfamily void Board\+::process\+Moves\+From (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{std\+::vector$<$ unsigned long long $>$ \&}]{t\+\_\+list\+Of\+Moves }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates if its possible to move a piece to the X and Y passed in. If it is, store the hash code of move in the list.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The X value to move to.\\
+\hline
+{\em y} & The Y value to move to.\\
+\hline
+{\em t\+\_\+list\+Of\+Moves} & The list that will hold the moves, passed by reference so the values are stored.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_board_abea23b326ae69965ec915756959e0fa5}\label{class_board_abea23b326ae69965ec915756959e0fa5}} 
+\index{Board@{Board}!AIturn@{AIturn}}
+\index{AIturn@{AIturn}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{AIturn}{AIturn}}
+{\footnotesize\ttfamily bool Board\+::\+AIturn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Keeps track of whether it the AI\textquotesingle{}s Turn when predicting Minimax. 
+
+\mbox{\Hypertarget{class_board_a73ac69cfb541711a14efaab2910083b9}\label{class_board_a73ac69cfb541711a14efaab2910083b9}} 
+\index{Board@{Board}!bestHash@{bestHash}}
+\index{bestHash@{bestHash}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{bestHash}{bestHash}}
+{\footnotesize\ttfamily unsigned long long Board\+::best\+Hash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the best next move the AI can make. 
+
+\mbox{\Hypertarget{class_board_aedf6c6163ba9dbd4f41cd6cecb050444}\label{class_board_aedf6c6163ba9dbd4f41cd6cecb050444}} 
+\index{Board@{Board}!depth@{depth}}
+\index{depth@{depth}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{depth}{depth}}
+{\footnotesize\ttfamily int Board\+::depth\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+How far the AI is currently down in Minimax. 
+
+\mbox{\Hypertarget{class_board_a5780a302e6338b74f3e28ca9a031e6df}\label{class_board_a5780a302e6338b74f3e28ca9a031e6df}} 
+\index{Board@{Board}!m\_aiInventory@{m\_aiInventory}}
+\index{m\_aiInventory@{m\_aiInventory}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_aiInventory}{m\_aiInventory}}
+{\footnotesize\ttfamily int Board\+::m\+\_\+ai\+Inventory\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Pieces left in the second player\textquotesingle{}s inventory (AI) 
+
+\mbox{\Hypertarget{class_board_ae03cdbda20669f8999c019535eda3c92}\label{class_board_ae03cdbda20669f8999c019535eda3c92}} 
+\index{Board@{Board}!m\_board@{m\_board}}
+\index{m\_board@{m\_board}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_board}{m\_board}}
+{\footnotesize\ttfamily int Board\+::m\+\_\+board\mbox{[}4\mbox{]}\mbox{[}4\mbox{]} = \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The layout of the the \mbox{\hyperlink{class_grid}{Grid}}, in numeral form. 1-\/4 is AI pieces, 5-\/8 is the Users, 9 is an empty \mbox{\hyperlink{class_tile}{Tile}}. 
+
+\mbox{\Hypertarget{class_board_a091fb4c2d4203e1a4965a33db69c0cbe}\label{class_board_a091fb4c2d4203e1a4965a33db69c0cbe}} 
+\index{Board@{Board}!m\_playerInventory@{m\_playerInventory}}
+\index{m\_playerInventory@{m\_playerInventory}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_playerInventory}{m\_playerInventory}}
+{\footnotesize\ttfamily int Board\+::m\+\_\+player\+Inventory\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Pieces left in the first player\textquotesingle{}s inventory (User) 
+
+\mbox{\Hypertarget{class_board_a483be89a5c8b565a6d93e49d1f61c674}\label{class_board_a483be89a5c8b565a6d93e49d1f61c674}} 
+\index{Board@{Board}!MAX\_DEPTH@{MAX\_DEPTH}}
+\index{MAX\_DEPTH@{MAX\_DEPTH}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{MAX\_DEPTH}{MAX\_DEPTH}}
+{\footnotesize\ttfamily const int Board\+::\+MAX\+\_\+\+DEPTH = 3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+How far the AI should go in Minimax, before cutting it off and making an estimate. Saves on time. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_board_8h}{Board.\+h}}\item 
+Gobblet-\/\+AI/\+Gobblet/\+Gobblet/\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}

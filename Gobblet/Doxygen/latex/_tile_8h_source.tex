@@ -1,0 +1,31 @@
+\hypertarget{_tile_8h_source}{}\doxysection{Tile.\+h}
+\label{_tile_8h_source}\index{Gobblet-\/AI/Gobblet/Gobblet/Tile.h@{Gobblet-\/AI/Gobblet/Gobblet/Tile.h}}
+\mbox{\hyperlink{_tile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_globals_8h}{Globals.h}}"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_gobblet_8h}{Gobblet.h}}"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_tile}{Tile}}}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_tile}{Tile}}(sf::Vector2f t\_position, sf::Vector2f t\_size);}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tile_a6c5cb0da8b4f32496cff838567323ce9}{render}}(sf::RenderWindow\& t\_window);}
+\DoxyCodeLine{14     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_tile_ac6a9c29a3c3902d866840a5c31a66829}{isInside}}(sf::Vector2i t\_click);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tile_aa164ab1f21fbe83f385ef4cb69ab2324}{removeCurrentGobblet}}() \{ \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\_currentGobblet}} != \textcolor{keyword}{nullptr}) \{ \mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\_currentGobblet}} = \mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\_currentGobblet}}-\/>\mbox{\hyperlink{class_gobblet_af0ae2e939570918fe68113d84ae8af18}{getChild}}(); \} \}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tile_a36cebffc62088f1a7d158d35bf92edf5}{setCurrentGobblet}}(\mbox{\hyperlink{class_gobblet}{Gobblet}}* t\_currentGobblet);}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_gobblet}{Gobblet}}* \mbox{\hyperlink{class_tile_a4418bedd6b864ab34f285c1de93bcc28}{getCurrentGobblet}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\_currentGobblet}}; \}}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tile_a163d47dd5bba54a93704dc1cd1711ac7}{moveGobbletTo}}(\mbox{\hyperlink{class_tile}{Tile}}* t\_destination);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     sf::Vector2f \mbox{\hyperlink{class_tile_afd69da1519691d4f82bfe0534db4f01c}{getPosition}}();}
+\DoxyCodeLine{22     sf::Vector2f \mbox{\hyperlink{class_tile_ada5bb7b02b1663a4c3d8d959c771341b}{getOffsetPosition}}();}
+\DoxyCodeLine{23 \textcolor{keyword}{private}:}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{26     \mbox{\hyperlink{class_gobblet}{Gobblet}}* \mbox{\hyperlink{class_tile_ad6d8a17e11190660fb3f2105b77c750b}{m\_currentGobblet}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29     sf::RectangleShape \mbox{\hyperlink{class_tile_a269fd8b79131de9eb73dbc6c5a6704fd}{m\_tile}};}
+\DoxyCodeLine{30 \};}
+
+\end{DoxyCode}
