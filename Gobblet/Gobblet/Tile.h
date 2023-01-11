@@ -19,6 +19,7 @@ public:
 	void moveGobbletTo(Tile* t_destination);
 
 	sf::Vector2f getPosition();
+	sf::Vector2f getOffsetPosition();
 private:
 
 	/// The Gobblet that is currently on top of this Tile.

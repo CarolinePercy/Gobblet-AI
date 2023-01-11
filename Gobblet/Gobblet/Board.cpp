@@ -21,14 +21,17 @@ Board::Board(unsigned long long t_hashCode, int t_playerInventory[3], int t_aiIn
 int Board::minimax()
 {
 	// check for win or tie
-	if (checkForWin())
+
+	if (checkForLoss())
 	{
-		return 200;
+		return -400;
 	}
-	else if (checkForLoss())
+
+	else if (checkForWin())
 	{
-		return -200;
+		return 400;
 	}
+
 	else if (depth >= MAX_DEPTH)
 	{
 		return analyseBoardState();
@@ -83,6 +86,7 @@ int Board::minimax()
 		{
 			Board nextBoard(hash, m_playerInventory, m_aiInventory, depth+1, !AIturn);
 			int value = nextBoard.minimax();
+
 			if (value < bestVal)
 			{
 				bestHash = hash;
@@ -102,7 +106,7 @@ std::vector<unsigned long long> Board::getOnBoardMoves()
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (m_board[i][j] < 5 && m_board[i][j] != 0)
+				if (m_board[i][j] < 5)
 				{
 					processMovesFrom(i, j, moves);
 				}
@@ -115,7 +119,7 @@ std::vector<unsigned long long> Board::getOnBoardMoves()
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (m_board[i][j] >= 5)
+				if (m_board[i][j] >= 5 && m_board[i][j] != 9)
 				{
 					processMovesFrom(i, j, moves);
 				}
@@ -134,7 +138,7 @@ void Board::processMovesFrom(int x, int y, std::vector<unsigned long long>& t_li
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (m_board[i][j] < m_board[x][y] || (m_board[i][j] >= 5 && m_board[i][j] < size))
+				if (m_board[i][j] < m_board[x][y] || (m_board[i][j] >= 5 && m_board[i][j] != 9 && m_board[i][j] < size))
 				{
 					t_listOfMoves.push_back(getMoveHash(x, y, i, j));
 				}
@@ -148,7 +152,7 @@ void Board::processMovesFrom(int x, int y, std::vector<unsigned long long>& t_li
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (m_board[i][j] < size || (m_board[i][j] >= 5 && m_board[i][j] < m_board[x][y]))
+				if (m_board[i][j] < size || (m_board[i][j] >= 5 && m_board[i][j] != 9 && m_board[i][j] < m_board[x][y]))
 				{
 					t_listOfMoves.push_back(getMoveHash(x, y, i, j));
 				}
@@ -204,24 +208,29 @@ std::vector<unsigned long long> Board::getOffBoardMoves()
 			m_aiInventory[biggesttPiece]--;
 		modifyForTriplesPlayer(pieceSize);
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if (m_board[i][j] == 0)
-			{
-				moves.push_back(getMoveHash(5, pieceSize, i, j));
-			}
-		}
-	}
+
 	// reset the board
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
+			int temp = m_board[i][j];
 			m_board[i][j] = currentBoard[i][j];
+			currentBoard[i][j] = temp;
 		}
 	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (currentBoard[i][j] == 9)
+			{
+				moves.push_back(getMoveHash(5, pieceSize, i, j));
+			}
+		}
+	}
+
 	return moves;
 }
 
@@ -309,7 +318,7 @@ bool Board::checkForLoss()
 		int count = 0;
 		for (int j = 0; j < 4; j++)
 		{
-			if (m_board[i][j] >= 5)
+			if (m_board[i][j] >= 5 && m_board[i][j] != 9)
 				count++;
 		}
 		if (count >= 4)
@@ -320,7 +329,7 @@ bool Board::checkForLoss()
 		int count = 0;
 		for (int j = 0; j < 4; j++)
 		{
-			if (m_board[j][i] >= 5)
+			if (m_board[j][i] >= 5 && m_board[j][i] != 9)
 				count++;
 		}
 		if (count >= 4)
@@ -329,7 +338,7 @@ bool Board::checkForLoss()
 	int count = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		if (m_board[i][i] >= 5)
+		if (m_board[i][i] >= 5 && m_board[i][i] != 9)
 			count++;
 	}
 	if (count >= 4)
@@ -337,7 +346,7 @@ bool Board::checkForLoss()
 	count = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		if (m_board[i][4 - i] >= 5)
+		if (m_board[i][4 - i] >= 5 && m_board[i][4 - i] != 9)
 			count++;
 	}
 	if (count >= 4)

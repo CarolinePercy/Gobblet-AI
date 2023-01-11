@@ -89,3 +89,12 @@ sf::Vector2f Tile::getPosition()
 {
 	return m_tile.getPosition();
 }
+
+/// <summary>
+/// Returns the position of the tile in relation to the screen, plus centring it to the middle of the square.
+/// </summary>
+/// <returns>The position of the tile.</returns>
+sf::Vector2f Tile::getOffsetPosition()
+{
+	return m_tile.getPosition() + (m_tile.getSize() / 2.0f);
+}

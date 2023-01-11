@@ -94,6 +94,8 @@ void Grid::resetBoard()
 		}
 	}
 
+	g_yourTurn = true;
+	background.setFillColor(playerBGColours[0]);
 	resetPlayerTiles(m_player1Tiles, player1Gobblets);
 	resetPlayerTiles(m_player2Tiles, player2Gobblets);
 
@@ -123,6 +125,7 @@ void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t
 
 		else
 		{
+			tile->getCurrentGobblet()->setPosition(tile->getOffsetPosition());
 			continue;
 		}
 
@@ -139,6 +142,8 @@ void Grid::resetPlayerTiles(std::vector<Tile*> t_player, std::vector<Gobblet*> t
 				}
 			}
 		}
+
+		tile->getCurrentGobblet()->setPosition(tile->getOffsetPosition());
 	}
 }
 
@@ -199,13 +204,14 @@ void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 
 				if (distanceLength < 100)
 				{
-					g_yourTurn = true;
+					
 					AIMoveFrom->moveGobbletTo(AIMoveTo);
 
 					checkRows();
 
 					if (g_status == Status::OnGoing)
 					{
+						g_yourTurn = true;
 						background.setFillColor(playerBGColours[0]);
 					}
 
@@ -223,12 +229,13 @@ void Grid::update(sf::Vector2i t_mousePos, sf::Time t_deltaTime)
 			{
 				std::cout << "Error!" << std::endl;
 
-				g_yourTurn = true;
+				
 
 				checkRows();
 
 				if (g_status == Status::OnGoing)
 				{
+					g_yourTurn = true;
 					background.setFillColor(playerBGColours[0]);
 				}
 
@@ -357,13 +364,14 @@ void Grid::onMouseUp(sf::Vector2i t_click)
 void Grid::processOpponentTurn()
 {
 	AIWaitTime = rand() % 2 + 1;
-	g_yourTurn = false;
 
-	background.setFillColor(playerBGColours[1]);
 	checkRows();
 
 	if (g_status == Status::OnGoing)
 	{
+		g_yourTurn = false;
+
+		background.setFillColor(playerBGColours[1]);
 		calculateBestMove();
 		makeMove(boardStates[0], boardStates[1]);
 		checkRows();
@@ -683,6 +691,11 @@ void Grid::calculateBestMove()
 			if (current->isControlledByPlayer())
 				board += 4; // AI pieces are 1-4, AI are 5-8
 		}
+
+		else
+		{
+			board += 9;
+		}
 	}
 	int playerInventory[3] = { 0 };
 	int i = 0;
@@ -693,6 +706,8 @@ void Grid::calculateBestMove()
 		{
 			playerInventory[i] = current->getSize();
 		}
+
+
 		i++;
 	}
 	int enemyInventory[3] = { 0 };
