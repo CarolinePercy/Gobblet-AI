@@ -44,7 +44,7 @@ int Board::minimax()
 		return 400;
 	}
 
-	else if (depth >= MAX_DEPTH)
+	else if (depth >= g_maxDepth)
 	{
 		return analyseBoardState();
 	}

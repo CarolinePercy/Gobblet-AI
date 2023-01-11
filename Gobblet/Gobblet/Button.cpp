@@ -77,6 +77,14 @@ void Button::render(sf::RenderWindow& t_window)
 }
 
 /// <summary>
+/// Changes colour to show this Button is the currently selected option.
+/// </summary>
+void Button::selected()
+{
+	button.setFillColor(hoverColor);
+}
+
+/// <summary>
 /// Changes the colour of the button, depending on how the player is interacting with it.
 /// </summary>
 void Button::changeColor()

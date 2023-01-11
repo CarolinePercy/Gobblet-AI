@@ -43,6 +43,9 @@ extern sf::Font g_font;
 ///Bool that controls when the game ends.
 extern bool g_exitGame;
 
+/// How far the AI should go in Minimax, before cutting it off and making an estimate. Saves on time.
+extern int g_maxDepth;
+
 ///The width of the SFMl screen the game takes place.
 unsigned const int G_VIEW_WIDTH = 1920U;
 
